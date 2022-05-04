@@ -13,5 +13,18 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.btnRegister.setOnClickListener { view: View? ->
+            var goToLogin = Intent(this, MainActivity::class.java)
+            startActivity(goToLogin)
+            finish()
+        }
+
+        binding.btnToLogin.setOnClickListener { view: View? ->
+            var goToLogin = Intent(this, MainActivity::class.java)
+            startActivity(goToLogin)
+            finish()
+        }
+
     }
 }

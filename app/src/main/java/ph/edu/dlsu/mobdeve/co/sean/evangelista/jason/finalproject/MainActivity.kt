@@ -18,11 +18,13 @@ class MainActivity : AppCompatActivity() {
 //        binding.btnLogin.setOnClickListener { view: View? ->
 //            var goToHome = Intent(this, HomeActivity::class.java)
 //            startActivity(goToHome)
+//            finish()
 //        }
 
         binding.btnToRegister.setOnClickListener { view: View? ->
             var goToRegister = Intent(this, RegisterActivity::class.java)
             startActivity(goToRegister)
+            finish()
         }
 
     }
