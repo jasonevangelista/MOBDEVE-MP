@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">FinalProject</string>
+    <string name="app_title">GameBuddy</string>
+    <string name="user_hint">Username</string>
+    <string name="pass_hint">Password</string>
+    <string name="login_btn">Login</string>
+    <string name="to_reg_btn">Click here to register</string>
 </resources>
