@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/ic_tournaments"
+        android:icon="@drawable/ic_tournaments"
+        android:title="Tournaments"/>
+    <item
+        android:id="@+id/ic_teammates"
+        android:icon="@drawable/ic_teammates"
+        android:title="Teammates"/>
+    <item
+        android:id="@+id/ic_profile"
+        android:icon="@drawable/ic_profile"
+        android:title="Profile"/>
+</menu>

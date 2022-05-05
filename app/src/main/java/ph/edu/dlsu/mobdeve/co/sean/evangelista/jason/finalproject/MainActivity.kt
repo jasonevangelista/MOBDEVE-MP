@@ -15,11 +15,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        binding.btnLogin.setOnClickListener { view: View? ->
-//            var goToHome = Intent(this, HomeActivity::class.java)
-//            startActivity(goToHome)
-//            finish()
-//        }
+        binding.btnLogin.setOnClickListener { view: View? ->
+            var goToHome = Intent(this, PlayerListActivity::class.java)
+            startActivity(goToHome)
+            finish()
+        }
 
         binding.btnToRegister.setOnClickListener { view: View? ->
             var goToRegister = Intent(this, RegisterActivity::class.java)

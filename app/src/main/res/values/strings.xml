@@ -9,5 +9,7 @@
     <string name="register_btn">Register</string>
     <string name="to_reg_btn">Click here to Register</string>
     <string name="to_login_btn">Already have an Account? Login</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
