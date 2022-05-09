@@ -23,7 +23,9 @@ class PlayerListActivity : AppCompatActivity() {
         val teammatesFragment = TeammatesFragment()
         val tournamentsFragment = TournamentsFragment()
 
+        // ViewPlayerList (Teammates) set as home screen
         makeCurrentFragment(teammatesFragment)
+
         binding.bottomNav.setOnItemSelectedListener {
             when (it.itemId){
                 R.id.ic_teammates -> makeCurrentFragment(teammatesFragment)
@@ -39,6 +41,7 @@ class PlayerListActivity : AppCompatActivity() {
     private fun makeCurrentFragment(fragment: Fragment) =
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.fl_wrapper, fragment)
+            addToBackStack(null)
             commit()
         }
 

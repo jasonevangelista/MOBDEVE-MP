@@ -1,60 +1,87 @@
 package ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.MainActivity
+import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.PlayerListActivity
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.R
+import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.adapter.PlayerAdapter
+import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.dao.PlayersDAO
+import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.dao.PlayersDAOArrayImpl
+import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.databinding.ActivityPlayerListBinding
+import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.databinding.FragmentTeammatesBinding
+import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.model.Player
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class TeammatesFragment : Fragment(R.layout.fragment_teammates){
 
-/**
- * A simple [Fragment] subclass.
- * Use the [TeammatesFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class TeammatesFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var _binding : FragmentTeammatesBinding? = null
+    private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var playerAdapter: PlayerAdapter
+    private lateinit var playerArrayList: ArrayList<Player>
+    private lateinit var viewManager: LinearLayoutManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_teammates, container, false)
+        _binding = FragmentTeammatesBinding.inflate(inflater, container, false)
+
+        viewManager = LinearLayoutManager(activity)
+//        playerAdapter = PlayerAdapter(requireContext(), playerArrayList)
+//        viewAdapter = PlayerAdapter
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment TeammatesFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            TeammatesFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        init()
+//        binding.rvPlayerList.layoutManager(LinearLayoutManager(requireContext()))
+        binding.rvPlayerList.apply {
+            layoutManager = viewManager
+            adapter = PlayerAdapter(requireContext(), playerArrayList)
+        }
+//        binding.rvPlayerList.layoutManager = LinearLayoutManager(requireContext())
+//        playerAdapter = PlayerAdapter(requireContext(), playerArrayList)
+//        binding.rvPlayerList.setAdapter(playerAdapter)
+//        binding.btnTest.setOnClickListener{
+//            val goToLogin = Intent(activity, MainActivity::class.java)
+//            activity?.startActivity(goToLogin)
+////            activity?.finish()
+//        }
+
+    }
+
+    // to avoid memory leaks
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
+    private fun init(){
+        var dao: PlayersDAO = PlayersDAOArrayImpl()
+
+        var player = Player()
+        player.username = "player1"
+        player.rating = 5.0F
+        player.rank = "Iron"
+
+        dao.addPlayer(player)
+        dao.addPlayer(player)
+        dao.addPlayer(player)
+        dao.addPlayer(player)
+        dao.addPlayer(player)
+        dao.addPlayer(player)
+        dao.addPlayer(player)
+        dao.addPlayer(player)
+        dao.addPlayer(player)
+
+        playerArrayList = dao.getPlayers()
     }
 }
