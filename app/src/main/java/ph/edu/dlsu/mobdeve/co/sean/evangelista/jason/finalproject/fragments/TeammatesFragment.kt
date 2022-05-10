@@ -75,12 +75,6 @@ class TeammatesFragment : Fragment(R.layout.fragment_teammates){
         dao.addPlayer(player)
         dao.addPlayer(player)
         dao.addPlayer(player)
-        dao.addPlayer(player)
-        dao.addPlayer(player)
-        dao.addPlayer(player)
-        dao.addPlayer(player)
-        dao.addPlayer(player)
-        dao.addPlayer(player)
 
         playerArrayList = dao.getPlayers()
     }
