@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="button">#FF424242</color>
     <color name="background">#82A284</color>
+    <color name="cancel">#EB5353</color>
 </resources>
