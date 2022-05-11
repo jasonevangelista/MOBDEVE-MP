@@ -26,18 +26,12 @@ class AddReviewActivity : AppCompatActivity() {
         binding.btnCancelReview.setOnClickListener { view: View? ->
             var goToPlayerProfile = Intent(this, MainActivity::class.java)
             startActivity(goToPlayerProfile)
-            Snackbar.make(binding.root,
-                "Cancelled Review",
-                Snackbar.LENGTH_LONG).show()
             finish()
         }
 
         binding.btnAddReview.setOnClickListener { view: View? ->
             var goToPlayerProfile = Intent(this, MainActivity::class.java)
             startActivity(goToPlayerProfile)
-            Snackbar.make(binding.root,
-                "Added Review Successfully",
-                Snackbar.LENGTH_LONG).show()
             finish()
         }
 

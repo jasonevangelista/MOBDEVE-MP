@@ -14,4 +14,9 @@
     <string name="add">Add</string>
     <string name="cancel">Cancel</string>
     <string name="review_hint">Add Review Here</string>
+    <string name="add_game">Add Game</string>
+    <string name="game_title">Name of Game</string>
+    <string name="rank">Rank</string>
+    <string name="server">Server(s)</string>
+    <string name="role">Preferred Role(s)</string>
 </resources>
