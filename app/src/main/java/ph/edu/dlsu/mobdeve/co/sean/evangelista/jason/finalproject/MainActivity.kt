@@ -16,8 +16,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnLogin.setOnClickListener { view: View? ->
-            var goToHome = Intent(this, PlayerListActivity::class.java)
-            startActivity(goToHome)
+//            var goToHome = Intent(this, PlayerListActivity::class.java)
+//            startActivity(goToHome)
+            var goToUserProfile = Intent(this, UserProfileActivity::class.java)
+            startActivity(goToUserProfile)
             finish()
         }
 

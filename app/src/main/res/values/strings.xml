@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FinalProject</string>
+    <string name="app_name">Game Buddy</string>
     <string name="app_title">GameBuddy</string>
     <string name="user_hint">Username</string>
     <string name="email_hint">Email</string>

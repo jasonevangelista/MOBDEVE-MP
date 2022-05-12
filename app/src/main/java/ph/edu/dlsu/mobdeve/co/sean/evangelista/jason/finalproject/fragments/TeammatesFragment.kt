@@ -1,19 +1,16 @@
 package ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.fragments
 
-import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.MainActivity
-import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.PlayerListActivity
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.R
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.adapter.PlayerAdapter
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.dao.PlayersDAO
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.dao.PlayersDAOArrayImpl
-import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.databinding.ActivityPlayerListBinding
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.databinding.FragmentTeammatesBinding
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.model.Player
 
@@ -45,8 +42,9 @@ class TeammatesFragment : Fragment(R.layout.fragment_teammates){
 //        binding.rvPlayerList.layoutManager(LinearLayoutManager(requireContext()))
         binding.rvPlayerList.apply {
             layoutManager = viewManager
-            adapter = PlayerAdapter(requireContext(), playerArrayList)
+            adapter = PlayerAdapter(requireContext(), playerArrayList, this@TeammatesFragment::onItemClickHandler)
         }
+
 //        binding.rvPlayerList.layoutManager = LinearLayoutManager(requireContext())
 //        playerAdapter = PlayerAdapter(requireContext(), playerArrayList)
 //        binding.rvPlayerList.setAdapter(playerAdapter)
@@ -55,6 +53,8 @@ class TeammatesFragment : Fragment(R.layout.fragment_teammates){
 //            activity?.startActivity(goToLogin)
 ////            activity?.finish()
 //        }
+
+//        binding.rvPlayerList.setonclick
 
     }
 
@@ -77,5 +77,9 @@ class TeammatesFragment : Fragment(R.layout.fragment_teammates){
         dao.addPlayer(player)
 
         playerArrayList = dao.getPlayers()
+    }
+
+    private fun onItemClickHandler(position:Int){
+        Log.d("***","${position}")
     }
 }
