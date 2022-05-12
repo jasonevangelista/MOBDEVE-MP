@@ -19,4 +19,13 @@
     <string name="rank">Rank</string>
     <string name="server">Server(s)</string>
     <string name="role">Preferred Role(s)</string>
+    <string name="add_tournament">Add Tournament</string>
+    <string name="tournament_name">Tournament Name</string>
+    <string name="curr_cap">Current Capacity</string>
+    <string name="max_cap">Max Capacity</string>
+    <string name="feat_game">Featured Game</string>
+    <string name="desc">Description</string>
+    <string name="cut_date">Cut-off Date</string>
+    <string name="start_date">Start Date</string>
+    <string name="instructions">Instructions</string>
 </resources>

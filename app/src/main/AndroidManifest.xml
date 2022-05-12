@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FinalProject">
         <activity
+            android:name=".AddTournamentActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddGameActivity"
             android:exported="false" />
         <activity
