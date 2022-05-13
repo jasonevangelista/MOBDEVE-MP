@@ -9,5 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="button">#FF424242</color>
     <color name="go_to">#2155CD</color>
+    <color name="silver">#C0C0C0</color>
 
 </resources>
