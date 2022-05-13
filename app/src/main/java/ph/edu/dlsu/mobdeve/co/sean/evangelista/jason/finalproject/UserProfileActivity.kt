@@ -3,7 +3,7 @@ package ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.android.material.tabs.TabLayoutMediator
-import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.adapter.ViewPagerAdapter
+import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.adapter.UserProfileViewPagerAdapter
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.databinding.ActivityUserProfileBinding
 
 class UserProfileActivity : AppCompatActivity() {
@@ -18,7 +18,7 @@ class UserProfileActivity : AppCompatActivity() {
         val tabLayout = binding.tlUserProfile
         val viewPager = binding.vpUserProfile
 
-        val adapter = ViewPagerAdapter(supportFragmentManager, lifecycle)
+        val adapter = UserProfileViewPagerAdapter(supportFragmentManager, lifecycle)
 
         viewPager.adapter = adapter
 

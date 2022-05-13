@@ -8,7 +8,7 @@ import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.fragments.user
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.fragments.userprofile.UserProfileGamesFragment
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.fragments.userprofile.UserProfileReviewsFragment
 
-class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) : FragmentStateAdapter(fragmentManager, lifecycle)  {
+class UserProfileViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) : FragmentStateAdapter(fragmentManager, lifecycle)  {
 
     override fun getItemCount(): Int {
         return 3
