@@ -15,6 +15,11 @@ class UserProfileActivity : AppCompatActivity() {
         binding = ActivityUserProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val bundle = intent.extras
+        var username:String? = null
+        username = bundle!!.getString("username", "Player Name")
+        binding.tvProfileName.text = username
+
         val tabLayout = binding.tlUserProfile
         val viewPager = binding.vpUserProfile
 

@@ -1,22 +1,27 @@
 package ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.adapter
 
 import android.content.Context
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.R
+import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.UserProfileActivity
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.databinding.ItemPlayerListBinding
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.model.Player
 
 class PlayerAdapter: RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder> {
     private var playerArrayList = ArrayList<Player>()
     private lateinit var context: Context
-    private lateinit var itemClickHandler: (Int) -> Unit
 
-    public constructor(context: Context, playerArrayList: ArrayList<Player>, itemClickHandler: (Int) -> Unit){
+    var onItemClick: ((Player) -> Unit)? = null
+
+
+    public constructor(context: Context, playerArrayList: ArrayList<Player>){
         this.context = context
         this.playerArrayList = playerArrayList
-        this.itemClickHandler = itemClickHandler
     }
 
     override fun getItemCount(): Int{
@@ -38,7 +43,7 @@ class PlayerAdapter: RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder> {
 
     }
 
-    class PlayerViewHolder(private val itemBinding: ItemPlayerListBinding)
+    inner class PlayerViewHolder(private val itemBinding: ItemPlayerListBinding)
         : RecyclerView.ViewHolder(itemBinding.root){
 
             fun bindPlayer(player:Player){
@@ -48,8 +53,12 @@ class PlayerAdapter: RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder> {
                 itemBinding.ivPlayerImage.setImageResource(R.drawable.ic_profile)
             }
 
-
-
+            init {
+                itemBinding.cvTeammate.setOnClickListener{
+                    onItemClick?.invoke(playerArrayList[adapterPosition])
+                }
+            }
 
         }
+
 }

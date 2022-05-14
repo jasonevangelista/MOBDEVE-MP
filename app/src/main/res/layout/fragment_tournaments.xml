@@ -4,15 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="15sp"
     tools:context=".fragments.TournamentsFragment">
 
     <LinearLayout
         android:id="@+id/ll_tournament"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10sp"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="10dp">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tv_tournaments"
@@ -62,7 +61,6 @@
         android:id="@+id/rv_tournament_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10sp"
         app:layout_constraintTop_toBottomOf="@+id/ll_tournament" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

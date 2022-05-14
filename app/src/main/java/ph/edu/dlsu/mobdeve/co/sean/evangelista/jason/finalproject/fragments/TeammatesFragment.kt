@@ -1,5 +1,6 @@
 package ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.R
+import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.UserProfileActivity
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.adapter.PlayerAdapter
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.dao.PlayersDAO
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.dao.PlayersDAOArrayImpl
@@ -40,10 +42,23 @@ class TeammatesFragment : Fragment(R.layout.fragment_teammates){
         super.onViewCreated(view, savedInstanceState)
         init()
 //        binding.rvPlayerList.layoutManager(LinearLayoutManager(requireContext()))
+
+        playerAdapter = PlayerAdapter(requireContext(), playerArrayList)
         binding.rvPlayerList.apply {
             layoutManager = viewManager
-            adapter = PlayerAdapter(requireContext(), playerArrayList, this@TeammatesFragment::onItemClickHandler)
+            adapter = playerAdapter
         }
+
+        playerAdapter.onItemClick = { player ->
+            val goToUserProfile = Intent(activity, UserProfileActivity::class.java)
+
+            val bundle = Bundle()
+            bundle.putString("username", player.username)
+            goToUserProfile.putExtras(bundle)
+            activity?.startActivity(goToUserProfile)
+        }
+
+
 
 //        binding.rvPlayerList.layoutManager = LinearLayoutManager(requireContext())
 //        playerAdapter = PlayerAdapter(requireContext(), playerArrayList)
@@ -67,19 +82,29 @@ class TeammatesFragment : Fragment(R.layout.fragment_teammates){
     private fun init(){
         var dao: PlayersDAO = PlayersDAOArrayImpl()
 
-        var player = Player()
-        player.username = "player1"
-        player.rating = 5.0F
-        player.rank = "Iron"
+        var player1 = Player()
+        player1.username = "player1"
+        player1.rating = 5.0F
+        player1.rank = "Iron"
+        dao.addPlayer(player1)
 
-        dao.addPlayer(player)
-        dao.addPlayer(player)
-        dao.addPlayer(player)
+        var player2 = Player()
+        player2.username = "player2"
+        player2.rating = 4.0F
+        player2.rank = "Gold"
+        dao.addPlayer(player2)
+
+        var player3 = Player()
+        player3.username = "player3"
+        player3.rating = 2.0F
+        player3.rank = "Bronze"
+        dao.addPlayer(player3)
+
+        dao.addPlayer(player3)
+        dao.addPlayer(player3)
+        dao.addPlayer(player3)
 
         playerArrayList = dao.getPlayers()
     }
 
-    private fun onItemClickHandler(position:Int){
-        Log.d("***","${position}")
-    }
 }
