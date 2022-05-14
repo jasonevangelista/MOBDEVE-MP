@@ -27,6 +27,12 @@
     <string name="curr_cap">Current Capacity</string>
     <string name="max_cap">Max Capacity</string>
     <string name="feat_game">Featured Game</string>
+    <string name="feat_game_prompt">Select a Game</string>
+    <string-array name="feat_game_list">
+        <item>Valorant</item>
+        <item>League of Legends</item>
+        <item>Apex Legends</item>
+    </string-array>
     <string name="desc">Description</string>
     <string name="cut_date">Cut-off Date</string>
     <string name="start_date">Start Date</string>

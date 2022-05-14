@@ -108,13 +108,16 @@
                 android:textSize="24sp"
                 app:layout_constraintTop_toBottomOf="@id/et_max" />
 
-            <EditText
-                android:id="@+id/et_game"
+            <Spinner
+                android:id="@+id/spinner_game"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10sp"
                 android:layout_marginEnd="10sp"
-                app:layout_constraintTop_toBottomOf="@id/tv_feat_game"/>
+                android:entries="@array/feat_game_list"
+                android:prompt="@string/feat_game_prompt"
+                android:spinnerMode="dropdown"
+                app:layout_constraintTop_toBottomOf="@id/tv_feat_game" />
 
             <TextView
                 android:id="@+id/tv_description"
