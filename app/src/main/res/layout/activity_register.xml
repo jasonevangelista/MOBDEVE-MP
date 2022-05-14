@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/background"
     tools:context=".RegisterActivity">
 
     <TextView
@@ -54,12 +55,11 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_to_Login"
         android:text="@string/to_login_btn"
-        android:textColor="@color/go_to"
+        android:textColor="@color/white"
         android:textAllCaps="false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/background"
         android:layout_gravity="center" />
-
 
 </LinearLayout>

@@ -16,6 +16,15 @@
             android:name=".PlayerListActivity"
             android:exported="false" />
         <activity
+            android:name=".AddTournamentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddGameActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddReviewActivity"
+            android:exported="false" />
+        <activity
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity

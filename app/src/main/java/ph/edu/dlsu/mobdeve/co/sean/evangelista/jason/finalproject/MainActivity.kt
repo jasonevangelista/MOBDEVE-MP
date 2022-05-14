@@ -31,7 +31,5 @@ class MainActivity : AppCompatActivity() {
             startActivity(goToRegister)
             finish()
         }
-
-
     }
 }

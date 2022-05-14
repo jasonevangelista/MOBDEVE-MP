@@ -11,4 +11,6 @@
     <color name="go_to">#2155CD</color>
     <color name="silver">#C0C0C0</color>
 
+    <color name="background">#82A284</color>
+    <color name="cancel">#EB5353</color>
 </resources>
