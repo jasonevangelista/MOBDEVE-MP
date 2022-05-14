@@ -221,7 +221,7 @@
                     android:layout_marginRight="85sp">
 
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btn_cancel_review"
+                        android:id="@+id/btn_cancel_tournament"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_column="0"
@@ -233,7 +233,7 @@
                         android:textColor="@color/white" />
 
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btn_add_review"
+                        android:id="@+id/btn_add_tournament"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_column="1"

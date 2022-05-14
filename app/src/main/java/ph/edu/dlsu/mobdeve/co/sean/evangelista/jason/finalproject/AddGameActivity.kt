@@ -12,5 +12,23 @@ class AddGameActivity : AppCompatActivity() {
         binding = ActivityAddGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.btnBack.setOnClickListener {
+            // go to previous page
+            finish()
+        }
+
+        binding.btnCancelGame.setOnClickListener {
+            // go to previous page
+            finish()
+        }
+
+        binding.btnAddGame.setOnClickListener {
+            // submit game details for my profile to database
+            // <CODE HERE>
+
+            // go to previous page
+            finish()
+        }
+
     }
 }

@@ -12,5 +12,22 @@ class AddTournamentActivity : AppCompatActivity() {
         binding = ActivityAddTournamentBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.btnBack.setOnClickListener {
+            // go to previous page
+            finish()
+        }
+
+        binding.btnCancelTournament.setOnClickListener {
+            // go to previous page
+            finish()
+        }
+
+        binding.btnAddTournament.setOnClickListener {
+            // submit tournament details to database
+            // <CODE HERE>
+
+            // go to previous page
+            finish()
+        }
     }
 }

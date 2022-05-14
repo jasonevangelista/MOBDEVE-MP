@@ -1,11 +1,14 @@
 package ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.AddReviewActivity
+import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.AddTournamentActivity
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.R
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.adapter.TournamentAdapter
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.dao.TournamentsDAO
@@ -41,6 +44,11 @@ class TournamentsFragment : Fragment(R.layout.fragment_tournaments) {
         binding.rvTournamentList.apply {
             layoutManager = viewManager
             adapter = TournamentAdapter(requireContext(), tournamentArrayList)
+        }
+
+        binding.btnAddTournament.setOnClickListener {
+            val goToAddTournament = Intent(activity, AddTournamentActivity::class.java)
+            activity?.startActivity(goToAddTournament)
         }
     }
 

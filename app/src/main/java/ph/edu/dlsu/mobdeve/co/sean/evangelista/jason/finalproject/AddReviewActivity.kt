@@ -18,20 +18,22 @@ class AddReviewActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnBack.setOnClickListener { view: View? ->
-            var goToPlayerProfile = Intent(this, MainActivity::class.java)
-            startActivity(goToPlayerProfile)
+            // go back to previous page
             finish()
         }
 
         binding.btnCancelReview.setOnClickListener { view: View? ->
-            var goToPlayerProfile = Intent(this, MainActivity::class.java)
-            startActivity(goToPlayerProfile)
+            // go back to previous page
             finish()
         }
 
         binding.btnAddReview.setOnClickListener { view: View? ->
-            var goToPlayerProfile = Intent(this, MainActivity::class.java)
-            startActivity(goToPlayerProfile)
+//            var goToPlayerProfile = Intent(this, MainActivity::class.java)
+//            startActivity(goToPlayerProfile)
+            // submit review to database
+            // <CODE HERE>
+
+            // go back to previous page
             finish()
         }
 
