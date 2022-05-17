@@ -6,20 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".fragments.userprofile.UserProfileReviewsFragment">
 
-    <TextView
-        android:id="@+id/textView"
+<!--    <TextView-->
+<!--        android:id="@+id/textView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:gravity="center"-->
+<!--        android:text="REVIEWS"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="20dp" />-->
+
+<!--    insert review visualization here -->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_player_reviews"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="REVIEWS"
-        android:textColor="@color/black"
-        android:textSize="20dp" />
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_add_review"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="ADD REVIEW"
-        app:layout_constraintBottom_toBottomOf="@+id/textView" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -48,6 +48,24 @@
             android:textColor="@color/black"
             android:background="@color/silver"/>
 
+        <!--  Apex Legends  -->
+        <TextView
+            android:id="@+id/tv_user_game_apex_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Apex Legends"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_user_game_lol_content" />
+        <TextView
+            android:id="@+id/tv_user_game_apex_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rank\t\t\t\t\tGold\nServer(s)\t\tAsia\nRole(s)\t\t\t\tSupport"
+            app:layout_constraintTop_toBottomOf="@id/tv_user_game_apex_label"
+            android:textColor="@color/black"
+            android:background="@color/silver"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
