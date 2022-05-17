@@ -12,17 +12,28 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!--buttons-->
     <string name="back">←</string>
-    <string name="add_review">Add Review</string>
     <string name="add">Add</string>
     <string name="cancel">Cancel</string>
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
+    <string name="connect">Connect</string>
+    <string name="email">Send Email</string>
+    <string name="change_image">Change Image</string>
+    <!--reviews-->
+    <string name="add_review">Add Review</string>
     <string name="review_hint">Add Review Here</string>
+    <!--games-->
     <string name="add_game">Add Game</string>
+    <string name="edit_game">Edit Game</string>
     <string name="game_title">Name of Game</string>
     <string name="rank">Rank</string>
     <string name="server">Server(s)</string>
     <string name="role">Preferred Role(s)</string>
+    <!--tournaments-->
     <string name="add_tournament">Add Tournament</string>
+    <string name="edit_tournament">Edit Tournament</string>
     <string name="tournament_name">Tournament Name</string>
     <string name="curr_cap">Current Capacity</string>
     <string name="max_cap">Max Capacity</string>
@@ -33,8 +44,20 @@
         <item>League of Legends</item>
         <item>Apex Legends</item>
     </string-array>
-    <string name="desc">Description</string>
+    <string name="description">Description</string>
     <string name="cut_date">Cut-off Date</string>
     <string name="start_date">Start Date</string>
     <string name="instructions">Instructions</string>
+    <!--connect-->
+    <string name="connect_message">Connect with: </string>
+    <string name="connect_hint">Let\'s play! Add me on: </string>
+    <!--profile-->
+    <string name="edit_profile">Edit Profile</string>
+    <string name="discord">Discord</string>
+    <string name="twitter">Twitter</string>
+    <string name="others">Other Socials</string>
+    <string name="bio">Bio</string>
+    <string name="message">Message</string>
+    <string name="gaming_hours">Gaming Hours</string>
+    
 </resources>

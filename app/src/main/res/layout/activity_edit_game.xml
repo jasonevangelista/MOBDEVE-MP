@@ -5,27 +5,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddGameActivity">
+    tools:context=".EditGameActivity">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_back"
-        android:text="@string/back"
-        android:textColor="@color/button"
-        android:textSize="48sp"
+    <LinearLayout
+        android:id="@+id/btn_panel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/background"
-        android:gravity="start" />
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_back"
+            android:layout_width="328dp"
+            android:layout_height="75dp"
+            android:background="@color/background"
+            android:textAlignment="textStart"
+            android:text="@string/back"
+            android:textColor="@color/button"
+            android:textSize="48sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_delete"
+            android:layout_width="82dp"
+            android:layout_height="75dp"
+            android:layout_gravity="center"
+            android:background="@color/background"
+            android:text="@string/delete"
+            android:textAllCaps="false"
+            android:textColor="@color/button"
+            android:textAlignment="center"
+            android:textSize="16sp" />
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/tv_add_game"
+        android:id="@+id/tv_edit_game"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10sp"
-        app:layout_constraintTop_toBottomOf="@id/btn_back"
+        app:layout_constraintTop_toBottomOf="@id/btn_panel"
         android:gravity="center"
-        android:text="@string/add_game"
+        android:text="@string/edit_game"
         android:textStyle="bold"
         android:textSize="32sp" />
 
@@ -35,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30sp"
         android:layout_marginStart="10sp"
-        app:layout_constraintTop_toBottomOf="@id/tv_add_game"
+        app:layout_constraintTop_toBottomOf="@id/tv_edit_game"
         android:gravity="start"
         android:text="@string/game_title"
         android:textSize="24sp" />
@@ -130,13 +149,13 @@
                 android:textColor="@color/white" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_add_game"
+                android:id="@+id/btn_edit_game"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_column="1"
                 android:background="@color/button"
-                android:text="@string/add"
+                android:text="@string/update"
                 android:textAllCaps="false"
                 android:textColor="@color/white" />
         </TableRow>

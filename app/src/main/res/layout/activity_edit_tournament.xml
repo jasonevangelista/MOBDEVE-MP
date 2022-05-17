@@ -5,27 +5,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddTournamentActivity">
+    tools:context=".EditTournamentActivity">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_back"
-        android:text="@string/back"
-        android:textColor="@color/button"
-        android:textSize="48sp"
+    <LinearLayout
+        android:id="@+id/btn_panel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/background"
-        android:gravity="start" />
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_back"
+            android:layout_width="328dp"
+            android:layout_height="75dp"
+            android:background="@color/background"
+            android:textAlignment="textStart"
+            android:text="@string/back"
+            android:textColor="@color/button"
+            android:textSize="48sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_delete"
+            android:layout_width="82dp"
+            android:layout_height="75dp"
+            android:layout_gravity="center"
+            android:background="@color/background"
+            android:text="@string/delete"
+            android:textAllCaps="false"
+            android:textColor="@color/button"
+            android:textAlignment="center"
+            android:textSize="16sp" />
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/tv_add_tournament"
+        android:id="@+id/tv_edit_tournament"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10sp"
-        app:layout_constraintTop_toBottomOf="@id/btn_back"
+        app:layout_constraintTop_toBottomOf="@id/btn_panel"
         android:gravity="center"
-        android:text="@string/add_tournament"
+        android:text="@string/edit_tournament"
         android:textStyle="bold"
         android:textSize="32sp" />
 
@@ -33,7 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="130sp"
-        app:layout_constraintTop_toBottomOf="@id/tv_add_tournament">
+        app:layout_constraintTop_toBottomOf="@id/tv_edit_tournament">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -236,13 +255,13 @@
                         android:textColor="@color/white" />
 
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btn_add_tournament"
+                        android:id="@+id/btn_edit_tournament"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_column="1"
                         android:layout_gravity="end"
                         android:background="@color/button"
-                        android:text="@string/add"
+                        android:text="@string/update"
                         android:textAllCaps="false"
                         android:textColor="@color/white" />
                 </TableRow>
