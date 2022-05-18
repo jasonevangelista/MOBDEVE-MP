@@ -56,7 +56,7 @@ class MyProfileHistoryFragment : Fragment(R.layout.fragment_my_profile_history) 
             val bundle = Bundle()
             bundle.putString("username", player.username)
             goToUserProfile.putExtras(bundle)
-            
+
             activity?.startActivity(goToUserProfile)
         }
 

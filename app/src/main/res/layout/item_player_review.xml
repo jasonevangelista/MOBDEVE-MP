@@ -31,6 +31,7 @@
                 >
 
                 <TextView
+                    android:id="@+id/tv_review_rating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="RATING HERE"
@@ -39,6 +40,7 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
+                    android:id="@+id/tv_review_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="REVIEW DATE HERE"
