@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TournamentProfileActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:id="@+id/ll_tournament_name_game"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_tournament_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NAME OF TOURNAMENT"
+            android:textColor="@color/black"
+            android:layout_marginRight="10dp"/>
+        <TextView
+            android:id="@+id/tv_tournament_game"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(VALORANT)"
+            android:textColor="@color/black"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_tournament_capacity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/ll_tournament_name_game">
+
+        <TextView
+            android:id="@+id/tv_tournament_capacity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="0 / 20"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/ll_tournament_capacity">
+
+<!--        Description -->
+        <TextView
+            android:id="@+id/tv_tournament_description_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/tv_tournament_description_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/silver"
+            android:text="test description\nthis is my tournament's description"
+            android:textColor="@color/black"/>
+
+<!--        Important Dates-->
+        <TextView
+            android:id="@+id/tv_tournament_dates_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Important Dates"
+            android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/tv_tournament_dates_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/silver"
+            android:text="test description\nthis is my tournament's description"
+            android:textColor="@color/black"/>
+
+<!--        How To Join-->
+        <TextView
+            android:id="@+id/tv_tournament_join_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="How to Join"
+            android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/tv_tournament_join_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/silver"
+            android:text="Join this link:\nINSERT LINK HERE"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

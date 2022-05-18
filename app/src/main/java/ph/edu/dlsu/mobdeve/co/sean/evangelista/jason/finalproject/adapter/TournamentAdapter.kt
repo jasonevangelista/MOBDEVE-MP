@@ -5,12 +5,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.databinding.ItemTournamentListBinding
+import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.model.Player
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.model.Tournament
 
 class TournamentAdapter: RecyclerView.Adapter<TournamentAdapter.TournamentViewHolder> {
 
     private var tournamentArrayList = ArrayList<Tournament>()
     private lateinit var context: Context
+
+    var onItemClick: ((Tournament) -> Unit)? = null
 
     public constructor(context: Context, tournamentArrayList: ArrayList<Tournament>){
         this.context = context
@@ -31,7 +34,7 @@ class TournamentAdapter: RecyclerView.Adapter<TournamentAdapter.TournamentViewHo
     }
 
 
-    class TournamentViewHolder(private val itemBinding: ItemTournamentListBinding)
+    inner class TournamentViewHolder(private val itemBinding: ItemTournamentListBinding)
         : RecyclerView.ViewHolder(itemBinding.root){
 
             fun bindTournament(tournament: Tournament){
@@ -40,6 +43,12 @@ class TournamentAdapter: RecyclerView.Adapter<TournamentAdapter.TournamentViewHo
                 itemBinding.textTournamentName.text = tournament.name
                 itemBinding.textTournamentSlots.text = slots
                 itemBinding.textTournamentDate.text = tournament.start_date.toString()
+            }
+
+            init {
+                itemBinding.cvTournament.setOnClickListener {
+                    onItemClick?.invoke(tournamentArrayList[adapterPosition])
+                }
             }
         }
 }

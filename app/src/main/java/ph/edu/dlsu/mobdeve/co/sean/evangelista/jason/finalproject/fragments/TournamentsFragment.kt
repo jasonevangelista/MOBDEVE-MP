@@ -7,9 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.AddReviewActivity
-import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.AddTournamentActivity
-import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.R
+import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.*
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.adapter.TournamentAdapter
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.dao.TournamentsDAO
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.dao.TournamentsDAOArrayImpl
@@ -34,21 +32,38 @@ class TournamentsFragment : Fragment(R.layout.fragment_tournaments) {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentTournamentsBinding.inflate(inflater, container, false)
-        viewManager = LinearLayoutManager(activity)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
+
+        viewManager = LinearLayoutManager(activity)
+        tournamentAdapter = TournamentAdapter(requireContext(), tournamentArrayList)
+
         binding.rvTournamentList.apply {
             layoutManager = viewManager
-            adapter = TournamentAdapter(requireContext(), tournamentArrayList)
+            adapter = tournamentAdapter
         }
 
         binding.btnAddTournament.setOnClickListener {
             val goToAddTournament = Intent(activity, AddTournamentActivity::class.java)
             activity?.startActivity(goToAddTournament)
+        }
+
+        binding.btnMyTournaments.setOnClickListener {
+            val goToMyTournaments = Intent(activity, MyTournamentsActivity::class.java)
+            activity?.startActivity(goToMyTournaments)
+        }
+
+        tournamentAdapter.onItemClick = { player ->
+            val goToTournamentProfile = Intent(activity, TournamentProfileActivity::class.java)
+
+//            val bundle = Bundle()
+//            bundle.putString("username", player.username)
+//            goToUserProfile.putExtras(bundle)
+            activity?.startActivity(goToTournamentProfile)
         }
     }
 

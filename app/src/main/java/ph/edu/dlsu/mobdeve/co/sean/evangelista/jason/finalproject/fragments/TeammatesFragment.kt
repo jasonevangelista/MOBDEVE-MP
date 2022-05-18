@@ -32,18 +32,16 @@ class TeammatesFragment : Fragment(R.layout.fragment_teammates){
         // Inflate the layout for this fragment
         _binding = FragmentTeammatesBinding.inflate(inflater, container, false)
 
-        viewManager = LinearLayoutManager(activity)
-//        playerAdapter = PlayerAdapter(requireContext(), playerArrayList)
-//        viewAdapter = PlayerAdapter
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
-//        binding.rvPlayerList.layoutManager(LinearLayoutManager(requireContext()))
 
+        viewManager = LinearLayoutManager(activity)
         playerAdapter = PlayerAdapter(requireContext(), playerArrayList)
+
         binding.rvPlayerList.apply {
             layoutManager = viewManager
             adapter = playerAdapter
@@ -57,19 +55,6 @@ class TeammatesFragment : Fragment(R.layout.fragment_teammates){
             goToUserProfile.putExtras(bundle)
             activity?.startActivity(goToUserProfile)
         }
-
-
-
-//        binding.rvPlayerList.layoutManager = LinearLayoutManager(requireContext())
-//        playerAdapter = PlayerAdapter(requireContext(), playerArrayList)
-//        binding.rvPlayerList.setAdapter(playerAdapter)
-//        binding.btnTest.setOnClickListener{
-//            val goToLogin = Intent(activity, MainActivity::class.java)
-//            activity?.startActivity(goToLogin)
-////            activity?.finish()
-//        }
-
-//        binding.rvPlayerList.setonclick
 
     }
 
