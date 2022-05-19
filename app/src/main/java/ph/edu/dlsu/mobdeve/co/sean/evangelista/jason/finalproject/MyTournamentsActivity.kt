@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.adapter.MyTournamentAdapter
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.adapter.TournamentAdapter
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.dao.TournamentsDAO
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.dao.TournamentsDAOArrayImpl
@@ -15,7 +16,7 @@ class MyTournamentsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMyTournamentsBinding
 
-    private lateinit var tournamentAdapter: TournamentAdapter
+    private lateinit var tournamentAdapter: MyTournamentAdapter
     private lateinit var tournamentArrayList: ArrayList<Tournament>
     private lateinit var viewManager : LinearLayoutManager
 
@@ -26,7 +27,7 @@ class MyTournamentsActivity : AppCompatActivity() {
 
         init()
 
-        tournamentAdapter = TournamentAdapter(this@MyTournamentsActivity, tournamentArrayList)
+        tournamentAdapter = MyTournamentAdapter(this@MyTournamentsActivity, tournamentArrayList)
         viewManager = LinearLayoutManager(this@MyTournamentsActivity)
 
         binding.rvMyTournamentsList.apply {
@@ -34,9 +35,14 @@ class MyTournamentsActivity : AppCompatActivity() {
             adapter = tournamentAdapter
         }
 
-        tournamentAdapter.onItemClick = { player ->
+        tournamentAdapter.onItemClick = { tournament ->
             val goToTournamentProfile = Intent(this, TournamentProfileActivity::class.java)
             startActivity(goToTournamentProfile)
+        }
+
+        tournamentAdapter.onEditButtonClick = {tournament ->
+            val goToEditTournament = Intent(this, EditTournamentActivity::class.java)
+            startActivity(goToEditTournament)
         }
     }
 

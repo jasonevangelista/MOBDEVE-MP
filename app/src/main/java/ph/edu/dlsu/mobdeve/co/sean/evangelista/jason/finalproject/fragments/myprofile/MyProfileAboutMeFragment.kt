@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.AddReviewActivity
+import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.EditProfileActivity
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.R
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.databinding.FragmentMyProfileAboutMeBinding
 
@@ -30,7 +31,10 @@ class MyProfileAboutMeFragment : Fragment(R.layout.fragment_my_profile_about_me)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        binding.btnEditProfile.setOnClickListener {
+            val goToEditProfile = Intent(activity, EditProfileActivity::class.java)
+            activity?.startActivity(goToEditProfile)
+        }
 
     }
 

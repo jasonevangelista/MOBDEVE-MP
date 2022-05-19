@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.AddGameActivity
+import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.EditGameActivity
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.R
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.databinding.FragmentMyProfileGamesBinding
 
@@ -33,6 +34,11 @@ class MyProfileGamesFragment : Fragment(R.layout.fragment_my_profile_games) {
         binding.btnAddGame.setOnClickListener {
             val goToAddGame = Intent(activity, AddGameActivity::class.java)
             activity?.startActivity(goToAddGame)
+        }
+
+        binding.btnMyGameValorantEdit.setOnClickListener {
+            val goToEditGame = Intent(activity, EditGameActivity::class.java)
+            activity?.startActivity(goToEditGame)
         }
 
     }

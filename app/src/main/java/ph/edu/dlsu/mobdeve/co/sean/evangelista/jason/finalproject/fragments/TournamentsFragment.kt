@@ -57,7 +57,7 @@ class TournamentsFragment : Fragment(R.layout.fragment_tournaments) {
             activity?.startActivity(goToMyTournaments)
         }
 
-        tournamentAdapter.onItemClick = { player ->
+        tournamentAdapter.onItemClick = { tournament ->
             val goToTournamentProfile = Intent(activity, TournamentProfileActivity::class.java)
 
 //            val bundle = Bundle()

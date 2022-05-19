@@ -1,5 +1,6 @@
 package ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.android.material.tabs.TabLayoutMediator
@@ -40,6 +41,11 @@ class UserProfileActivity : AppCompatActivity() {
                 }
             }
         }.attach()
+
+        binding.btnConnectPlayer.setOnClickListener {
+            val goToConnectActivity = Intent(this, ConnectActivity::class.java)
+            startActivity(goToConnectActivity)
+        }
 
     }
 
