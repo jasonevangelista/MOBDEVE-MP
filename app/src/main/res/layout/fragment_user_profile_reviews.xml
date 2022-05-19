@@ -1,25 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    tools:context=".fragments.userprofile.UserProfileReviewsFragment">-->
+
+<!--&lt;!&ndash;    <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;        android:id="@+id/textView"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_height="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:gravity="center"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:text="REVIEWS"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:textColor="@color/black"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:textSize="20dp" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;    insert review visualization here &ndash;&gt;-->
+
+<!--    <ScrollView-->
+<!--        android:id="@+id/sv_player_reviews"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        android:background="@color/silver">-->
+
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/rv_player_reviews"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"/>-->
+
+<!--    </ScrollView>-->
+
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:id="@+id/btn_add_review"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="ADD REVIEW"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent" />-->
+
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.userprofile.UserProfileReviewsFragment">
+    tools:context=".fragments.userprofile.UserProfileReviewsFragment"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView"
+    <!--    <TextView-->
+    <!--        android:id="@+id/textView"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:gravity="center"-->
+    <!--        android:text="REVIEWS"-->
+    <!--        android:textColor="@color/black"-->
+    <!--        android:textSize="20dp" />-->
+
+    <!--    insert review visualization here -->
+
+<!--    <ScrollView-->
+<!--        android:id="@+id/sv_player_reviews"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        android:background="@color/silver">-->
+
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/rv_player_reviews"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"/>-->
+
+<!--    </ScrollView>-->
+
+        <TextView
+            android:id="@+id/tv_visualization"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Overall Rating Viz Here"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+<!--        insert review visualization here -->
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="REVIEWS"
-        android:textColor="@color/black"
-        android:textSize="20dp" />
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:gravity="center|top"
+        android:orientation="vertical" >
+
+            <ScrollView
+                android:id="@+id/sv_player_reviews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/silver">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_player_reviews"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </ScrollView>
+
+    </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_add_review"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="ADD REVIEW"
-        app:layout_constraintBottom_toBottomOf="@+id/textView" />
+        android:layout_gravity="bottom"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

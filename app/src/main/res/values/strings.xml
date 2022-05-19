@@ -60,4 +60,16 @@
     <string name="message">Message</string>
     <string name="gaming_hours">Gaming Hours</string>
     
+
+
+    <string-array name="filter_game_options">
+        <item>Valorant</item>
+        <item>Fortnite</item>
+        <item>Apex Legends</item>
+    </string-array>
+
+    <string-array name="sort_options">
+        <item>Ratings</item>
+    </string-array>
+
 </resources>

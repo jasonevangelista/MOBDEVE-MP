@@ -4,19 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.myprofile.MyProfileHistoryFragment"
+    tools:context=".MyTournamentsActivity"
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tv_teammate"
+        android:id="@+id/tv_my_tournaments"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="My History"
-        android:textSize="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        android:text="My Tournaments"
+        android:textSize="25dp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -63,12 +60,15 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_my_player_history"
+            android:id="@+id/rv_my_tournaments_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+
     </ScrollView>
+
+
 
 </LinearLayout>

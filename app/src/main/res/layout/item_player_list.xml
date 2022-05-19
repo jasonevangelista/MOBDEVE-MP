@@ -12,7 +12,7 @@
         android:orientation="horizontal"
         android:padding="10sp"
         android:layout_marginTop="20sp"
-        android:background="@color/teal_200">
+        android:background="@color/silver">
 
 
         <ImageView
@@ -35,19 +35,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Player Name"
+                android:textColor="@color/black"
                 android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/text_rating"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:text="5.0" />
 
             <TextView
                 android:id="@+id/text_rank"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:text="BRONZE" />
+
+            <TextView
+                android:id="@+id/text_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Let's Play!" />
+
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
