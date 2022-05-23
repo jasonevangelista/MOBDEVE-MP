@@ -1,13 +1,18 @@
 package ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.adapter
 
 import android.content.Context
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.databinding.ItemMyTournamentsListBinding
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.databinding.ItemTournamentListBinding
-import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.model.Player
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.model.Tournament
+import java.time.format.DateTimeFormatter
+import java.time.temporal.TemporalQueries.localDate
+import java.util.*
+
 
 class TournamentAdapter: RecyclerView.Adapter<TournamentAdapter.TournamentViewHolder> {
 
@@ -84,12 +89,17 @@ class MyTournamentAdapter: RecyclerView.Adapter<MyTournamentAdapter.TournamentVi
     inner class TournamentViewHolder(private val itemBinding: ItemMyTournamentsListBinding)
         : RecyclerView.ViewHolder(itemBinding.root){
 
+        @RequiresApi(Build.VERSION_CODES.O)
         fun bindTournament(tournament: Tournament){
             val slots: String = tournament.current_capacity.toString() + " / " + tournament.max_capacity.toString()
+
+//            val formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy")
+//            val formattedDate: String = tournament.start_date.format(formatter).toString()
 
             itemBinding.textTournamentName.text = tournament.name
             itemBinding.textTournamentSlots.text = slots
             itemBinding.textTournamentDate.text = tournament.start_date.toString()
+
         }
 
         init {

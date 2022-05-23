@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/background">
 
     <FrameLayout
         android:id="@+id/fl_wrapper"
@@ -22,7 +23,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:background="?android:windowBackground"
-        app:itemBackground="@color/teal_700"
+        app:itemBackground="@color/navbar_background"
         app:itemIconTint="#ffff"
         app:itemTextColor="#ffff"
         app:menu="@menu/nav_menu"

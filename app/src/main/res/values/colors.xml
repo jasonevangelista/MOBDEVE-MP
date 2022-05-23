@@ -11,12 +11,27 @@
     <color name="go_to">#2155CD</color>
     <color name="silver">#C0C0C0</color>
 
-    <color name="background">#82A284</color>
+<!--    <color name="background">#82A284</color>-->
+    <color name="background">#406E8E</color>
     <color name="cancel">#EB5353</color>
 
-    <color name="color1">#161925</color>
-    <color name="color2">#23395B</color>
-    <color name="color3">#406E8E</color>
-    <color name="color4">#FFF08E</color>
-    <color name="color5">#8EA8C3</color>
+    <color name="darkest_blue">#161925</color>
+    <color name="dark_blue">#23395B</color>
+    <color name="blue">#406E8E</color>
+    <color name="yellow">#FFF08E</color>
+    <color name="light_blue">#8EA8C3</color>
+
+<!--    Cards -->
+    <color name="card_text">#FFFFFFFF</color>
+    <color name="card_background">#23395B</color>
+
+<!--    Fragments -->
+    <color name="fragment_header_text">#FFFFFFFF</color>
+
+<!--    Nav bar-->
+    <color name="navbar_background">#161925</color>
+
+<!--    Buttons -->
+    <color name="btn_text">#161925</color>
+    <color name="btn_background">#8EA8C3</color>
 </resources>

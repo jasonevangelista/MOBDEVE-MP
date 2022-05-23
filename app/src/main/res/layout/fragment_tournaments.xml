@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="15sp"
-    tools:context=".fragments.TournamentsFragment">
+    tools:context=".fragments.TournamentsFragment"
+    android:background="@color/background">
 
     <LinearLayout
         android:id="@+id/ll_tournament"
@@ -19,7 +20,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:text="Join a Tournament"
-
+            android:textColor="@color/fragment_header_text"
             android:textSize="25dp" />
 
 
@@ -35,8 +36,9 @@
                 android:layout_height="75sp"
                 android:layout_marginRight="20sp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/teal_700"
-                android:text="Add\nTournament" />
+                android:text="Add\nTournament"
+                android:textColor="@color/btn_text"
+                android:backgroundTint="@color/btn_background"/>
 
             <Button
                 android:id="@+id/btn_my_tournaments"
@@ -44,8 +46,9 @@
                 android:layout_height="75sp"
                 android:layout_marginLeft="20sp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/teal_700"
-                android:text="My\nTournaments" />
+                android:text="My\nTournaments"
+                android:textColor="@color/btn_text"
+                android:backgroundTint="@color/btn_background"/>
         </LinearLayout>
 
         <!--        <androidx.recyclerview.widget.RecyclerView-->

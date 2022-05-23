@@ -10,6 +10,7 @@ import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.dao.Tournament
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.dao.TournamentsDAOArrayImpl
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.databinding.ActivityMyTournamentsBinding
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.model.Tournament
+import java.time.LocalDate
 import java.util.*
 
 class MyTournamentsActivity : AppCompatActivity() {
@@ -53,7 +54,7 @@ class MyTournamentsActivity : AppCompatActivity() {
         tournament.name = "Iron Tourney"
         tournament.current_capacity = 5
         tournament.max_capacity = 20
-        tournament.start_date = Date()
+        tournament.start_date = LocalDate.now()
 
         dao.addTournament(tournament)
         dao.addTournament(tournament)

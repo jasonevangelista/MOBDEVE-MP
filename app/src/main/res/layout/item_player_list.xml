@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/cv_teammate">
+    android:id="@+id/cv_teammate"
+    app:cardBackgroundColor="@color/background">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,7 +13,7 @@
         android:orientation="horizontal"
         android:padding="10sp"
         android:layout_marginTop="20sp"
-        android:background="@color/silver">
+        android:background="@color/card_background">
 
 
         <ImageView
@@ -35,28 +36,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Player Name"
-                android:textColor="@color/black"
+                android:textColor="@color/card_text"
                 android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/text_rating"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                android:textColor="@color/card_text"
                 android:text="5.0" />
 
             <TextView
                 android:id="@+id/text_rank"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                android:textColor="@color/card_text"
                 android:text="BRONZE" />
 
             <TextView
                 android:id="@+id/text_message"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                android:textColor="@color/card_text"
                 android:text="Let's Play!" />
 
         </LinearLayout>

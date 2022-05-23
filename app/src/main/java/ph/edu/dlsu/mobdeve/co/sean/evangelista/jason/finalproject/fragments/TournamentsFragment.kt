@@ -1,10 +1,12 @@
 package ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.fragments
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.*
@@ -14,6 +16,7 @@ import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.dao.Tournament
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.databinding.FragmentTournamentsBinding
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.model.Tournament
 import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -72,6 +75,7 @@ class TournamentsFragment : Fragment(R.layout.fragment_tournaments) {
         _binding = null
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun init(){
         var dao: TournamentsDAO = TournamentsDAOArrayImpl()
 
@@ -79,7 +83,7 @@ class TournamentsFragment : Fragment(R.layout.fragment_tournaments) {
         tournament.name = "Iron Tourney"
         tournament.current_capacity = 5
         tournament.max_capacity = 20
-        tournament.start_date = Date()
+        tournament.start_date = LocalDate.now()
 
         dao.addTournament(tournament)
         dao.addTournament(tournament)
