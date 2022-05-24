@@ -10,7 +10,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_back"
         android:text="@string/back"
-        android:textColor="@color/button"
+        android:textColor="@color/btn_text"
         android:textSize="48sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -209,44 +209,38 @@
                 android:background="@drawable/border"
                 app:layout_constraintTop_toBottomOf="@id/tv_instruction"/>
 
-            <TableLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="55sp"
-                android:layout_marginBottom="30sp"
-                app:layout_constraintTop_toBottomOf="@id/et_instruction">
+                android:layout_marginTop="30sp"
+                android:layout_marginStart="50sp"
+                android:layout_marginEnd="50sp"
+                android:layout_marginBottom="20sp"
+                app:layout_constraintTop_toBottomOf="@+id/et_instruction"
+                android:orientation="horizontal" >
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="217dp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="85sp"
-                    android:layout_marginRight="85sp">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_cancel_tournament"
+                    android:layout_width="130sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginEnd="50sp"
+                    android:background="@color/cancel"
+                    android:text="@string/cancel"
+                    android:textAllCaps="false"
+                    android:textColor="@color/btn_text" />
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btn_cancel_tournament"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_column="0"
-                        android:layout_gravity="start"
-                        android:layout_marginEnd="35sp"
-                        android:background="@color/cancel"
-                        android:text="@string/cancel"
-                        android:textAllCaps="false"
-                        android:textColor="@color/white" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_add_tournament"
+                    android:layout_width="130sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:background="@color/btn_background"
+                    android:text="@string/add"
+                    android:textAllCaps="false"
+                    android:textColor="@color/btn_text" />
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btn_add_tournament"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:layout_gravity="end"
-                        android:background="@color/button"
-                        android:text="@string/add"
-                        android:textAllCaps="false"
-                        android:textColor="@color/white" />
-                </TableRow>
-            </TableLayout>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
