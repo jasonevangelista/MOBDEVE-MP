@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/cv_player_review">
+    android:id="@+id/cv_player_review"
+    app:cardBackgroundColor="@color/background">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="15sp"
-            android:background="@color/silver"
-            android:layout_marginTop="20sp">
+            android:layout_marginTop="20sp"
+            android:background="@color/card_background">
 
             <!--   linear layout for rating and review date        -->
 <!--            <LinearLayout-->
@@ -35,18 +36,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="RATING HERE"
-                    android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:textColor="@color/card_text"/>
 
                 <TextView
                     android:id="@+id/tv_review_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="REVIEW DATE HERE"
-                    android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textColor="@color/card_text"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!-- player name-->
@@ -55,16 +56,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Player_2"
-                android:textColor="@color/black"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:textColor="@color/card_text"/>
 
             <!-- review content -->
             <TextView
                 android:id="@+id/tv_review_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:text="Great teammate!!!" />
+                android:text="Great teammate!!!"
+                android:textColor="@color/card_text"/>
 
         </LinearLayout>
 

@@ -15,6 +15,8 @@
     <color name="background">#406E8E</color>
     <color name="cancel">#EB5353</color>
 
+
+<!--    color palette-->
     <color name="darkest_blue">#161925</color>
     <color name="dark_blue">#23395B</color>
     <color name="blue">#406E8E</color>
@@ -22,8 +24,10 @@
     <color name="light_blue">#8EA8C3</color>
 
 <!--    Cards -->
-    <color name="card_text">#FFFFFFFF</color>
-    <color name="card_background">#23395B</color>
+<!--    <color name="card_text">#FFFFFFFF</color>-->
+<!--    <color name="card_background">#23395B</color>-->
+    <color name="card_text">#161925</color>
+    <color name="card_background">#8EA8C3</color>
 
 <!--    Fragments -->
     <color name="fragment_header_text">#FFFFFFFF</color>
@@ -32,6 +36,23 @@
     <color name="navbar_background">#161925</color>
 
 <!--    Buttons -->
-    <color name="btn_text">#161925</color>
-    <color name="btn_background">#8EA8C3</color>
+    <color name="btn_text">#FFFFFFFF</color>
+    <color name="btn_background">#23395B</color>
+
+<!--    Tab Layout-->
+    <color name="tab_text">#161925</color>
+    <color name="tab_selected_text">#FFFFFFFF</color>
+    <color name="tab_indicator">#FFFFFFFF</color>
+
+<!--    User Profile -->
+    <color name="profile_btn_text">#FFFFFFFF</color>
+    <color name="profile_btn_background">#23395B</color>
+
+<!--    <color name="profile_sub_header">#FFFFFFFF</color>-->
+<!--    <color name="profile_sub_section_text">#161925</color>-->
+<!--    <color name="profile_sub_section_bg">#FFF08E</color>-->
+    <color name="profile_sub_header">#FFFFFFFF</color>
+    <color name="profile_sub_section_text">#161925</color>
+    <color name="profile_sub_section_bg">#8EA8C3</color>
+
 </resources>

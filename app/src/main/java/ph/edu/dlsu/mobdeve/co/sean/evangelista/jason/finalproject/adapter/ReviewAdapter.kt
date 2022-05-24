@@ -35,9 +35,11 @@ class ReviewAdapter : RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder> {
         : RecyclerView.ViewHolder(itemBinding.root){
 
             fun bindReview(review:Review){
+                var rating: String = "★ " + review.rating.toString()
+
                 itemBinding.tvReviewerName.text =  review.sender
                 itemBinding.tvReviewContent.text = review.content
-                itemBinding.tvReviewRating.text = review.rating.toString()
+                itemBinding.tvReviewRating.text = rating
                 itemBinding.tvReviewDate.text = review.date.toString()
             }
 

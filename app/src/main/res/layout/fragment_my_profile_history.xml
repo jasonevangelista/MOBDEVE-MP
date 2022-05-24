@@ -35,7 +35,7 @@
             android:id="@+id/sp_filter_player"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:entries="@array/filter_game_options"
+            android:entries="@array/filter_player_options"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_filter_player"
             app:layout_constraintTop_toTopOf="parent" />
@@ -56,7 +56,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:entries="@array/sort_options"
+            android:entries="@array/sort_player_options"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UserProfileActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/background">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,6 +25,7 @@
             android:gravity="center_horizontal"
             android:text="Player Name"
             android:textSize="25dp"
+            android:textColor="@color/fragment_header_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 
@@ -31,6 +33,11 @@
             android:id="@+id/tl_user_profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/background"
+
+            app:tabTextColor="@color/tab_text"
+            app:tabIndicatorColor="@color/tab_selected_text"
+            app:tabSelectedTextColor="@color/tab_indicator"
             >
 
             <com.google.android.material.tabs.TabItem
@@ -55,7 +62,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_constraintTop_toBottomOf="@+id/tl_user_profile"
-                android:background="@color/teal_700"/>
+                android:background="@color/background"/>
 
     </LinearLayout>
 
@@ -67,6 +74,11 @@
         android:text="CONNECT"
         android:layout_weight="0"
         android:layout_margin="5sp"
-        android:layout_gravity="bottom"/>
+        android:layout_gravity="bottom"
+        android:textStyle="bold"
+
+        android:textColor="@color/profile_btn_text"
+        android:background="@color/profile_btn_background"
+        />
 
 </LinearLayout>

@@ -1,5 +1,6 @@
 package ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.model
 
+import java.time.LocalDate
 import java.util.Date
 
 class Review {
@@ -7,5 +8,5 @@ class Review {
     lateinit var receiver : String
     lateinit var content : String
     var rating : Float = 0F
-    lateinit var date : Date
+    lateinit var date : LocalDate
 }

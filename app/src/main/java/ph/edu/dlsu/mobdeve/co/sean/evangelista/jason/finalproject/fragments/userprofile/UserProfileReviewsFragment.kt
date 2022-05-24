@@ -16,6 +16,7 @@ import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.dao.ReviewsDAO
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.dao.ReviewsDAOArrayImpl
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.databinding.FragmentUserProfileReviewsBinding
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.model.Review
+import java.time.LocalDate
 import java.util.*
 
 class UserProfileReviewsFragment : Fragment(R.layout.fragment_user_profile_reviews) {
@@ -73,7 +74,7 @@ class UserProfileReviewsFragment : Fragment(R.layout.fragment_user_profile_revie
         review1.receiver = "player1"
         review1.content = "Great teammate!!!"
         review1.rating = 5.0F
-        review1.date = Date()
+        review1.date = LocalDate.now()
         dao.addReview(review1)
 
         dao.addReview(review1)

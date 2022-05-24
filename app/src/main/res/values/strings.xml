@@ -61,15 +61,26 @@
     <string name="gaming_hours">Gaming Hours</string>
     
 
-
-    <string-array name="filter_game_options">
+<!--    Player Filter and Sort Options-->
+    <string-array name="filter_player_options">
         <item>Valorant</item>
         <item>Fortnite</item>
         <item>Apex Legends</item>
     </string-array>
 
-    <string-array name="sort_options">
+    <string-array name="sort_player_options">
         <item>Ratings</item>
+    </string-array>
+
+<!--    Tournament Filter and Sort Options-->
+    <string-array name="filter_tournament_options">
+        <item>Valorant</item>
+        <item>Fortnite</item>
+        <item>Apex Legends</item>
+    </string-array>
+
+    <string-array name="sort_tournament_options">
+        <item>Start Date</item>
     </string-array>
 
 </resources>
