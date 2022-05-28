@@ -4,18 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TournamentProfileActivity">
+    tools:context=".TournamentProfileActivity"
+    android:background="@color/background">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp">
 
 
     <LinearLayout
         android:id="@+id/ll_tournament_name_game"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
@@ -23,14 +25,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="NAME OF TOURNAMENT"
-            android:textColor="@color/black"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:textSize="20dp"
+            android:textColor="@color/fragment_header_text"
+            android:textStyle="bold"/>
         <TextView
             android:id="@+id/tv_tournament_game"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="(VALORANT)"
-            android:textColor="@color/black"/>
+
+            android:text="VALORANT"
+            android:textSize="15dp"
+            android:textColor="@color/fragment_header_text"/>
 
     </LinearLayout>
 
@@ -45,8 +51,10 @@
             android:id="@+id/tv_tournament_capacity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="0 / 20"/>
+            android:text="0 / 20"
+            android:textSize="15dp"
+            android:textColor="@color/fragment_header_text"
+            />
 
     </LinearLayout>
 
@@ -62,14 +70,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Description"
-            android:textColor="@color/black"/>
+
+            android:textSize="20dp"
+            android:textColor="@color/profile_sub_header"
+            android:layout_marginTop="10dp"/>
         <TextView
             android:id="@+id/tv_tournament_description_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/silver"
             android:text="test description\nthis is my tournament's description"
-            android:textColor="@color/black"/>
+
+            android:textColor="@color/profile_sub_section_text"
+            android:background="@color/profile_sub_section_bg"
+            android:layout_marginTop="5dp"
+            android:padding="10dp" />
 
 <!--        Important Dates-->
         <TextView
@@ -77,14 +91,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Important Dates"
-            android:textColor="@color/black"/>
+
+            android:textSize="20dp"
+            android:textColor="@color/profile_sub_header"
+            android:layout_marginTop="15dp"/>
         <TextView
             android:id="@+id/tv_tournament_dates_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/silver"
             android:text="test description\nthis is my tournament's description"
-            android:textColor="@color/black"/>
+
+            android:textColor="@color/profile_sub_section_text"
+            android:background="@color/profile_sub_section_bg"
+            android:layout_marginTop="5dp"
+            android:padding="10dp" />
 
 <!--        How To Join-->
         <TextView
@@ -92,14 +112,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="How to Join"
-            android:textColor="@color/black"/>
+
+            android:textSize="20dp"
+            android:textColor="@color/profile_sub_header"
+            android:layout_marginTop="15dp"/>
         <TextView
             android:id="@+id/tv_tournament_join_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/silver"
             android:text="Join this link:\nINSERT LINK HERE"
-            android:textColor="@color/black"/>
+
+            android:textColor="@color/profile_sub_section_text"
+            android:background="@color/profile_sub_section_bg"
+            android:layout_marginTop="5dp"
+            android:padding="10dp" />
     </LinearLayout>
 
 

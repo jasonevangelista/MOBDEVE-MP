@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MyTournamentsActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/background">
 
     <TextView
         android:id="@+id/tv_my_tournaments"
@@ -13,7 +14,8 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:text="My Tournaments"
-        android:textSize="25dp" />
+        android:textSize="25dp"
+        android:textColor="@color/fragment_header_text"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -26,7 +28,8 @@
             android:text="Filter By:"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/fragment_header_text"/>
 
         <Spinner
             android:id="@+id/sp_filter_player"
@@ -35,7 +38,8 @@
             android:entries="@array/filter_tournament_options"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_filter_player"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/fragment_header_text"/>
 
         <TextView
             android:id="@+id/tv_sort_player"
@@ -44,7 +48,8 @@
             android:text="Sort By:"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/sp_sort_player"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/fragment_header_text"/>
 
         <Spinner
             android:id="@+id/sp_sort_player"
@@ -54,6 +59,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:entries="@array/sort_tournament_options"
+            android:textColor="@color/fragment_header_text"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

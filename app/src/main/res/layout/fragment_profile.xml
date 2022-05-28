@@ -5,12 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.ProfileFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tl_my_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
+        android:background="@color/background"
+        app:tabTextColor="@color/tab_text"
+        app:tabIndicatorColor="@color/tab_selected_text"
+        app:tabSelectedTextColor="@color/tab_indicator"
         >
 
         <com.google.android.material.tabs.TabItem
@@ -35,6 +41,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintTop_toBottomOf="@+id/tl_user_profile"
-        android:background="@color/silver"/>
+        android:background="@color/background"/>
 
 </LinearLayout>

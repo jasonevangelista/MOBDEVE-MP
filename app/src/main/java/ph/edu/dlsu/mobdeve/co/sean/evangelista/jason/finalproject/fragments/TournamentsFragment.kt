@@ -90,6 +90,8 @@ class TournamentsFragment : Fragment(R.layout.fragment_tournaments) {
         dao.addTournament(tournament)
         dao.addTournament(tournament)
         dao.addTournament(tournament)
+        dao.addTournament(tournament)
+        dao.addTournament(tournament)
 
 
         tournamentArrayList = dao.getTournaments()

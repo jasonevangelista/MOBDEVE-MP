@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/cv_my_tournament">
+    android:id="@+id/cv_my_tournament"
+    app:cardBackgroundColor="@color/background">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -16,26 +17,29 @@
             android:layout_weight="1"
             android:orientation="vertical"
             android:padding="15sp"
-            android:background="@color/teal_200">
+            android:background="@color/card_background">
 
             <TextView
                 android:id="@+id/text_tournament_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Tournament Name"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:textColor="@color/card_text"/>
 
             <TextView
                 android:id="@+id/text_tournament_slots"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="0 / 20" />
+                android:text="0 / 20"
+                android:textColor="@color/card_text"/>
 
             <TextView
                 android:id="@+id/text_tournament_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="May 1, 2022" />
+                android:text="May 1, 2022"
+                android:textColor="@color/card_text"/>
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
@@ -46,7 +50,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginRight="15sp"/>
+            android:layout_marginRight="15sp"
+            android:textColor="@color/btn_text"
+            android:background="@color/btn_background"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

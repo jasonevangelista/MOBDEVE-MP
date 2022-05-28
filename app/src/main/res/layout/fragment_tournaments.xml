@@ -1,12 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:layout_margin="15sp"-->
+<!--    tools:context=".fragments.TournamentsFragment"-->
+<!--    android:background="@color/background">-->
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/ll_tournament"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/tv_tournaments"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:gravity="center_horizontal"-->
+<!--            android:text="Join a Tournament"-->
+<!--            android:textColor="@color/fragment_header_text"-->
+<!--            android:textSize="25dp" />-->
+
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            android:orientation="horizontal">-->
+
+<!--            <Button-->
+<!--                android:id="@+id/btn_add_tournament"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="75sp"-->
+<!--                android:layout_marginRight="20sp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text="Add\nTournament"-->
+<!--                android:textColor="@color/btn_text"-->
+<!--                android:backgroundTint="@color/btn_background"/>-->
+
+<!--            <Button-->
+<!--                android:id="@+id/btn_my_tournaments"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="75sp"-->
+<!--                android:layout_marginLeft="20sp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text="My\nTournaments"-->
+<!--                android:textColor="@color/btn_text"-->
+<!--                android:backgroundTint="@color/btn_background"/>-->
+<!--        </LinearLayout>-->
+
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tv_filter_tournament"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Filter By:"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                android:textColor="@color/fragment_header_text"/>-->
+
+<!--            <Spinner-->
+<!--                android:id="@+id/sp_filter_tournament"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:entries="@array/filter_tournament_options"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/tv_filter_tournament"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                android:textColor="@color/fragment_header_text"/>-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tv_sort_tournament"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:text="Sort By:"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toStartOf="@id/sp_sort_tournament"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                android:textColor="@color/fragment_header_text"/>-->
+
+<!--            <Spinner-->
+<!--                android:id="@+id/sp_sort_tournament"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                android:entries="@array/sort_tournament_options"-->
+<!--                android:textColor="@color/fragment_header_text"-->
+<!--                />-->
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--    </LinearLayout>-->
+
+<!--    <ScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/ll_tournament" >-->
+
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/rv_tournament_list"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"/>-->
+
+<!--    </ScrollView>-->
+
+
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="15sp"
     tools:context=".fragments.TournamentsFragment"
-    android:background="@color/background">
+    android:background="@color/background"
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/ll_tournament"
@@ -101,7 +217,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:layout_constraintTop_toBottomOf="@+id/ll_tournament" >
 
         <androidx.recyclerview.widget.RecyclerView
@@ -112,4 +228,4 @@
     </ScrollView>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
