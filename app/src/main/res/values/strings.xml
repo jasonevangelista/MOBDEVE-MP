@@ -4,7 +4,7 @@
     <string name="user_hint">Username</string>
     <string name="email_hint">Email</string>
     <string name="pass_hint">Password</string>
-    <string name="pass_hint2">Re-type Password</string>
+    <string name="pass_hint2">Confirm Password</string>
     <string name="login_btn">Login</string>
     <string name="register_btn">Register</string>
     <string name="to_reg_btn">Click here to Register</string>
@@ -64,7 +64,7 @@
 <!--    Player Filter and Sort Options-->
     <string-array name="filter_player_options">
         <item>Valorant</item>
-        <item>Fortnite</item>
+        <item>League of Legends</item>
         <item>Apex Legends</item>
     </string-array>
 
@@ -75,7 +75,7 @@
 <!--    Tournament Filter and Sort Options-->
     <string-array name="filter_tournament_options">
         <item>Valorant</item>
-        <item>Fortnite</item>
+        <item>League of Legends</item>
         <item>Apex Legends</item>
     </string-array>
 

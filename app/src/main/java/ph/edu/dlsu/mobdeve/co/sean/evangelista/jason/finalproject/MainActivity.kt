@@ -56,12 +56,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loginUser(){
-        var email: String = binding.etUsername.text.toString() //change to email
+        var email: String = binding.etEmail.text.toString() //change to email
         var password: String = binding.etPassword.text.toString()
 
         if(TextUtils.isEmpty(email)){
-            binding.etUsername.setError("Username cannot be empty!")
-            binding.etUsername.requestFocus()
+            binding.etEmail.setError("Username cannot be empty!")
+            binding.etEmail.requestFocus()
         }
         else if(TextUtils.isEmpty(password)){
             binding.etPassword.setError("Password cannot be empty!")
