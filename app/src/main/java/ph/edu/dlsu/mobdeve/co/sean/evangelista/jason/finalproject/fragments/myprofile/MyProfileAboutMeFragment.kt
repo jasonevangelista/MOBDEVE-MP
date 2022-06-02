@@ -55,6 +55,7 @@ class MyProfileAboutMeFragment : Fragment(R.layout.fragment_my_profile_about_me)
             docRef.get()
                 .addOnSuccessListener { document ->
                     if(document != null){
+                        // set profile details from in UI
                         val player = document.toObject<Player>()
                         updateUI(player)
                     }
@@ -65,13 +66,6 @@ class MyProfileAboutMeFragment : Fragment(R.layout.fragment_my_profile_about_me)
                 .addOnFailureListener { e ->
                     Log.w(TAG, "Error retrieving document", e)
                 }
-
-            // set profile details from in UI
-
-
-
-            var email = auth.currentUser!!.email
-            binding.tvMyUsername.text = email
         }
 
         binding.btnEditProfile.setOnClickListener {
