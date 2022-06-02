@@ -67,22 +67,25 @@ class TeammatesFragment : Fragment(R.layout.fragment_teammates){
     private fun init(){
         var dao: PlayersDAO = PlayersDAOArrayImpl()
 
-        var player1 = Player()
-        player1.username = "player1"
-        player1.rating = 5.0F
-        player1.rank = "Iron"
+//        var player1 = Player()
+//        player1.username = "player1"
+//        player1.rating = 5.0F
+//        player1.rank = "Iron"
+        var player1 = Player(username = "player1", rating = 5.0F)
         dao.addPlayer(player1)
 
-        var player2 = Player()
-        player2.username = "player2"
-        player2.rating = 4.0F
-        player2.rank = "Gold"
+//        var player2 = Player()
+//        player2.username = "player2"
+//        player2.rating = 4.0F
+//        player2.rank = "Gold"
+        var player2 = Player(username = "player2", rating = 4.0F)
         dao.addPlayer(player2)
 
-        var player3 = Player()
-        player3.username = "player3"
-        player3.rating = 2.0F
-        player3.rank = "Bronze"
+//        var player3 = Player()
+//        player3.username = "player3"
+//        player3.rating = 2.0F
+//        player3.rank = "Bronze"
+        var player3 = Player(username = "player3", rating = 2.0F)
         dao.addPlayer(player3)
 
         dao.addPlayer(player3)

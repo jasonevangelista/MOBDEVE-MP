@@ -12,6 +12,9 @@ class PlayersDAOArrayImpl: PlayersDAO{
 
     override fun addPlayer(player: Player){
         arrayListPlayers.add(0, player)
+
+//        notifyItemInserted(0)
+//        notifyDataSetChanged()
     }
 
     override fun getPlayers(): ArrayList<Player>{

@@ -1,5 +1,6 @@
 package ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
@@ -7,19 +8,25 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.databinding.ActivityRegisterBinding
+import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.model.Player
 
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
 
     private lateinit var auth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +34,7 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         auth = Firebase.auth
+        db = Firebase.firestore
 
         binding.btnRegister.setOnClickListener { view: View? ->
 //            var goToLogin = Intent(this, MainActivity::class.java)
@@ -43,6 +51,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun createUser(){
+        lateinit var userID: String
         var username: String = binding.etUsername.text.toString()
         var email: String = binding.etEmail.text.toString()
         var password: String = binding.etPassword.text.toString()
@@ -73,11 +82,23 @@ class RegisterActivity : AppCompatActivity() {
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-//                        Log.d(TAG, "createUserWithEmail:success")
-//                        val user = auth.currentUser
-//                        updateUI(user)
+                        // create player document in database
+                        userID = auth.currentUser!!.uid
+//                        var documentReference: DocumentReference = db.collection("players").document(userID)
+                        var newPlayer = Player(username = username, email = email)
 
+                        db.collection("players")
+                            .document(userID)
+                            .set(newPlayer)
+                            .addOnSuccessListener{
+                                Log.d("TAG", "onSuccess: user profile is created for ${userID}")
+                            }
+                            .addOnFailureListener { e ->
+                                Log.w("TAG", "Error adding document", e)
+                            }
+
+
+                        // notify app of registration successa and go back to login and redirect to home page
                         Toast.makeText(this, "User registered successfully", Toast.LENGTH_SHORT).show()
                         var goToLogin = Intent(this, MainActivity::class.java)
                         startActivity(goToLogin)
