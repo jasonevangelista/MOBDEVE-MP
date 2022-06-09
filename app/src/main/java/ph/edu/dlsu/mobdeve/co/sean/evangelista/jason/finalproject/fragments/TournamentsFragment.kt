@@ -79,19 +79,19 @@ class TournamentsFragment : Fragment(R.layout.fragment_tournaments) {
     private fun init(){
         var dao: TournamentsDAO = TournamentsDAOArrayImpl()
 
-        var tournament = Tournament()
-        tournament.name = "Iron Tourney"
-        tournament.current_capacity = 5
-        tournament.max_capacity = 20
-        tournament.start_date = LocalDate.now()
-
-        dao.addTournament(tournament)
-        dao.addTournament(tournament)
-        dao.addTournament(tournament)
-        dao.addTournament(tournament)
-        dao.addTournament(tournament)
-        dao.addTournament(tournament)
-        dao.addTournament(tournament)
+//        var tournament = Tournament()
+//        tournament.name = "Iron Tourney"
+//        tournament.current_capacity = 5
+//        tournament.max_capacity = 20
+//        tournament.start_date = LocalDate.now()
+//
+//        dao.addTournament(tournament)
+//        dao.addTournament(tournament)
+//        dao.addTournament(tournament)
+//        dao.addTournament(tournament)
+//        dao.addTournament(tournament)
+//        dao.addTournament(tournament)
+//        dao.addTournament(tournament)
 
 
         tournamentArrayList = dao.getTournaments()
