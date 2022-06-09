@@ -20,7 +20,7 @@ data class Tournament(
     var max_capacity: Int = 0,
     var featured_game: String? = null,
     var description: String? = null,
-    var cutoff_date: LocalDate? = null,
-    var start_date: LocalDate? = null,
+    var cutoff_date: String? = null,
+    var start_date: String? = null,
     var instructions: String? = null
 )
