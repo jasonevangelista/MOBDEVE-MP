@@ -13,8 +13,6 @@ class PlayerListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPlayerListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_player_list)
         super.onCreate(savedInstanceState)
         binding = ActivityPlayerListBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -23,8 +21,21 @@ class PlayerListActivity : AppCompatActivity() {
         val teammatesFragment = TeammatesFragment()
         val tournamentsFragment = TournamentsFragment()
 
+        // getting the bundle back from the android
+        val bundle = intent.extras
+        var currFragment = bundle?.getInt("currFragment", 0)
+
         // ViewPlayerList (Teammates) set as home screen
         makeCurrentFragment(teammatesFragment)
+
+        // check if bundle contains indicator for fragment to set active
+        if(currFragment == 1){
+            makeCurrentFragment(tournamentsFragment)
+        }
+        else{
+            makeCurrentFragment(teammatesFragment)
+        }
+
 
         binding.bottomNav.setOnItemSelectedListener {
             when (it.itemId){

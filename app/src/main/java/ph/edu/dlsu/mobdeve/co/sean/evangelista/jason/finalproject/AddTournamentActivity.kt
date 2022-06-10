@@ -1,6 +1,7 @@
 package ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -104,12 +105,27 @@ class AddTournamentActivity : AppCompatActivity() {
                         .addOnSuccessListener{documentReference ->
                             Log.d("TAG", "onSuccess: new tournament is created with id ${documentReference.id} by user ${userID}")
                             Toast.makeText(this, "Successfully added a tournament!", Toast.LENGTH_SHORT).show()
+
+
+                            val goToHome = Intent(this, PlayerListActivity::class.java)
+
+                            val bundle = Bundle()
+                            bundle.putInt("currFragment", 1)
+                            goToHome.putExtras(bundle)
+
+                            startActivity(goToHome)
+                            finish()
+
                         }
                         .addOnFailureListener { e ->
                             Log.w("TAG", "Error adding tournament document", e)
+
+                            val goToHome = Intent(this, PlayerListActivity::class.java)
+                            startActivity(goToHome)
+                            finish()
                         }
 //                     go to previous page
-                    finish()
+//                    finish()
                 }
             }
 
