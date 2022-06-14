@@ -63,7 +63,10 @@ class AddGameActivity : AppCompatActivity() {
             if(checkFormInputErrors(newGame) == 1){
                 // ADD TO DB
                 Log.d("GAME", "ADDING GAME TO DB")
-                db.collection("games")
+//                db.collection("games")
+//                    .add(newGame)
+                db.collection("players")
+                    .document(auth.currentUser!!.uid).collection("games")
                     .add(newGame)
                     .addOnSuccessListener{documentReference ->
                         Log.d("TAG", "onSuccess: new game is added with id ${documentReference.id} by user ${userID}")
