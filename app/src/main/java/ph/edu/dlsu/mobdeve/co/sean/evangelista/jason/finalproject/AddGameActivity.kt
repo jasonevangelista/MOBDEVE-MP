@@ -89,7 +89,7 @@ class AddGameActivity : AppCompatActivity() {
                     }
             }
             // go to previous page
-            finish()
+            // finish()
         }
 
     }
