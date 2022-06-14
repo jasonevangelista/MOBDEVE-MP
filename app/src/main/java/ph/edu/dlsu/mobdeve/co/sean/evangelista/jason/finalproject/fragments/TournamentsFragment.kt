@@ -74,6 +74,7 @@ class TournamentsFragment : Fragment(R.layout.fragment_tournaments) {
 
         tournamentAdapter.onItemClick = { tournament ->
             val goToTournamentProfile = Intent(activity, TournamentProfileActivity::class.java)
+            goToTournamentProfile.putExtra("tournament", tournament)
             activity?.startActivity(goToTournamentProfile)
         }
     }
