@@ -94,6 +94,7 @@ class TournamentsFragment : Fragment(R.layout.fragment_tournaments) {
                 for (document in result) {
                     // convert document to tournament object
                     val currTournament = document.toObject<Tournament>()
+                    currTournament.id = document.id
 
                     // add tournament to tournament array
                     dao.addTournament(currTournament)

@@ -15,11 +15,17 @@
         android:gravity="center_horizontal"
         android:text="My Tournaments"
         android:textSize="25dp"
-        android:textColor="@color/fragment_header_text"/>
+        android:textColor="@color/fragment_header_text"
+
+        android:layout_marginTop="15sp"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="15sp"
+        android:layout_marginRight="15sp"
+        android:layout_marginLeft="15sp">
 
         <TextView
             android:id="@+id/tv_filter_player"
@@ -66,7 +72,11 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="15sp"
+        android:layout_marginRight="15sp"
+        android:layout_marginBottom="15dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_my_tournaments_list"
