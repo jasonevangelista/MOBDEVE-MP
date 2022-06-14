@@ -46,7 +46,7 @@ class AddGameActivity : AppCompatActivity() {
             Log.d("GAME", "ADDING NEW GAME")
             // submit game details for my profile to database
             var userID = auth.currentUser!!.uid
-            var name = binding.etGameTitle.text.toString()
+            var name = binding.spinnerGame.selectedItem.toString()
             var rank = binding.etPlayerRank.text.toString()
             var server = binding.etPlayerServer.text.toString()
             var role = binding.etPlayerRole.text.toString()
@@ -75,9 +75,10 @@ class AddGameActivity : AppCompatActivity() {
 
                         val goToHome = Intent(this, PlayerListActivity::class.java)
 
-                        val bundle = Bundle()
-                        bundle.putInt("currFragment", 1)
-                        goToHome.putExtras(bundle)
+                        // redirect to player fragment
+//                        val bundle = Bundle()
+//                        bundle.putInt("currFragment", 1)
+//                        goToHome.putExtras(bundle)
 
                         startActivity(goToHome)
                         finish()
@@ -99,11 +100,6 @@ class AddGameActivity : AppCompatActivity() {
 
     private fun checkFormInputErrors(game: Game): Int{ // 1 == success, 0 == fail
         when {
-            TextUtils.isEmpty(game.name) -> {
-                binding.etGameTitle.setError("Game name cannot be empty!")
-                binding.etGameTitle.requestFocus()
-                return 0
-            }
             TextUtils.isEmpty(game.rank) -> {
                 binding.etPlayerRank.setError("Rank cannot be empty!")
                 binding.etPlayerRank.requestFocus()
