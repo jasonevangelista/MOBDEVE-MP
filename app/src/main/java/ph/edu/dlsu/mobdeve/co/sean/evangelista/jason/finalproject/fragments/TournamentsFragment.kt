@@ -8,6 +8,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -76,6 +78,19 @@ class TournamentsFragment : Fragment(R.layout.fragment_tournaments) {
             val goToTournamentProfile = Intent(activity, TournamentProfileActivity::class.java)
             goToTournamentProfile.putExtra("tournament", tournament)
             activity?.startActivity(goToTournamentProfile)
+        }
+
+        binding.spFilterTournament.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                Toast.makeText(activity, "Changed filter option to ${binding.spFilterTournament.selectedItem}", Toast.LENGTH_SHORT).show()
+            }
+
+
+
         }
     }
 
