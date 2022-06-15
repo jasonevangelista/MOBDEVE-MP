@@ -18,52 +18,51 @@
         android:textColor="@color/fragment_header_text"/>
 
     <!--  Valorant  -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content" >-->
 
-        <TextView
-            android:id="@+id/tv_my_game_valorant_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Valorant"
-            android:textSize="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+<!--        <TextView-->
+<!--            android:id="@+id/tv_my_game_valorant_label"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Valorant"-->
+<!--            android:textSize="20dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
 
-            android:textColor="@color/profile_sub_header"
-            android:layout_marginTop="15dp"/>
+<!--            android:textColor="@color/profile_sub_header"-->
+<!--            android:layout_marginTop="15dp"/>-->
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_my_game_valorant_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Edit"
-            android:textSize="15dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+<!--        <androidx.appcompat.widget.AppCompatButton-->
+<!--            android:id="@+id/btn_my_game_valorant_edit"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Edit"-->
+<!--            android:textSize="15dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
 
-            android:textColor="@color/btn_text"
-            android:backgroundTint="@color/btn_background"
-            />
+<!--            android:textColor="@color/btn_text"-->
+<!--            android:backgroundTint="@color/btn_background"-->
+<!--            />-->
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-    <TextView
-        android:id="@+id/tv_user_game_valorant_content"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Rank\t\t\t\t\tIron\nServer(s)\t\tSEA\nRole(s)\t\t\t\tController/Duelist"
-        app:layout_constraintTop_toBottomOf="@id/tv_user_game_valorant_label"
+<!--    <TextView-->
+<!--        android:id="@+id/tv_user_game_valorant_content"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Rank\t\t\t\t\tIron\nServer(s)\t\tSEA\nRole(s)\t\t\t\tController/Duelist"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/tv_user_game_valorant_label"-->
 
-        android:textColor="@color/profile_sub_section_text"
-        android:background="@color/profile_sub_section_bg"
-        android:padding="10dp"
+<!--        android:textColor="@color/profile_sub_section_text"-->
+<!--        android:background="@color/profile_sub_section_bg"-->
+<!--        android:padding="10dp"-->
 
-        android:layout_marginTop="10dp"/>
+<!--        android:layout_marginTop="10dp"/>-->
 
 
 <!--    <androidx.appcompat.widget.AppCompatButton-->
@@ -81,10 +80,21 @@
         android:text="+ ADD GAME"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_edit_game_1"
         android:layout_marginTop="10dp"
-
         android:textColor="@color/btn_text"
         android:backgroundTint="@color/btn_background"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollable">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_game_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </ScrollView>
+
+
 
 </LinearLayout>

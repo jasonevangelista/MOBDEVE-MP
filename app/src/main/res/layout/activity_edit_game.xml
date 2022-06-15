@@ -59,12 +59,15 @@
         android:text="@string/game_title"
         android:textSize="24sp" />
 
-    <EditText
-        android:id="@+id/et_game_title"
+    <Spinner
+        android:id="@+id/spinner_game"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10sp"
         android:layout_marginEnd="10sp"
+        android:entries="@array/feat_game_list"
+        android:prompt="@string/feat_game_prompt"
+        android:spinnerMode="dropdown"
         app:layout_constraintTop_toBottomOf="@id/tv_game_title"/>
 
     <TextView
@@ -73,7 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30sp"
         android:layout_marginStart="10sp"
-        app:layout_constraintTop_toBottomOf="@id/et_game_title"
+        app:layout_constraintTop_toBottomOf="@id/spinner_game"
         android:gravity="start"
         android:text="@string/rank"
         android:textSize="24sp" />
