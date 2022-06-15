@@ -174,14 +174,25 @@
                 android:textSize="24sp"
                 app:layout_constraintTop_toBottomOf="@id/et_description" />
 
-            <EditText
-                android:id="@+id/et_cut_date"
-                android:inputType="date"
+<!--            <EditText-->
+<!--                android:id="@+id/et_cut_date"-->
+<!--                android:inputType="date"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="10sp"-->
+<!--                android:layout_marginEnd="10sp"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/tv_cut_date"/>-->
+            <DatePicker
+                android:id="@+id/dp_cut_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginStart="10sp"
                 android:layout_marginEnd="10sp"
-                app:layout_constraintTop_toBottomOf="@id/tv_cut_date"/>
+                android:datePickerMode="spinner"
+                android:calendarViewShown="false"
+                android:focusable="true"
+                app:layout_constraintTop_toBottomOf="@id/tv_cut_date" />
 
             <TextView
                 android:id="@+id/tv_start_date"
@@ -194,13 +205,23 @@
                 android:textSize="24sp"
                 app:layout_constraintTop_toBottomOf="@id/et_cut_date" />
 
-            <EditText
-                android:id="@+id/et_start_date"
+<!--            <EditText-->
+<!--                android:id="@+id/et_start_date"-->
+<!--                android:inputType="date"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="10sp"-->
+<!--                android:layout_marginEnd="10sp"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/tv_start_date"/>-->
+            <DatePicker
+                android:id="@+id/dp_start_date"
                 android:inputType="date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10sp"
                 android:layout_marginEnd="10sp"
+                android:datePickerMode="spinner"
+                android:calendarViewShown="false"
                 app:layout_constraintTop_toBottomOf="@id/tv_start_date"/>
 
             <TextView

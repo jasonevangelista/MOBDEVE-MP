@@ -1,5 +1,7 @@
 package ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 import java.time.LocalDate
 import java.util.Date
 
@@ -11,7 +13,7 @@ import java.util.Date
 //    lateinit var start_date: LocalDate
 //
 //}
-
+@Parcelize
 data class Tournament(
     var id: String? = null,
     var name: String? = null,
@@ -23,4 +25,6 @@ data class Tournament(
     var cutoff_date: String? = null,
     var start_date: String? = null,
     var instructions: String? = null
-)
+) : Parcelable {
+
+}
