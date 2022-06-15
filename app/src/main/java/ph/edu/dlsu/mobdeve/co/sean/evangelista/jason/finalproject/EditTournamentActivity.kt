@@ -2,6 +2,7 @@ package ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject
 
 import android.annotation.SuppressLint
 import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.icu.util.Calendar
 import android.os.Build
@@ -53,8 +54,25 @@ class EditTournamentActivity : AppCompatActivity() {
             // delete tournament details from database
             // <CODE HERE>
 
+            db.collection("tournaments").document(tournament!!.id.toString())
+                .delete()
+                .addOnSuccessListener {
+                    Log.d(TAG, "Tournament with id:${tournament!!.id.toString()} successfully deleted!")
+                    Toast.makeText(this, "Successfully deleted a tournament!", Toast.LENGTH_SHORT).show()
+                    // redirect to Tournaments Page
+                    redirectToHome(fragmentPage = 1)
+                    finish()
+                }
+                .addOnFailureListener { e ->
+                    Log.w(TAG, "Error deleting document", e)
+                    Toast.makeText(this, "Error deleting tournament!", Toast.LENGTH_SHORT).show()
+                    // redirect to Tournaments Page
+                    redirectToHome(fragmentPage = 1)
+                    finish()
+                }
+
             // go to previous page
-            finish()
+//            finish()
         }
 
         binding.btnCancelTournament.setOnClickListener {
@@ -118,21 +136,25 @@ class EditTournamentActivity : AppCompatActivity() {
                             Log.d("TAG", "onSuccess: existing tournament is updated with id ${tournament.id} by user ${userID}")
                             Toast.makeText(this, "Successfully updated a tournament!", Toast.LENGTH_SHORT).show()
 
-                            val goToHome = Intent(this, PlayerListActivity::class.java)
+//                            val goToHome = Intent(this, PlayerListActivity::class.java)
+//
+//                            val bundle = Bundle()
+//                            bundle.putInt("currFragment", 1)
+//                            goToHome.putExtras(bundle)
 
-                            val bundle = Bundle()
-                            bundle.putInt("currFragment", 1)
-                            goToHome.putExtras(bundle)
+//                            startActivity(goToHome)
 
-                            startActivity(goToHome)
+                            // redirect to Tournaments Page
+                            redirectToHome(fragmentPage = 1)
                             finish()
 
                         }
                         .addOnFailureListener { e ->
+                            Toast.makeText(this, "Error updating tournament document!", Toast.LENGTH_SHORT).show()
                             Log.w("TAG", "Error updating tournament document", e)
 
-                            val goToHome = Intent(this, PlayerListActivity::class.java)
-                            startActivity(goToHome)
+                            // redirect to Tournaments Page
+                            redirectToHome(fragmentPage = 1)
                             finish()
                         }
 //                     go to previous page
@@ -222,6 +244,16 @@ class EditTournamentActivity : AppCompatActivity() {
             }
         }
         return 1
+    }
+
+    private fun redirectToHome(fragmentPage: Int = 0){
+        val goToHome = Intent(this, PlayerListActivity::class.java)
+
+        val bundle = Bundle()
+        bundle.putInt("currFragment", fragmentPage)
+        goToHome.putExtras(bundle)
+
+        startActivity(goToHome)
     }
 
     @SuppressLint("SimpleDateFormat")
