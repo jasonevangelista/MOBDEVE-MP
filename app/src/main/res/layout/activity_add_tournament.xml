@@ -167,7 +167,7 @@
 <!--                app:layout_constraintTop_toBottomOf="@id/tv_cut_date"/>-->
 
             <DatePicker
-                android:id="@+id/et_cut_date"
+                android:id="@+id/dp_cut_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -187,7 +187,7 @@
                 android:gravity="start"
                 android:text="@string/start_date"
                 android:textSize="24sp"
-                app:layout_constraintTop_toBottomOf="@id/et_cut_date" />
+                app:layout_constraintTop_toBottomOf="@id/dp_cut_date" />
 
 <!--            <EditText-->
 <!--                android:id="@+id/et_start_date"-->
@@ -199,7 +199,7 @@
 <!--                app:layout_constraintTop_toBottomOf="@id/tv_start_date"/>-->
 
             <DatePicker
-                android:id="@+id/et_start_date"
+                android:id="@+id/dp_start_date"
                 android:inputType="date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -219,7 +219,7 @@
                 android:gravity="start"
                 android:text="@string/instructions"
                 android:textSize="24sp"
-                app:layout_constraintTop_toBottomOf="@id/et_start_date" />
+                app:layout_constraintTop_toBottomOf="@id/dp_start_date" />
 
             <EditText
                 android:id="@+id/et_instruction"

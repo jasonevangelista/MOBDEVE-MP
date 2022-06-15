@@ -54,7 +54,7 @@ class AddTournamentActivity : AppCompatActivity() {
             // submit tournament details to database
             var userID = auth.currentUser!!.uid
 
-            var name = binding.etTourneyName.text.toString()
+//            var name = binding.etTourneyName.text.toString()
 
             // catch empty number values
             if (TextUtils.isEmpty(binding.etCurrCap.text.toString() )) {
@@ -66,20 +66,20 @@ class AddTournamentActivity : AppCompatActivity() {
                 binding.etMaxCap.requestFocus()
             }
             else{
-
+                var name = binding.etTourneyName.text.toString()
                 var current_capacity = binding.etCurrCap.text.toString().toInt()
                 var max_capacity = binding.etMaxCap.text.toString().toInt()
                 var featured_game = binding.spinnerGame.selectedItem.toString()
                 var description = binding.etDescription.text.toString()
 
-                var cutoff_date_day = binding.etCutDate.dayOfMonth.toString()
-                var cutoff_date_month = (binding.etCutDate.month + 1).toString()
-                val cutoff_date_year = binding.etCutDate.year.toString()
+                var cutoff_date_day = binding.dpCutDate.dayOfMonth.toString()
+                var cutoff_date_month = (binding.dpCutDate.month + 1).toString()
+                val cutoff_date_year = binding.dpCutDate.year.toString()
                 val cutoff_date = formatDateToString(cutoff_date_year, cutoff_date_month, cutoff_date_day)
 
-                var start_date_day = binding.etStartDate.dayOfMonth.toString()
-                var start_date_month = (binding.etStartDate.month + 1).toString()
-                val start_date_year = binding.etStartDate.year.toString()
+                var start_date_day = binding.dpStartDate.dayOfMonth.toString()
+                var start_date_month = (binding.dpStartDate.month + 1).toString()
+                val start_date_year = binding.dpStartDate.year.toString()
                 val start_date = formatDateToString(start_date_year, start_date_month, start_date_day)
 
                 val instructions = binding.etInstruction.text.toString()
@@ -124,8 +124,7 @@ class AddTournamentActivity : AppCompatActivity() {
                             startActivity(goToHome)
                             finish()
                         }
-//                     go to previous page
-//                    finish()
+
                 }
             }
 
@@ -181,7 +180,7 @@ class AddTournamentActivity : AppCompatActivity() {
             }
             (ParseStringToDate(tournament.start_date.toString()).before(ParseStringToDate(tournament.cutoff_date.toString()))) -> {
                 binding.tvStartDate.setError("Start Date must come after Cut-off Date!")
-                binding.etCutDate.requestFocus()
+                binding.dpCutDate.requestFocus()
                 Toast.makeText(this, "Start Date must come after Cut-off Date!", Toast.LENGTH_SHORT).show()
                 return 0
             }
@@ -197,7 +196,6 @@ class AddTournamentActivity : AppCompatActivity() {
     @SuppressLint("SimpleDateFormat")
     private fun ParseStringToDate(date: String): Date{
             var dateFormatter: SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
-            var formattedDate: Date = dateFormatter.parse(date)!!
             return dateFormatter.parse(date)!!
     }
 
