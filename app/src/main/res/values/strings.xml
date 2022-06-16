@@ -74,6 +74,7 @@
 
 <!--    Tournament Filter and Sort Options-->
     <string-array name="filter_tournament_options">
+        <item>All Games</item>
         <item>Valorant</item>
         <item>League of Legends</item>
         <item>Apex Legends</item>

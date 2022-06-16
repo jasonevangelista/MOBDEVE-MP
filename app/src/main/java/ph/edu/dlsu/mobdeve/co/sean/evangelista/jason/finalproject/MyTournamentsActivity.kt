@@ -5,6 +5,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -96,6 +99,7 @@ class MyTournamentsActivity : AppCompatActivity() {
 
                 }
                 tournamentArrayList = dao.getTournaments()
+                checkTournamentFilters()
             }
             .addOnFailureListener { exception ->
                 Log.d(ContentValues.TAG, "Error getting tournament documents: ", exception)
@@ -103,5 +107,56 @@ class MyTournamentsActivity : AppCompatActivity() {
 
 
         tournamentArrayList = dao.getTournaments()
+    }
+
+    private fun checkTournamentFilters(){
+        binding.spFilterTournament.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                Toast.makeText(this@MyTournamentsActivity, "Changed filter option to ${binding.spFilterTournament.selectedItem}", Toast.LENGTH_SHORT).show()
+
+                if(::tournamentArrayList.isInitialized){
+                    // include tournaments with any featured game
+                    if(binding.spFilterTournament.selectedItem == "All Games"){
+                        tournamentAdapter = MyTournamentAdapter(this@MyTournamentsActivity, tournamentArrayList)
+                    }
+
+                    // include only tournaments with the featured game selected
+                    else{
+                        var filteredTournaments = ArrayList<Tournament>()
+                        for (tournament in tournamentArrayList) {
+                            if(tournament.featured_game == binding.spFilterTournament.selectedItem){
+                                filteredTournaments.add(tournament)
+                            }
+                        }
+                        tournamentAdapter = MyTournamentAdapter(this@MyTournamentsActivity, filteredTournaments)
+
+                    }
+
+                    binding.rvMyTournamentsList.apply {
+                        layoutManager = viewManager
+                        adapter = tournamentAdapter
+                    }
+
+                    tournamentAdapter.onItemClick = { tournament ->
+                        val goToTournamentProfile = Intent(this@MyTournamentsActivity, TournamentProfileActivity::class.java)
+                        goToTournamentProfile.putExtra("tournament", tournament)
+                        startActivity(goToTournamentProfile)
+                    }
+
+                    tournamentAdapter.onEditButtonClick = {tournament ->
+                        val goToEditTournament = Intent(this@MyTournamentsActivity, EditTournamentActivity::class.java)
+                        goToEditTournament.putExtra("tournament", tournament)
+                        startActivity(goToEditTournament)
+                    }
+
+                }
+            }
+
+
+        }
     }
 }

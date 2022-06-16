@@ -1,5 +1,6 @@
 package ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.fragments
 
+import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Build
@@ -39,6 +40,8 @@ class TournamentsFragment : Fragment(R.layout.fragment_tournaments) {
 
     private lateinit var db: FirebaseFirestore
 
+//    private var dataRetrieved: Boolean = false
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -75,23 +78,46 @@ class TournamentsFragment : Fragment(R.layout.fragment_tournaments) {
         }
 
         tournamentAdapter.onItemClick = { tournament ->
+            Log.d(ContentValues.TAG, "ITEM CLICKED: ${tournament}")
             val goToTournamentProfile = Intent(activity, TournamentProfileActivity::class.java)
             goToTournamentProfile.putExtra("tournament", tournament)
             activity?.startActivity(goToTournamentProfile)
         }
 
-        binding.spFilterTournament.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
-
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                Toast.makeText(activity, "Changed filter option to ${binding.spFilterTournament.selectedItem}", Toast.LENGTH_SHORT).show()
-            }
-
-
-
-        }
+//        binding.spFilterTournament.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+//            override fun onNothingSelected(parent: AdapterView<*>?) {
+//
+//            }
+//
+//            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+//                Toast.makeText(activity, "Changed filter option to ${binding.spFilterTournament.selectedItem}", Toast.LENGTH_SHORT).show()
+//
+//                if(::tournamentArrayList.isInitialized){
+//                    var filteredTournaments = ArrayList<Tournament>()
+//                    for (tournament in tournamentArrayList) {
+//                        if(tournament.featured_game == binding.spFilterTournament.selectedItem){
+//                            filteredTournaments.add(tournament)
+//                        }
+//                    }
+//
+//                    tournamentAdapter = TournamentAdapter(requireContext(), filteredTournaments)
+//
+//                    binding.rvTournamentList.apply {
+//                        layoutManager = viewManager
+//                        adapter = tournamentAdapter
+//                    }
+//
+//                    tournamentAdapter.onItemClick = { tournament ->
+//                        Log.d(ContentValues.TAG, "ITEM CLICKED: ${tournament}")
+//                        val goToTournamentProfile = Intent(activity, TournamentProfileActivity::class.java)
+//                        goToTournamentProfile.putExtra("tournament", tournament)
+//                        activity?.startActivity(goToTournamentProfile)
+//                    }
+//                }
+//            }
+//
+//
+//        }
     }
 
     override fun onDestroy() {
@@ -126,27 +152,59 @@ class TournamentsFragment : Fragment(R.layout.fragment_tournaments) {
 
 //                Log.d(TAG, "TOURNAMENTS: ${dao.getTournaments()}")
                 tournamentArrayList = dao.getTournaments()
+                checkTournamentFilters()
+
             }
             .addOnFailureListener { exception ->
                 Log.d(TAG, "Error getting tournament documents: ", exception)
             }
 
-//        var tournament = Tournament()
-//        tournament.name = "Iron Tourney"
-//        tournament.current_capacity = 5
-//        tournament.max_capacity = 20
-////        tournament.start_date = LocalDate.now()
-////
-//        dao.addTournament(tournament)
-//        dao.addTournament(tournament)
-//        dao.addTournament(tournament)
-//        dao.addTournament(tournament)
-//        dao.addTournament(tournament)
-//        dao.addTournament(tournament)
-//        dao.addTournament(tournament)
-
-//        Log.d(TAG, "TOURNAMENTS: ${dao.getTournaments()}")
-
         tournamentArrayList = dao.getTournaments()
+    }
+
+    private fun checkTournamentFilters(){
+        binding.spFilterTournament.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                Toast.makeText(activity, "Changed filter option to ${binding.spFilterTournament.selectedItem}", Toast.LENGTH_SHORT).show()
+
+                if(::tournamentArrayList.isInitialized){
+                    // include tournaments with any featured game
+                    if(binding.spFilterTournament.selectedItem == "All Games"){
+                        tournamentAdapter = TournamentAdapter(requireContext(), tournamentArrayList)
+                    }
+
+                    // include only tournaments with the featured game selected
+                    else{
+                        var filteredTournaments = ArrayList<Tournament>()
+                        for (tournament in tournamentArrayList) {
+                            if(tournament.featured_game == binding.spFilterTournament.selectedItem){
+                                filteredTournaments.add(tournament)
+                            }
+                        }
+                        tournamentAdapter = TournamentAdapter(requireContext(), filteredTournaments)
+
+                    }
+
+                    binding.rvTournamentList.apply {
+                        layoutManager = viewManager
+                        adapter = tournamentAdapter
+                    }
+
+                    tournamentAdapter.onItemClick = { tournament ->
+                        Log.d(ContentValues.TAG, "ITEM CLICKED: ${tournament}")
+                        val goToTournamentProfile = Intent(activity, TournamentProfileActivity::class.java)
+                        goToTournamentProfile.putExtra("tournament", tournament)
+                        activity?.startActivity(goToTournamentProfile)
+                    }
+
+                }
+            }
+
+
+        }
     }
 }
