@@ -2,6 +2,8 @@ package ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject
 
 import android.annotation.SuppressLint
 import android.content.ContentValues
+import android.content.ContentValues.TAG
+import android.content.Intent
 import android.icu.util.Calendar
 import android.os.Build
 import android.os.Bundle
@@ -52,8 +54,25 @@ class EditTournamentActivity : AppCompatActivity() {
             // delete tournament details from database
             // <CODE HERE>
 
+            db.collection("tournaments").document(tournament!!.id.toString())
+                .delete()
+                .addOnSuccessListener {
+                    Log.d(TAG, "Tournament with id:${tournament!!.id.toString()} successfully deleted!")
+                    Toast.makeText(this, "Successfully deleted a tournament!", Toast.LENGTH_SHORT).show()
+                    // redirect to Tournaments Page
+                    redirectToHome(fragmentPage = 1)
+                    finish()
+                }
+                .addOnFailureListener { e ->
+                    Log.w(TAG, "Error deleting document", e)
+                    Toast.makeText(this, "Error deleting tournament!", Toast.LENGTH_SHORT).show()
+                    // redirect to Tournaments Page
+                    redirectToHome(fragmentPage = 1)
+                    finish()
+                }
+
             // go to previous page
-            finish()
+//            finish()
         }
 
         binding.btnCancelTournament.setOnClickListener {
@@ -62,9 +81,86 @@ class EditTournamentActivity : AppCompatActivity() {
         }
 
         binding.btnEditTournament.setOnClickListener {
-//            Log.d("TOURNEY", "UPDATING TOURNAMENT ${tournament!!.id} BY USER ${userID}")
+            Log.d("TOURNEY", "UPDATING TOURNAMENT ${tournament!!.id} BY USER ${userID}")
             // submit new tournament details to database
             // <CODE HERE>
+            // catch empty number values
+            if (TextUtils.isEmpty(binding.etCurrCap.text.toString() )) {
+                binding.etCurrCap.setError("Current Capacity cannot be empty!")
+                binding.etCurrCap.requestFocus()
+            }
+            else if(TextUtils.isEmpty( binding.etMaxCap.text.toString() )) {
+                binding.etMaxCap.setError("Max Capacity cannot be empty!")
+                binding.etMaxCap.requestFocus()
+            }
+            else{
+                var name = binding.etTourneyName.text.toString()
+                var current_capacity = binding.etCurrCap.text.toString().toInt()
+                var max_capacity = binding.etMaxCap.text.toString().toInt()
+                var featured_game = binding.spinnerGame.selectedItem.toString()
+                var description = binding.etDescription.text.toString()
+
+                var cutoff_date_day = binding.dpCutDate.dayOfMonth.toString()
+                var cutoff_date_month = (binding.dpCutDate.month + 1).toString()
+                val cutoff_date_year = binding.dpCutDate.year.toString()
+                val cutoff_date = formatDateToString(cutoff_date_year, cutoff_date_month, cutoff_date_day)
+
+                var start_date_day = binding.dpStartDate.dayOfMonth.toString()
+                var start_date_month = (binding.dpStartDate.month + 1).toString()
+                val start_date_year = binding.dpStartDate.year.toString()
+                val start_date = formatDateToString(start_date_year, start_date_month, start_date_day)
+
+                val instructions = binding.etInstruction.text.toString()
+
+                var updatedTournament = Tournament(
+                    name = name,
+                    creator_id = userID,
+                    current_capacity = current_capacity,
+                    max_capacity = max_capacity,
+                    featured_game = featured_game,
+                    description = description,
+                    cutoff_date = cutoff_date,
+                    start_date = start_date,
+                    instructions = instructions
+                )
+
+                // FORM INPUT HANDLING
+                if(checkFormInputErrors(updatedTournament) == 1){
+                    // ADD TO DB
+                    Log.d("TOURNEY", "ADDING TOURNAMENT TO DB")
+                    db.collection("tournaments")
+                        .document(tournament.id.toString())
+                        .set(updatedTournament)
+//                        .add(newTournament)
+                        .addOnSuccessListener{documentReference ->
+                            Log.d("TAG", "onSuccess: existing tournament is updated with id ${tournament.id} by user ${userID}")
+                            Toast.makeText(this, "Successfully updated a tournament!", Toast.LENGTH_SHORT).show()
+
+//                            val goToHome = Intent(this, PlayerListActivity::class.java)
+//
+//                            val bundle = Bundle()
+//                            bundle.putInt("currFragment", 1)
+//                            goToHome.putExtras(bundle)
+
+//                            startActivity(goToHome)
+
+                            // redirect to Tournaments Page
+                            redirectToHome(fragmentPage = 1)
+                            finish()
+
+                        }
+                        .addOnFailureListener { e ->
+                            Toast.makeText(this, "Error updating tournament document!", Toast.LENGTH_SHORT).show()
+                            Log.w("TAG", "Error updating tournament document", e)
+
+                            // redirect to Tournaments Page
+                            redirectToHome(fragmentPage = 1)
+                            finish()
+                        }
+//                     go to previous page
+//                    finish()
+                }
+            }
 
             // go to previous page
             finish()
@@ -93,6 +189,19 @@ class EditTournamentActivity : AppCompatActivity() {
                 break
             }
         }
+    }
+
+    private fun formatDateToString(year: String, month: String,day: String) : String{
+        var formatted_day = day
+        var formatted_month = month
+
+        if(day.toInt() < 10){
+            formatted_day = "0$day"
+        }
+        if(month.toInt() < 10){
+            formatted_month = "0$month"
+        }
+        return "$year-$formatted_month-$formatted_day" // following yyyy-MM-dd format
     }
 
     private fun checkFormInputErrors(tournament: Tournament): Int{ // 1 == success, 0 == fail
@@ -135,6 +244,16 @@ class EditTournamentActivity : AppCompatActivity() {
             }
         }
         return 1
+    }
+
+    private fun redirectToHome(fragmentPage: Int = 0){
+        val goToHome = Intent(this, PlayerListActivity::class.java)
+
+        val bundle = Bundle()
+        bundle.putInt("currFragment", fragmentPage)
+        goToHome.putExtras(bundle)
+
+        startActivity(goToHome)
     }
 
     @SuppressLint("SimpleDateFormat")

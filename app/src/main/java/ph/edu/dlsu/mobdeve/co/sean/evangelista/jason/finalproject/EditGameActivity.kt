@@ -1,5 +1,6 @@
 package ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject
 
+import android.content.ContentValues
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,7 +15,6 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.databinding.ActivityEditGameBinding
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.model.Game
-import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.model.Tournament
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -31,7 +31,7 @@ class EditGameActivity : AppCompatActivity() {
         binding = ActivityEditGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // set tournament information in UI
+        // set game information in UI
         val game = intent.getParcelableExtra<Game>("game")
         setDetails(game)
 
@@ -48,8 +48,26 @@ class EditGameActivity : AppCompatActivity() {
             // delete game details for my profile from database
             // <CODE HERE>
 
+            db.collection("players")
+                .document(auth.currentUser!!.uid).collection("games")
+                .document(game!!.id.toString())
+                .delete()
+                .addOnSuccessListener {
+                    Log.d(ContentValues.TAG, "Game with id:${game!!.id.toString()} successfully deleted!")
+                    Toast.makeText(this, "Successfully deleted a game!", Toast.LENGTH_SHORT).show()
+                    // redirect to home
+                    redirectToHome()
+                    finish()
+                }
+                .addOnFailureListener { e ->
+                    Log.w(ContentValues.TAG, "Error deleting document", e)
+                    Toast.makeText(this, "Error deleting game!", Toast.LENGTH_SHORT).show()
+                    // redirect to home
+                    redirectToHome()
+                    finish()
+                }
             // go to previous page
-            finish()
+            // finish()
         }
 
         binding.btnCancelGame.setOnClickListener {
@@ -58,12 +76,62 @@ class EditGameActivity : AppCompatActivity() {
         }
 
         binding.btnEditGame.setOnClickListener {
-            Log.d("GAME", "EDITING GAME")
+            Log.d("GAME", "UPDATING GAME ${game!!.id} BY USER ${userID}")
             // submit new game details for my profile to database
             // <CODE HERE>
+            var name = binding.spinnerGame.selectedItem.toString()
+            var rank = binding.etPlayerRank.text.toString()
+            var server = binding.etPlayerServer.text.toString()
+            var role = binding.etPlayerRole.text.toString()
 
+            var updatedGame = Game(
+                name = name,
+                creator_id = userID,
+                rank = rank,
+                server = server,
+                role = role
+            )
+
+            // FORM INPUT HANDLING
+            if(checkFormInputErrors(updatedGame) == 1){
+                // UPDATE DB
+                Log.d("GAME", "UPDATING GAME IN DB")
+//                db.collection("games")
+//                    .add(newGame)
+                db.collection("players")
+                    .document(auth.currentUser!!.uid).collection("games")
+                    .document(game!!.id.toString())
+                    .set(updatedGame)
+                    .addOnSuccessListener{documentReference ->
+                        Log.d("TAG", "onSuccess: existing game is updated with id ${game.id} by user ${userID}")
+                        Toast.makeText(this, "Successfully added a game!", Toast.LENGTH_SHORT).show()
+
+//                        val goToHome = Intent(this, PlayerListActivity::class.java)
+                        // redirect to player fragment
+//                        val bundle = Bundle()
+//                        bundle.putInt("currFragment", 1)
+//                        goToHome.putExtras(bundle)
+//                        startActivity(goToHome)
+
+                        // redirect to home
+                        redirectToHome()
+                        finish()
+
+                    }
+                    .addOnFailureListener { e ->
+                        Toast.makeText(this, "Error updating game document!", Toast.LENGTH_SHORT).show()
+                        Log.w("TAG", "Error updating game document", e)
+
+//                        val goToHome = Intent(this, PlayerListActivity::class.java)
+//                        startActivity(goToHome)
+
+                        // redirect to home
+                        redirectToHome()
+                        finish()
+                    }
+            }
             // go to previous page
-            //finish()
+            finish()
         }
 
     }
@@ -103,5 +171,10 @@ class EditGameActivity : AppCompatActivity() {
             }
         }
         return 1
+    }
+
+    private fun redirectToHome(){
+        val goToHome = Intent(this, PlayerListActivity::class.java)
+        startActivity(goToHome)
     }
 }
