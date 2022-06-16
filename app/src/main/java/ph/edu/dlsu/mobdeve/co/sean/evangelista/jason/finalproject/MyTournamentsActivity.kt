@@ -23,6 +23,7 @@ import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.databinding.Ac
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.model.Tournament
 import java.time.LocalDate
 import java.util.*
+import kotlin.collections.ArrayList
 
 class MyTournamentsActivity : AppCompatActivity() {
 
@@ -99,7 +100,13 @@ class MyTournamentsActivity : AppCompatActivity() {
 
                 }
                 tournamentArrayList = dao.getTournaments()
-                checkTournamentFilters()
+
+                filterTournaments()
+                sortTournaments()
+
+                addFilterListener()
+                addSortListener()
+
             }
             .addOnFailureListener { exception ->
                 Log.d(ContentValues.TAG, "Error getting tournament documents: ", exception)
@@ -109,7 +116,7 @@ class MyTournamentsActivity : AppCompatActivity() {
         tournamentArrayList = dao.getTournaments()
     }
 
-    private fun checkTournamentFilters(){
+    private fun addFilterListener(){
         binding.spFilterTournament.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
@@ -117,46 +124,104 @@ class MyTournamentsActivity : AppCompatActivity() {
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 Toast.makeText(this@MyTournamentsActivity, "Changed filter option to ${binding.spFilterTournament.selectedItem}", Toast.LENGTH_SHORT).show()
+                filterTournaments()
+                sortTournaments()
 
-                if(::tournamentArrayList.isInitialized){
-                    // include tournaments with any featured game
-                    if(binding.spFilterTournament.selectedItem == "All Games"){
-                        tournamentAdapter = MyTournamentAdapter(this@MyTournamentsActivity, tournamentArrayList)
-                    }
-
-                    // include only tournaments with the featured game selected
-                    else{
-                        var filteredTournaments = ArrayList<Tournament>()
-                        for (tournament in tournamentArrayList) {
-                            if(tournament.featured_game == binding.spFilterTournament.selectedItem){
-                                filteredTournaments.add(tournament)
-                            }
-                        }
-                        tournamentAdapter = MyTournamentAdapter(this@MyTournamentsActivity, filteredTournaments)
-
-                    }
-
-                    binding.rvMyTournamentsList.apply {
-                        layoutManager = viewManager
-                        adapter = tournamentAdapter
-                    }
-
-                    tournamentAdapter.onItemClick = { tournament ->
-                        val goToTournamentProfile = Intent(this@MyTournamentsActivity, TournamentProfileActivity::class.java)
-                        goToTournamentProfile.putExtra("tournament", tournament)
-                        startActivity(goToTournamentProfile)
-                    }
-
-                    tournamentAdapter.onEditButtonClick = {tournament ->
-                        val goToEditTournament = Intent(this@MyTournamentsActivity, EditTournamentActivity::class.java)
-                        goToEditTournament.putExtra("tournament", tournament)
-                        startActivity(goToEditTournament)
-                    }
-
-                }
             }
 
 
         }
+    }
+
+    private fun addSortListener(){
+        binding.spSortTournament.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                Toast.makeText(this@MyTournamentsActivity, "Changed sort option to ${binding.spSortTournament.selectedItem}", Toast.LENGTH_SHORT).show()
+                sortTournaments()
+            }
+        }
+    }
+
+    private fun filterTournaments(){
+        if(::tournamentArrayList.isInitialized){
+            var filteredTournaments = ArrayList<Tournament>()
+
+            // include tournaments with any featured game
+            if(binding.spFilterTournament.selectedItem == "All Games"){
+                filteredTournaments = tournamentArrayList
+            }
+
+            // include only tournaments with the featured game selected
+            else{
+                for (tournament in tournamentArrayList) {
+                    if(tournament.featured_game == binding.spFilterTournament.selectedItem){
+                        filteredTournaments.add(tournament)
+                    }
+                }
+            }
+
+            tournamentAdapter = MyTournamentAdapter(this@MyTournamentsActivity, filteredTournaments)
+
+            binding.rvMyTournamentsList.apply {
+                layoutManager = viewManager
+                adapter = tournamentAdapter
+            }
+
+            tournamentAdapter.onItemClick = { tournament ->
+                val goToTournamentProfile = Intent(this@MyTournamentsActivity, TournamentProfileActivity::class.java)
+                goToTournamentProfile.putExtra("tournament", tournament)
+                startActivity(goToTournamentProfile)
+            }
+
+            tournamentAdapter.onEditButtonClick = {tournament ->
+                val goToEditTournament = Intent(this@MyTournamentsActivity, EditTournamentActivity::class.java)
+                goToEditTournament.putExtra("tournament", tournament)
+                startActivity(goToEditTournament)
+            }
+
+        }
+    }
+
+    private fun sortTournaments() {
+        var currTournaments: ArrayList<Tournament> = tournamentAdapter.getItems()
+        var sortedTournaments = ArrayList<Tournament>()
+
+        if (currTournaments.size > 0) {
+            if (binding.spSortTournament.selectedItem == "Nearest Start Date") {
+                sortedTournaments = currTournaments.sortedWith(compareBy { it.start_date })
+                    .toCollection(ArrayList())
+            } else if (binding.spSortTournament.selectedItem == "Farthest Start Date") {
+                sortedTournaments =
+                    currTournaments.sortedWith(compareBy { it.start_date }).reversed()
+                        .toCollection(ArrayList())
+            }
+
+            tournamentAdapter = MyTournamentAdapter(this@MyTournamentsActivity, sortedTournaments)
+
+            binding.rvMyTournamentsList.apply {
+                layoutManager = viewManager
+                adapter = tournamentAdapter
+            }
+
+            tournamentAdapter.onItemClick = { tournament ->
+                val goToTournamentProfile =
+                    Intent(this@MyTournamentsActivity, TournamentProfileActivity::class.java)
+                goToTournamentProfile.putExtra("tournament", tournament)
+                startActivity(goToTournamentProfile)
+            }
+
+            tournamentAdapter.onEditButtonClick = { tournament ->
+                val goToEditTournament =
+                    Intent(this@MyTournamentsActivity, EditTournamentActivity::class.java)
+                goToEditTournament.putExtra("tournament", tournament)
+                startActivity(goToEditTournament)
+            }
+
+        }
+
     }
 }

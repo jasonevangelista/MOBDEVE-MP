@@ -81,7 +81,8 @@
     </string-array>
 
     <string-array name="sort_tournament_options">
-        <item>Start Date</item>
+        <item>Nearest Start Date</item>
+        <item>Farthest Start Date</item>
     </string-array>
 
 </resources>

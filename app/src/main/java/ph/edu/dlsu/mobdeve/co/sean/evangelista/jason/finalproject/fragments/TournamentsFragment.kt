@@ -84,40 +84,6 @@ class TournamentsFragment : Fragment(R.layout.fragment_tournaments) {
             activity?.startActivity(goToTournamentProfile)
         }
 
-//        binding.spFilterTournament.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-//            override fun onNothingSelected(parent: AdapterView<*>?) {
-//
-//            }
-//
-//            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-//                Toast.makeText(activity, "Changed filter option to ${binding.spFilterTournament.selectedItem}", Toast.LENGTH_SHORT).show()
-//
-//                if(::tournamentArrayList.isInitialized){
-//                    var filteredTournaments = ArrayList<Tournament>()
-//                    for (tournament in tournamentArrayList) {
-//                        if(tournament.featured_game == binding.spFilterTournament.selectedItem){
-//                            filteredTournaments.add(tournament)
-//                        }
-//                    }
-//
-//                    tournamentAdapter = TournamentAdapter(requireContext(), filteredTournaments)
-//
-//                    binding.rvTournamentList.apply {
-//                        layoutManager = viewManager
-//                        adapter = tournamentAdapter
-//                    }
-//
-//                    tournamentAdapter.onItemClick = { tournament ->
-//                        Log.d(ContentValues.TAG, "ITEM CLICKED: ${tournament}")
-//                        val goToTournamentProfile = Intent(activity, TournamentProfileActivity::class.java)
-//                        goToTournamentProfile.putExtra("tournament", tournament)
-//                        activity?.startActivity(goToTournamentProfile)
-//                    }
-//                }
-//            }
-//
-//
-//        }
     }
 
     override fun onDestroy() {
@@ -150,9 +116,14 @@ class TournamentsFragment : Fragment(R.layout.fragment_tournaments) {
                     Log.d(TAG, "CURR DOC: ${currTournament}")
                 }
 
-//                Log.d(TAG, "TOURNAMENTS: ${dao.getTournaments()}")
                 tournamentArrayList = dao.getTournaments()
-                checkTournamentFilters()
+
+                // set initial filter and sort options
+                filterTournaments()
+                sortTournaments()
+                // set listeners for filter and sort options
+                addFilterListener()
+                addSortListener()
 
             }
             .addOnFailureListener { exception ->
@@ -162,7 +133,7 @@ class TournamentsFragment : Fragment(R.layout.fragment_tournaments) {
         tournamentArrayList = dao.getTournaments()
     }
 
-    private fun checkTournamentFilters(){
+    private fun addFilterListener(){
         binding.spFilterTournament.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
@@ -170,38 +141,85 @@ class TournamentsFragment : Fragment(R.layout.fragment_tournaments) {
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 Toast.makeText(activity, "Changed filter option to ${binding.spFilterTournament.selectedItem}", Toast.LENGTH_SHORT).show()
+                filterTournaments()
+                sortTournaments() // after getting filtered tournaments, sort them according to sort option
+            }
 
-                if(::tournamentArrayList.isInitialized){
-                    // include tournaments with any featured game
-                    if(binding.spFilterTournament.selectedItem == "All Games"){
-                        tournamentAdapter = TournamentAdapter(requireContext(), tournamentArrayList)
+        }
+    }
+
+    private fun addSortListener(){
+        binding.spSortTournament.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                Toast.makeText(activity, "Changed sort option to ${binding.spSortTournament.selectedItem}", Toast.LENGTH_SHORT).show()
+                sortTournaments()
+            }
+        }
+    }
+
+
+    private fun filterTournaments(){
+        if(::tournamentArrayList.isInitialized){
+            var filteredTournaments = ArrayList<Tournament>()
+            // include tournaments with any featured game
+            if(binding.spFilterTournament.selectedItem == "All Games"){
+                filteredTournaments = tournamentArrayList
+            }
+
+            // include only tournaments with the featured game selected
+            else{
+                for (tournament in tournamentArrayList) {
+                    if(tournament.featured_game == binding.spFilterTournament.selectedItem){
+                        filteredTournaments.add(tournament)
                     }
-
-                    // include only tournaments with the featured game selected
-                    else{
-                        var filteredTournaments = ArrayList<Tournament>()
-                        for (tournament in tournamentArrayList) {
-                            if(tournament.featured_game == binding.spFilterTournament.selectedItem){
-                                filteredTournaments.add(tournament)
-                            }
-                        }
-                        tournamentAdapter = TournamentAdapter(requireContext(), filteredTournaments)
-
-                    }
-
-                    binding.rvTournamentList.apply {
-                        layoutManager = viewManager
-                        adapter = tournamentAdapter
-                    }
-
-                    tournamentAdapter.onItemClick = { tournament ->
-                        Log.d(ContentValues.TAG, "ITEM CLICKED: ${tournament}")
-                        val goToTournamentProfile = Intent(activity, TournamentProfileActivity::class.java)
-                        goToTournamentProfile.putExtra("tournament", tournament)
-                        activity?.startActivity(goToTournamentProfile)
-                    }
-
                 }
+            }
+
+            tournamentAdapter = TournamentAdapter(requireContext(), filteredTournaments)
+
+            binding.rvTournamentList.apply {
+                layoutManager = viewManager
+                adapter = tournamentAdapter
+            }
+
+            tournamentAdapter.onItemClick = { tournament ->
+                Log.d(ContentValues.TAG, "ITEM CLICKED: ${tournament}")
+                val goToTournamentProfile = Intent(activity, TournamentProfileActivity::class.java)
+                goToTournamentProfile.putExtra("tournament", tournament)
+                activity?.startActivity(goToTournamentProfile)
+            }
+
+        }
+    }
+
+    private fun sortTournaments(){
+        var currTournaments: ArrayList<Tournament> = tournamentAdapter.getItems()
+        var sortedTournaments = ArrayList<Tournament>()
+
+        if (currTournaments.size > 0){
+            if(binding.spSortTournament.selectedItem == "Nearest Start Date"){
+                sortedTournaments = currTournaments.sortedWith(compareBy { it.start_date }).toCollection(ArrayList())
+            }
+            else if(binding.spSortTournament.selectedItem == "Farthest Start Date"){
+                sortedTournaments = currTournaments.sortedWith(compareBy { it.start_date }).reversed().toCollection(ArrayList())
+            }
+
+            tournamentAdapter = TournamentAdapter(requireContext(), sortedTournaments)
+
+            binding.rvTournamentList.apply {
+                layoutManager = viewManager
+                adapter = tournamentAdapter
+            }
+
+            tournamentAdapter.onItemClick = { tournament ->
+                Log.d(ContentValues.TAG, "ITEM CLICKED: ${tournament}")
+                val goToTournamentProfile = Intent(activity, TournamentProfileActivity::class.java)
+                goToTournamentProfile.putExtra("tournament", tournament)
+                activity?.startActivity(goToTournamentProfile)
             }
 
 

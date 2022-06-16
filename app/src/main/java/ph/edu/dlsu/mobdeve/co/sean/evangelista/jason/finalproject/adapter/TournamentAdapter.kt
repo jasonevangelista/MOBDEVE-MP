@@ -30,6 +30,10 @@ class TournamentAdapter: RecyclerView.Adapter<TournamentAdapter.TournamentViewHo
         return tournamentArrayList.size
     }
 
+    fun getItems(): ArrayList<Tournament>{
+        return tournamentArrayList
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TournamentAdapter.TournamentViewHolder {
         val itemBinding = ItemTournamentListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return TournamentViewHolder(itemBinding)
@@ -74,6 +78,10 @@ class MyTournamentAdapter: RecyclerView.Adapter<MyTournamentAdapter.TournamentVi
 
     override fun getItemCount(): Int {
         return tournamentArrayList.size
+    }
+
+    fun getItems(): ArrayList<Tournament>{
+        return tournamentArrayList
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyTournamentAdapter.TournamentViewHolder {
