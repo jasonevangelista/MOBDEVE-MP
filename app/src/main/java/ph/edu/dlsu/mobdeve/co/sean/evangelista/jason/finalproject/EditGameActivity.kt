@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.widget.Spinner
+import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -25,6 +26,7 @@ class EditGameActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
 
     private lateinit var userID: String
+    private lateinit var currName: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +35,7 @@ class EditGameActivity : AppCompatActivity() {
 
         // set game information in UI
         val game = intent.getParcelableExtra<Game>("game")
+        currName = game!!.name.toString()
         setDetails(game)
 
         db = Firebase.firestore
@@ -104,7 +107,7 @@ class EditGameActivity : AppCompatActivity() {
                     .set(updatedGame)
                     .addOnSuccessListener{documentReference ->
                         Log.d("TAG", "onSuccess: existing game is updated with id ${game.id} by user ${userID}")
-                        Toast.makeText(this, "Successfully added a game!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Successfully updated a game!", Toast.LENGTH_SHORT).show()
 
 //                        val goToHome = Intent(this, PlayerListActivity::class.java)
                         // redirect to player fragment
@@ -154,6 +157,12 @@ class EditGameActivity : AppCompatActivity() {
 
     private fun checkFormInputErrors(game: Game): Int{ // 1 == success, 0 == fail
         when {
+            (currName != game.name) -> {
+                Log.d("TAG", "GAME NAME SHOULD NOT BE CHANGED")
+                binding.tvGameTitle.setError("Game name should not be changed!")
+                binding.tvGameTitle.requestFocus()
+                return 0
+            }
             TextUtils.isEmpty(game.rank) -> {
                 binding.etPlayerRank.setError("Rank cannot be empty!")
                 binding.etPlayerRank.requestFocus()

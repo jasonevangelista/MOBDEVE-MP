@@ -1,5 +1,6 @@
 package ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -8,10 +9,13 @@ import android.text.TextUtils
 import android.util.Log
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.databinding.ActivityAddGameBinding
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.model.Game
@@ -60,45 +64,76 @@ class AddGameActivity : AppCompatActivity() {
             )
 
             // FORM INPUT HANDLING
-            if(checkFormInputErrors(newGame) == 1){
-                // ADD TO DB
-                Log.d("GAME", "ADDING GAME TO DB")
+            if (checkDuplicateGame(newGame) == 0) {
+                if (checkFormInputErrors(newGame) == 1) {
+                    // ADD TO DB
+                    Log.d("GAME", "ADDING GAME TO DB")
 //                db.collection("games")
 //                    .add(newGame)
-                db.collection("players")
-                    .document(auth.currentUser!!.uid).collection("games")
-                    .add(newGame)
-                    .addOnSuccessListener{documentReference ->
-                        Log.d("TAG", "onSuccess: new game is added with id ${documentReference.id} by user ${userID}")
-                        Toast.makeText(this, "Successfully added a game!", Toast.LENGTH_SHORT).show()
+                    db.collection("players")
+                        .document(auth.currentUser!!.uid).collection("games")
+                        .add(newGame)
+                        .addOnSuccessListener { documentReference ->
+                            Log.d(
+                                "TAG",
+                                "onSuccess: new game is added with id ${documentReference.id} by user ${userID}"
+                            )
+                            Toast.makeText(this, "Successfully added a game!", Toast.LENGTH_SHORT)
+                                .show()
 
 
-                        val goToHome = Intent(this, PlayerListActivity::class.java)
+                            val goToHome = Intent(this, PlayerListActivity::class.java)
 
-                        // redirect to player fragment
+                            // redirect to player fragment
 //                        val bundle = Bundle()
 //                        bundle.putInt("currFragment", 1)
 //                        goToHome.putExtras(bundle)
 
-                        startActivity(goToHome)
-                        finish()
+                            startActivity(goToHome)
+                            finish()
 
-                    }
-                    .addOnFailureListener { e ->
-                        Log.w("TAG", "Error adding game document", e)
+                        }
+                        .addOnFailureListener { e ->
+                            Log.w("TAG", "Error adding game document", e)
 
-                        val goToHome = Intent(this, PlayerListActivity::class.java)
-                        startActivity(goToHome)
-                        finish()
-                    }
+                            val goToHome = Intent(this, PlayerListActivity::class.java)
+                            startActivity(goToHome)
+                            finish()
+                        }
+                }
+                // go to previous page
+                // finish()
             }
-            // go to previous page
-            // finish()
         }
-
     }
 
-    private fun checkFormInputErrors(game: Game): Int{ // 1 == success, 0 == fail
+    private fun checkDuplicateGame(game: Game): Int { // 1 == duplicate found, 0 == duplicate not found
+        var found = 0
+
+        db.collection("players")
+            .document(auth.currentUser!!.uid)
+            .collection("games")
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    val gameDoc = document.toObject<Game>()
+                    if (gameDoc.name == game.name) {
+                        binding.tvGameTitle.setError("Game already exists!")
+                        binding.tvGameTitle.requestFocus()
+                        Log.d("TAG", "DUPLICATE GAME FOUND")
+                        found = 1
+                        break
+                    }
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d("TAG", "Error getting documents: ", exception)
+                found = 1
+            }
+        return found
+    }
+
+    private fun checkFormInputErrors(game: Game): Int { // 1 == success, 0 == fail
         when {
             TextUtils.isEmpty(game.rank) -> {
                 binding.etPlayerRank.setError("Rank cannot be empty!")
