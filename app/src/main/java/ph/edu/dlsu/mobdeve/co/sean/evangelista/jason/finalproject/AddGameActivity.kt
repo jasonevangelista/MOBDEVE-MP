@@ -109,8 +109,8 @@ class AddGameActivity : AppCompatActivity() {
         }
     }
 
-    private fun checkDuplicateGame(game: Game): Int { // 1 == duplicate found, 0 == duplicate not found
-        var found = 0
+    private fun checkDuplicateGame(game: Game) {
+        var found = 0 // 1 == duplicate found, 0 == duplicate not found
 
         db.collection("players")
             .document(auth.currentUser!!.uid)
@@ -166,7 +166,6 @@ class AddGameActivity : AppCompatActivity() {
                 Log.d("TAG", "Error getting documents: ", exception)
                 found = 1
             }
-        return found
     }
 
     private fun checkFormInputErrors(game: Game): Int { // 1 == success, 0 == fail
