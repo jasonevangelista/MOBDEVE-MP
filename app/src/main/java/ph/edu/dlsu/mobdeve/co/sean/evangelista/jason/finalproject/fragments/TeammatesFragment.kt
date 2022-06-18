@@ -88,26 +88,26 @@ class TeammatesFragment : Fragment(R.layout.fragment_teammates){
 //        player1.username = "player1"
 //        player1.rating = 5.0F
 //        player1.rank = "Iron"
-        var player1 = Player(username = "player1", rating = 5.0F)
-        dao.addPlayer(player1)
-
-//        var player2 = Player()
-//        player2.username = "player2"
-//        player2.rating = 4.0F
-//        player2.rank = "Gold"
-        var player2 = Player(username = "player2", rating = 4.0F)
-        dao.addPlayer(player2)
-
-//        var player3 = Player()
-//        player3.username = "player3"
-//        player3.rating = 2.0F
-//        player3.rank = "Bronze"
-        var player3 = Player(username = "player3", rating = 2.0F)
-        dao.addPlayer(player3)
-
-        dao.addPlayer(player3)
-        dao.addPlayer(player3)
-        dao.addPlayer(player3)
+//        var player1 = Player(username = "player1", rating = 5.0F)
+//        dao.addPlayer(player1)
+//
+////        var player2 = Player()
+////        player2.username = "player2"
+////        player2.rating = 4.0F
+////        player2.rank = "Gold"
+//        var player2 = Player(username = "player2", rating = 4.0F)
+//        dao.addPlayer(player2)
+//
+////        var player3 = Player()
+////        player3.username = "player3"
+////        player3.rating = 2.0F
+////        player3.rank = "Bronze"
+//        var player3 = Player(username = "player3", rating = 2.0F)
+//        dao.addPlayer(player3)
+//
+//        dao.addPlayer(player3)
+//        dao.addPlayer(player3)
+//        dao.addPlayer(player3)
 
         playerArrayList = dao.getPlayers()
 
@@ -139,7 +139,15 @@ class TeammatesFragment : Fragment(R.layout.fragment_teammates){
                                         "GAME: ${docGame.data.get("name")}\n" +
                                         "RANK: ${docGame.data.get("rank")}\n" +
                                         "MESSAGE: ${docPlayer.data.get("message")}\n")
+
+                                val currPlayer = docPlayer.toObject<Player>()
+                                currPlayer.rank = docGame.data.get("rank").toString()
+                                currPlayer.featured_game = docGame.data.get("name").toString()
+
+                                dao.addPlayer(currPlayer)
                             }
+                            playerArrayList = dao.getPlayers()
+                            playerAdapter.notifyDataSetChanged()
                         }.addOnFailureListener { exception ->
                             Log.d(ContentValues.TAG, "Error getting tournament documents: ", exception)
                         }

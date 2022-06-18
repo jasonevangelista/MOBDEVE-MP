@@ -47,13 +47,13 @@ class PlayerAdapter: RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder> {
         : RecyclerView.ViewHolder(itemBinding.root){
 
             fun bindPlayer(player:Player){
-                val rating: String = "★ " + player.rating.toString()
-                val rank: String = "No rank listed"
+                val rating = "★ " + player.rating.toString()
+                val rank = "${player.featured_game} - ${player.rank}"
 
                 itemBinding.textUsername.text = player.username
                 itemBinding.textRating.text = rating
-//                itemBinding.textRank.text = player.rank
                 itemBinding.textRank.text = rank
+                itemBinding.textMessage.text = player.message
                 itemBinding.ivPlayerImage.setImageResource(R.drawable.ic_profile)
             }
 

@@ -1,5 +1,8 @@
 package ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
 //class Player {
 //    lateinit var username:String
 //    var rating: Float = 0.0F
@@ -7,6 +10,7 @@ package ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.model
 //
 //}
 
+@Parcelize
 data class Player(
     var id: String? = null,
     var username: String? = null,
@@ -18,5 +22,9 @@ data class Player(
     var games: ArrayList<String>? = null,
     var history: ArrayList<String>? = null,
     var img_url: String? = null,
-    var rating: Float = 0.0F
-)
+    var rating: Float = 0.0F,
+    var featured_game: String? = null,
+    var rank: String? = null
+): Parcelable{
+
+}
