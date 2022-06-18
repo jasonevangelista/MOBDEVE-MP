@@ -69,7 +69,8 @@
     </string-array>
 
     <string-array name="sort_player_options">
-        <item>Ratings</item>
+        <item>Highest Ratings</item>
+        <item>Lowest Ratings</item>
     </string-array>
 
 <!--    Tournament Filter and Sort Options-->

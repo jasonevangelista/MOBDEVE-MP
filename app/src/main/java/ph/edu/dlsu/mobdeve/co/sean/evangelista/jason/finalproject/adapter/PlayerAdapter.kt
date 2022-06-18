@@ -11,6 +11,7 @@ import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.R
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.UserProfileActivity
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.databinding.ItemPlayerListBinding
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.model.Player
+import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.model.Tournament
 
 class PlayerAdapter: RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder> {
     private var playerArrayList = ArrayList<Player>()
@@ -26,6 +27,10 @@ class PlayerAdapter: RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder> {
 
     override fun getItemCount(): Int{
         return playerArrayList.size
+    }
+
+    fun getItems(): ArrayList<Player> {
+        return playerArrayList
     }
 
     override fun onCreateViewHolder(

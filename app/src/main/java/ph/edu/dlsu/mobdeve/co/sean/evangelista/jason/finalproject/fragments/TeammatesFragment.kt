@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -17,8 +19,10 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.R
+import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.TournamentProfileActivity
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.UserProfileActivity
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.adapter.PlayerAdapter
+import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.adapter.TournamentAdapter
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.dao.PlayersDAO
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.dao.PlayersDAOArrayImpl
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.dao.TournamentsDAO
@@ -84,38 +88,6 @@ class TeammatesFragment : Fragment(R.layout.fragment_teammates){
     private fun init(){
         var dao: PlayersDAO = PlayersDAOArrayImpl()
 
-//        var player1 = Player()
-//        player1.username = "player1"
-//        player1.rating = 5.0F
-//        player1.rank = "Iron"
-//        var player1 = Player(username = "player1", rating = 5.0F)
-//        dao.addPlayer(player1)
-//
-////        var player2 = Player()
-////        player2.username = "player2"
-////        player2.rating = 4.0F
-////        player2.rank = "Gold"
-//        var player2 = Player(username = "player2", rating = 4.0F)
-//        dao.addPlayer(player2)
-//
-////        var player3 = Player()
-////        player3.username = "player3"
-////        player3.rating = 2.0F
-////        player3.rank = "Bronze"
-//        var player3 = Player(username = "player3", rating = 2.0F)
-//        dao.addPlayer(player3)
-//
-//        dao.addPlayer(player3)
-//        dao.addPlayer(player3)
-//        dao.addPlayer(player3)
-
-        playerArrayList = dao.getPlayers()
-
-
-//        var dao: TournamentsDAO = TournamentsDAOArrayImpl()
-
-        // document.toObject<Tournament>()
-
         // query all players in players collection
         db.collection("players")
             .get()
@@ -124,66 +96,150 @@ class TeammatesFragment : Fragment(R.layout.fragment_teammates){
                 for (docPlayer in result) {
                     Log.d(TAG, "${docPlayer.id} => ${docPlayer.data}")
 
-                    // query all game information for each player
-                    db.collection("players")
-                        .document(docPlayer.id)
-                        .collection("games")
-                        .get()
-                        .addOnSuccessListener { game_results ->
-                            for(docGame in game_results){
-//                                Log.d(TAG, "${docPlayer.id} => GAME ${docGame.data}")
-                                Log.d(TAG,
-                                    "\nID: ${docPlayer.id}\n" +
-                                        "USERNAME: ${docPlayer.data.get("username")}\n" +
-                                        "RATING: ${docPlayer.data.get("rating")}\n" +
-                                        "GAME: ${docGame.data.get("name")}\n" +
-                                        "RANK: ${docGame.data.get("rank")}\n" +
-                                        "MESSAGE: ${docPlayer.data.get("message")}\n")
+                    // exclude logged-in user's profile in listing the players
+                    if(docPlayer.id != auth.currentUser!!.uid){
 
-                                val currPlayer = docPlayer.toObject<Player>()
-                                currPlayer.rank = docGame.data.get("rank").toString()
-                                currPlayer.featured_game = docGame.data.get("name").toString()
+                        // query all game information for each player
+                        db.collection("players")
+                            .document(docPlayer.id)
+                            .collection("games")
+                            .get()
+                            .addOnSuccessListener { game_results ->
+                                for(docGame in game_results){
+                                    Log.d(TAG,
+                                        "\nID: ${docPlayer.id}\n" +
+                                            "USERNAME: ${docPlayer.data.get("username")}\n" +
+                                            "RATING: ${docPlayer.data.get("rating")}\n" +
+                                            "GAME: ${docGame.data.get("name")}\n" +
+                                            "RANK: ${docGame.data.get("rank")}\n" +
+                                            "MESSAGE: ${docPlayer.data.get("message")}\n")
 
-                                dao.addPlayer(currPlayer)
+                                    val currPlayer = docPlayer.toObject<Player>()
+                                    currPlayer.id = docPlayer.id
+                                    // add specific game of player to attributes (mainly for player card UI)
+                                    currPlayer.rank = docGame.data.get("rank").toString()
+                                    currPlayer.featured_game = docGame.data.get("name").toString()
+
+                                    dao.addPlayer(currPlayer)
+                                }
+                                playerArrayList = dao.getPlayers()
+                                playerAdapter.notifyDataSetChanged()
+
+                                // set initial filter and sort options
+                                filterPlayers()
+                                sortPlayers()
+
+                                // set listeners for filter and sort options
+                                addFilterListener()
+                                addSortListener()
+
+                            }.addOnFailureListener { exception ->
+                                Log.d(ContentValues.TAG, "Error getting tournament documents: ", exception)
                             }
-                            playerArrayList = dao.getPlayers()
-                            playerAdapter.notifyDataSetChanged()
-                        }.addOnFailureListener { exception ->
-                            Log.d(ContentValues.TAG, "Error getting tournament documents: ", exception)
-                        }
-
-                    // convert document to tournament object
-//                    val currPlayer = document.toObject<Tournament>()
-//                    currTournament.id = document.id
-
-                    // add tournament to tournament array
-//                    dao.addTournament(currTournament)
-
-//                    binding.rvTournamentList.apply {
-//                        layoutManager = viewManager
-//                        adapter = tournamentAdapter
-//                    }
-//                    tournamentAdapter.notifyDataSetChanged()
-
-//                    Log.d(TAG, "${document.id} => ${document.data}")
-//                    Log.d(ContentValues.TAG, "CURR DOC: ${currTournament}")
+                    }
                 }
-
-//                tournamentArrayList = dao.getTournaments()
-
-                // set initial filter and sort options
-//                filterTournaments()
-//                sortTournaments()
-                // set listeners for filter and sort options
-//                addFilterListener()
-//                addSortListener()
 
             }
             .addOnFailureListener { exception ->
                 Log.d(ContentValues.TAG, "Error getting tournament documents: ", exception)
             }
 
-//        tournamentArrayList = dao.getTournaments()
+        playerArrayList = dao.getPlayers()
     }
+
+    private fun addFilterListener(){
+        binding.spFilterPlayer.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                Toast.makeText(activity, "Changed filter option to ${binding.spFilterPlayer.selectedItem}", Toast.LENGTH_SHORT).show()
+                filterPlayers()
+                sortPlayers() // after getting filtered players, sort them according to sort option
+            }
+
+        }
+    }
+
+    private fun addSortListener(){
+        binding.spSortPlayer.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                Toast.makeText(activity, "Changed sort option to ${binding.spSortPlayer.selectedItem}", Toast.LENGTH_SHORT).show()
+                sortPlayers()
+            }
+        }
+    }
+
+    private fun filterPlayers(){
+        if(::playerArrayList.isInitialized){
+            var filteredPlayers = ArrayList<Player>()
+
+//            if(binding.spFilterPlayer.selectedItem == "All Games"){
+//                filteredPlayers = playerArrayList
+//            }
+
+            for (player in playerArrayList) {
+                if(player.featured_game == binding.spFilterPlayer.selectedItem){
+                    filteredPlayers.add(player)
+                }
+            }
+
+            playerAdapter = PlayerAdapter(requireContext(), filteredPlayers)
+
+            binding.rvPlayerList.apply {
+                layoutManager = viewManager
+                adapter = playerAdapter
+            }
+
+            playerAdapter.onItemClick = { player ->
+                val goToUserProfile = Intent(activity, UserProfileActivity::class.java)
+
+                val bundle = Bundle()
+                bundle.putString("username", player.username)
+                goToUserProfile.putExtras(bundle)
+                activity?.startActivity(goToUserProfile)
+            }
+
+        }
+    }
+
+    private fun sortPlayers(){
+        var currPlayers: ArrayList<Player> = playerAdapter.getItems()
+        var sortedPlayers = ArrayList<Player>()
+
+        if (currPlayers.size > 0){
+            if(binding.spSortPlayer.selectedItem == "Lowest Ratings"){
+                sortedPlayers = currPlayers.sortedWith(compareBy { it.rating }).toCollection(ArrayList())
+            }
+            else if(binding.spSortPlayer.selectedItem == "Highest Ratings"){
+                sortedPlayers = currPlayers.sortedWith(compareBy { it.rating }).reversed().toCollection(ArrayList())
+            }
+
+            playerAdapter = PlayerAdapter(requireContext(), sortedPlayers)
+
+            binding.rvPlayerList.apply {
+                layoutManager = viewManager
+                adapter = playerAdapter
+            }
+
+            playerAdapter.onItemClick = { player ->
+                val goToUserProfile = Intent(activity, UserProfileActivity::class.java)
+
+                val bundle = Bundle()
+                bundle.putString("username", player.username)
+                goToUserProfile.putExtras(bundle)
+                activity?.startActivity(goToUserProfile)
+            }
+
+
+        }
+    }
+
+
 
 }
