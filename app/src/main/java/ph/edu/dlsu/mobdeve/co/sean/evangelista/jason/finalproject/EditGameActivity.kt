@@ -134,7 +134,7 @@ class EditGameActivity : AppCompatActivity() {
                     }
             }
             // go to previous page
-            finish()
+//            finish()
         }
 
     }
@@ -159,7 +159,8 @@ class EditGameActivity : AppCompatActivity() {
         when {
             (currName != game.name) -> {
                 Log.d("TAG", "GAME NAME SHOULD NOT BE CHANGED")
-                binding.tvGameTitle.setError("Game name should not be changed!")
+                Toast.makeText(this, "Game name should not be changed!", Toast.LENGTH_SHORT).show()
+//                binding.tvGameTitle.setError("Game name should not be changed!")
                 binding.tvGameTitle.requestFocus()
                 return 0
             }

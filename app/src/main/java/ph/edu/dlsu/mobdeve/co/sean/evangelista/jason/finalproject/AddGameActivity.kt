@@ -64,46 +64,48 @@ class AddGameActivity : AppCompatActivity() {
             )
 
             // FORM INPUT HANDLING
-            if (checkDuplicateGame(newGame) == 0) {
-                if (checkFormInputErrors(newGame) == 1) {
-                    // ADD TO DB
-                    Log.d("GAME", "ADDING GAME TO DB")
-//                db.collection("games")
-//                    .add(newGame)
-                    db.collection("players")
-                        .document(auth.currentUser!!.uid).collection("games")
-                        .add(newGame)
-                        .addOnSuccessListener { documentReference ->
-                            Log.d(
-                                "TAG",
-                                "onSuccess: new game is added with id ${documentReference.id} by user ${userID}"
-                            )
-                            Toast.makeText(this, "Successfully added a game!", Toast.LENGTH_SHORT)
-                                .show()
-
-
-                            val goToHome = Intent(this, PlayerListActivity::class.java)
-
-                            // redirect to player fragment
-//                        val bundle = Bundle()
-//                        bundle.putInt("currFragment", 1)
-//                        goToHome.putExtras(bundle)
-
-                            startActivity(goToHome)
-                            finish()
-
-                        }
-                        .addOnFailureListener { e ->
-                            Log.w("TAG", "Error adding game document", e)
-
-                            val goToHome = Intent(this, PlayerListActivity::class.java)
-                            startActivity(goToHome)
-                            finish()
-                        }
-                }
-                // go to previous page
-                // finish()
-            }
+//            if (checkDuplicateGame(newGame) == 0) {
+//                if (checkFormInputErrors(newGame) == 1) {
+//                    // ADD TO DB
+//                    Log.d("GAME", "ADDING GAME TO DB")
+////                db.collection("games")
+////                    .add(newGame)
+//                    db.collection("players")
+//                        .document(auth.currentUser!!.uid).collection("games")
+//                        .add(newGame)
+//                        .addOnSuccessListener { documentReference ->
+//                            Log.d(
+//                                "TAG",
+//                                "onSuccess: new game is added with id ${documentReference.id} by user ${userID}"
+//                            )
+//                            Toast.makeText(this, "Successfully added a game!", Toast.LENGTH_SHORT)
+//                                .show()
+//
+//
+//                            val goToHome = Intent(this, PlayerListActivity::class.java)
+//
+//                            // redirect to player fragment
+////                        val bundle = Bundle()
+////                        bundle.putInt("currFragment", 1)
+////                        goToHome.putExtras(bundle)
+//
+//                            startActivity(goToHome)
+//                            finish()
+//
+//                        }
+//                        .addOnFailureListener { e ->
+//                            Log.w("TAG", "Error adding game document", e)
+//
+//                            val goToHome = Intent(this, PlayerListActivity::class.java)
+//                            startActivity(goToHome)
+//                            finish()
+//                        }
+//                }
+//                // go to previous page
+//                // finish()
+//            }
+            
+            checkDuplicateGame(newGame)
         }
     }
 
@@ -120,9 +122,43 @@ class AddGameActivity : AppCompatActivity() {
                     if (gameDoc.name == game.name) {
                         binding.tvGameTitle.setError("Game already exists!")
                         binding.tvGameTitle.requestFocus()
+                        Toast.makeText(this, "Game already exists in profile!", Toast.LENGTH_SHORT).show()
                         Log.d("TAG", "DUPLICATE GAME FOUND")
                         found = 1
                         break
+                    }
+                }
+
+                if (found == 0){
+                    if (checkFormInputErrors(game) == 1) {
+                        // ADD TO DB
+                        Log.d("GAME", "ADDING GAME TO DB")
+
+                        db.collection("players")
+                            .document(auth.currentUser!!.uid).collection("games")
+                            .add(game)
+                            .addOnSuccessListener { documentReference ->
+                                Log.d("TAG","onSuccess: new game is added with id ${documentReference.id}")
+                                Toast.makeText(this, "Successfully added a game!", Toast.LENGTH_SHORT).show()
+
+                                val goToHome = Intent(this, PlayerListActivity::class.java)
+
+                                // redirect to player fragment
+        //                        val bundle = Bundle()
+        //                        bundle.putInt("currFragment", 1)
+        //                        goToHome.putExtras(bundle)
+
+                                startActivity(goToHome)
+                                finish()
+
+                            }
+                            .addOnFailureListener { e ->
+                                Log.w("TAG", "Error adding game document", e)
+
+                                val goToHome = Intent(this, PlayerListActivity::class.java)
+                                startActivity(goToHome)
+                                finish()
+                            }
                     }
                 }
             }
