@@ -31,7 +31,7 @@ class UserProfileActivity : AppCompatActivity() {
         val tabLayout = binding.tlUserProfile
         val viewPager = binding.vpUserProfile
 
-        val adapter = UserProfileViewPagerAdapter(supportFragmentManager, lifecycle)
+        val adapter = UserProfileViewPagerAdapter(supportFragmentManager, lifecycle, player)
 
         viewPager.adapter = adapter
 
