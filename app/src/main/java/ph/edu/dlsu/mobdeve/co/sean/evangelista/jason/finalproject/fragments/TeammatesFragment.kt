@@ -71,9 +71,7 @@ class TeammatesFragment : Fragment(R.layout.fragment_teammates){
         playerAdapter.onItemClick = { player ->
             val goToUserProfile = Intent(activity, UserProfileActivity::class.java)
 
-            val bundle = Bundle()
-            bundle.putString("username", player.username)
-            goToUserProfile.putExtras(bundle)
+            goToUserProfile.putExtra("player", player)
             activity?.startActivity(goToUserProfile)
         }
 
@@ -199,9 +197,7 @@ class TeammatesFragment : Fragment(R.layout.fragment_teammates){
             playerAdapter.onItemClick = { player ->
                 val goToUserProfile = Intent(activity, UserProfileActivity::class.java)
 
-                val bundle = Bundle()
-                bundle.putString("username", player.username)
-                goToUserProfile.putExtras(bundle)
+                goToUserProfile.putExtra("player", player)
                 activity?.startActivity(goToUserProfile)
             }
 
@@ -230,9 +226,7 @@ class TeammatesFragment : Fragment(R.layout.fragment_teammates){
             playerAdapter.onItemClick = { player ->
                 val goToUserProfile = Intent(activity, UserProfileActivity::class.java)
 
-                val bundle = Bundle()
-                bundle.putString("username", player.username)
-                goToUserProfile.putExtras(bundle)
+                goToUserProfile.putExtra("player", player)
                 activity?.startActivity(goToUserProfile)
             }
 

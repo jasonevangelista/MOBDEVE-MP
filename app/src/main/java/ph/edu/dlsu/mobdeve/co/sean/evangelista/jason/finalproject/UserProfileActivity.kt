@@ -6,6 +6,8 @@ import android.os.Bundle
 import com.google.android.material.tabs.TabLayoutMediator
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.adapter.UserProfileViewPagerAdapter
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.databinding.ActivityUserProfileBinding
+import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.model.Player
+import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.model.Tournament
 
 class UserProfileActivity : AppCompatActivity() {
 
@@ -16,10 +18,15 @@ class UserProfileActivity : AppCompatActivity() {
         binding = ActivityUserProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val bundle = intent.extras
-        var username:String? = null
-        username = bundle!!.getString("username", "Player Name")
-        binding.tvProfileName.text = username
+//        val bundle = intent.extras
+//        var username:String? = null
+//        username = bundle!!.getString("username", "Player Name")
+//        binding.tvProfileName.text = username
+
+        // set player information in UI
+        val player = intent.getParcelableExtra<Player>("player")
+        setDetails(player)
+
 
         val tabLayout = binding.tlUserProfile
         val viewPager = binding.vpUserProfile
@@ -47,6 +54,10 @@ class UserProfileActivity : AppCompatActivity() {
             startActivity(goToConnectActivity)
         }
 
+    }
+
+    private fun setDetails(player: Player?){
+        binding.tvProfileName.text = player!!.username
     }
 
 }

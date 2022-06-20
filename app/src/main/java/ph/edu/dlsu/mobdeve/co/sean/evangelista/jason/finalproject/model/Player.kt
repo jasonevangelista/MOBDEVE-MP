@@ -24,9 +24,8 @@ data class Player(
     var twitter: String = "None",
     var other_socials: String = "None",
     var img_url: String? = null,
-    var rating: Float = 0.0F,
     var featured_game: String? = null,
-    var rank: String? = null
+    var rank: String? = null,
     var rating: Float = 5.0F
 ) : Parcelable {
 }
