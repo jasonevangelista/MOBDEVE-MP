@@ -52,7 +52,7 @@ class EditGameActivity : AppCompatActivity() {
             // <CODE HERE>
 
             db.collection("players")
-                .document(auth.currentUser!!.uid).collection("games")
+                .document(userID).collection("games")
                 .document(game!!.id.toString())
                 .delete()
                 .addOnSuccessListener {
@@ -102,7 +102,7 @@ class EditGameActivity : AppCompatActivity() {
 //                db.collection("games")
 //                    .add(newGame)
                 db.collection("players")
-                    .document(auth.currentUser!!.uid).collection("games")
+                    .document(userID).collection("games")
                     .document(game!!.id.toString())
                     .set(updatedGame)
                     .addOnSuccessListener{documentReference ->
