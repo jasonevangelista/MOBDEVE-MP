@@ -28,6 +28,7 @@ class MyProfileAboutMeFragment : Fragment(R.layout.fragment_my_profile_about_me)
 
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
+    private lateinit var currPlayer: Player
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +59,7 @@ class MyProfileAboutMeFragment : Fragment(R.layout.fragment_my_profile_about_me)
                         // set profile details from in UI
                         val player = document.toObject<Player>()
                         updateUI(player)
+                        currPlayer = player!!
                     }
                     else{
                         Log.d(TAG, "No such document")
@@ -70,6 +72,7 @@ class MyProfileAboutMeFragment : Fragment(R.layout.fragment_my_profile_about_me)
 
         binding.btnEditProfile.setOnClickListener {
             val goToEditProfile = Intent(activity, EditProfileActivity::class.java)
+            goToEditProfile.putExtra("player", currPlayer)
             activity?.startActivity(goToEditProfile)
         }
 
@@ -91,11 +94,13 @@ class MyProfileAboutMeFragment : Fragment(R.layout.fragment_my_profile_about_me)
 
     private fun updateUI(player: Player?){
         binding.tvMyUsername.text = player!!.username
-        binding.tvMyRating.text = player.rating.toString()
+        binding.tvMyRating.text = "★ " + player.rating.toString()
         binding.tvMyBioContent.text = player.bio
         binding.tvMyMessageContent.text = player.message
         binding.tvUserGamingHoursContent.text = player.gaming_hours
-//        binding.tvUserSocialsContent.text = player.socials // create separate function to retrieve all socials details of player
+        binding.tvUserDiscord.text = "Discord: " + player.discord
+        binding.tvUserTwitter.text = "Twitter: " + player.twitter
+        binding.tvUserOtherSocials.text = "Other Socials: " + player.other_socials
     }
 
 }
