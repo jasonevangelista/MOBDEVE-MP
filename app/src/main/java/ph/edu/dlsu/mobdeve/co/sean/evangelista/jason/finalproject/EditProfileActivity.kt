@@ -10,6 +10,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.databinding.ActivityEditProfileBinding
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.model.Player
@@ -21,6 +22,7 @@ class EditProfileActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
 
     private lateinit var userID: String
+    private lateinit var currUsername: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +36,7 @@ class EditProfileActivity : AppCompatActivity() {
         db = Firebase.firestore
         auth = Firebase.auth
         userID = auth.currentUser!!.uid
+        currUsername = player!!.username.toString()
 
         binding.btnBack.setOnClickListener {
             // go to previous page
@@ -78,31 +81,33 @@ class EditProfileActivity : AppCompatActivity() {
             )
 
             // FORM INPUT HANDLING
-            if(checkInputFormErrors(updatedProfile) == 1){
-                // UPDATE DB
-                Log.d("PLAYER", "UPDATING PLAYER IN DB")
-                db.collection("players")
-                    .document(userID)
-                    .set(updatedProfile)
-                    .addOnSuccessListener { documentReference ->
-                        Log.d("TAG", "onSuccess: existing profile is updated with id ${player.id} by user ${userID}")
-                        Toast.makeText(this, "Successfully updated user profile!", Toast.LENGTH_SHORT).show()
-
-                        // redirect to home
-                        redirectToHome()
-                        finish()
-                    }
-                    .addOnFailureListener { e ->
-                        Toast.makeText(this, "Error updating player document!", Toast.LENGTH_SHORT).show()
-                        Log.w("TAG", "Error updating player document", e)
-
-                        // redirect to home
-                        redirectToHome()
-                        finish()
-                    }
-            }
+//            if(checkInputFormErrors(updatedProfile) == 1){
+//                // UPDATE DB
+//                Log.d("PLAYER", "UPDATING PLAYER IN DB")
+//                db.collection("players")
+//                    .document(userID)
+//                    .set(updatedProfile)
+//                    .addOnSuccessListener { documentReference ->
+//                        Log.d("TAG", "onSuccess: existing profile is updated with id ${player.id} by user ${userID}")
+//                        Toast.makeText(this, "Successfully updated user profile!", Toast.LENGTH_SHORT).show()
+//
+//                        // redirect to home
+//                        redirectToHome()
+//                        finish()
+//                    }
+//                    .addOnFailureListener { e ->
+//                        Toast.makeText(this, "Error updating player document!", Toast.LENGTH_SHORT).show()
+//                        Log.w("TAG", "Error updating player document", e)
+//
+//                        // redirect to home
+//                        redirectToHome()
+//                        finish()
+//                    }
+//            }
             // go to previous page
             // finish()
+
+            checkUniqueUsername(updatedProfile)
         }
 
     }
@@ -132,5 +137,60 @@ class EditProfileActivity : AppCompatActivity() {
     private fun redirectToHome(){
         val goToHome = Intent(this, PlayerListActivity::class.java)
         startActivity(goToHome)
+    }
+
+    private fun checkUniqueUsername(player: Player?) {
+        var found = 0 // 1 == not unique, 0 == unique
+
+        db.collection("players")
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    val playerDoc = document.toObject<Player>()
+                    if (playerDoc.username == player!!.username) {
+//                        Log.d("TAG", "docID ${document.id} - currUserID ${userID}")
+                        if (document.id == userID) {
+                            found = 0
+                            break
+                        } else {
+                            binding.etUsername.setError("Username already taken!")
+                            binding.etUsername.requestFocus()
+                            Log.d("TAG", "USERNAME IS NOT UNIQUE")
+                            found = 1
+                            break
+                        }
+                    }
+                }
+
+                if(found == 0) {
+                    if(checkInputFormErrors(player) == 1){
+                        // UPDATE DB
+                        Log.d("PLAYER", "UPDATING PLAYER IN DB")
+                        db.collection("players")
+                            .document(userID)
+                            .set(player!!)
+                            .addOnSuccessListener { documentReference ->
+                                Log.d("TAG", "onSuccess: existing profile is updated with id ${player.id} by user ${userID}")
+                                Toast.makeText(this, "Successfully updated user profile!", Toast.LENGTH_SHORT).show()
+
+                                // redirect to home
+                                redirectToHome()
+                                finish()
+                            }
+                            .addOnFailureListener { e ->
+                                Toast.makeText(this, "Error updating player document!", Toast.LENGTH_SHORT).show()
+                                Log.w("TAG", "Error updating player document", e)
+
+                                // redirect to home
+                                redirectToHome()
+                                finish()
+                            }
+                    }
+                }
+            }
+            .addOnFailureListener{ exception ->
+                Log.d("TAG", "Error getting documents: ", exception)
+                found = 1
+            }
     }
 }
