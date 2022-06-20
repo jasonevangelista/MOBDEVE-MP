@@ -60,6 +60,7 @@ class EditProfileActivity : AppCompatActivity() {
             Log.d("PLAYER", "UPDATING GAME ${player!!.id} BY USER ${userID}")
             // submit new profile details for my profile to database
             // <CODE HERE>
+            var email = player.email
             var username = binding.etUsername.text.toString()
             var discord =  binding.etDiscord.text.toString()
             var twitter = binding.etTwitter.text.toString()
@@ -70,6 +71,7 @@ class EditProfileActivity : AppCompatActivity() {
             var gaming_hours = binding.etGamingHours.text.toString()
 
             var updatedProfile = Player (
+                email = email,
                 username = username,
                 discord = discord,
                 twitter = twitter,
