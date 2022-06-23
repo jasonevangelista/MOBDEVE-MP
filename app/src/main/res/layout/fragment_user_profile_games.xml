@@ -12,82 +12,96 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp">
 
-        <!--  Valorant  -->
-        <TextView
-            android:id="@+id/tv_user_game_valorant_label"
+<!--        &lt;!&ndash;  Valorant  &ndash;&gt;-->
+<!--        <TextView-->
+<!--            android:id="@+id/tv_user_game_valorant_label"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Valorant"-->
+<!--            android:textSize="20dp"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+
+<!--            android:textColor="@color/profile_sub_header"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/tv_user_game_valorant_content"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Rank\t\t\t\t\tIron\nServer(s)\t\tSEA\nRole(s)\t\t\t\tController/Duelist"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/tv_user_game_valorant_label"-->
+
+<!--            android:textColor="@color/profile_sub_section_text"-->
+<!--            android:background="@color/profile_sub_section_bg"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:padding="10dp"-->
+<!--            />-->
+
+<!--        &lt;!&ndash;  League of Legends  &ndash;&gt;-->
+<!--        <TextView-->
+<!--            android:id="@+id/tv_user_game_lol_label"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="League of Legends"-->
+<!--            android:textSize="20dp"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/tv_user_game_valorant_content"-->
+
+<!--            android:textColor="@color/profile_sub_header"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            />-->
+<!--        <TextView-->
+<!--            android:id="@+id/tv_user_game_lol_content"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Rank\t\t\t\t\tGold\nServer(s)\t\tPH/NA\nRole(s)\t\t\t\tTank/Support"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/tv_user_game_lol_label"-->
+
+<!--            android:textColor="@color/profile_sub_section_text"-->
+<!--            android:background="@color/profile_sub_section_bg"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:padding="10dp"-->
+<!--            />-->
+
+<!--        &lt;!&ndash;  Apex Legends  &ndash;&gt;-->
+<!--        <TextView-->
+<!--            android:id="@+id/tv_user_game_apex_label"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Apex Legends"-->
+<!--            android:textSize="20dp"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/tv_user_game_lol_content"-->
+
+<!--            android:textColor="@color/profile_sub_header"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/tv_user_game_apex_content"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Rank\t\t\t\t\tGold\nServer(s)\t\tAsia\nRole(s)\t\t\t\tSupport"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/tv_user_game_apex_label"-->
+
+<!--            android:textColor="@color/profile_sub_section_text"-->
+<!--            android:background="@color/profile_sub_section_bg"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:padding="10dp"-->
+<!--            />-->
+
+        <ScrollView
+            android:id="@+id/scrollable"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Valorant"
-            android:textSize="20dp"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            android:textColor="@color/profile_sub_header"
-            android:layout_marginTop="5dp"
-            />
-
-        <TextView
-            android:id="@+id/tv_user_game_valorant_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Rank\t\t\t\t\tIron\nServer(s)\t\tSEA\nRole(s)\t\t\t\tController/Duelist"
-            app:layout_constraintTop_toBottomOf="@id/tv_user_game_valorant_label"
-
-            android:textColor="@color/profile_sub_section_text"
-            android:background="@color/profile_sub_section_bg"
-            android:layout_marginTop="5dp"
-            android:padding="10dp"
-            />
-
-        <!--  League of Legends  -->
-        <TextView
-            android:id="@+id/tv_user_game_lol_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="League of Legends"
-            android:textSize="20dp"
-            app:layout_constraintTop_toBottomOf="@+id/tv_user_game_valorant_content"
-
-            android:textColor="@color/profile_sub_header"
-            android:layout_marginTop="15dp"
-            />
-        <TextView
-            android:id="@+id/tv_user_game_lol_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Rank\t\t\t\t\tGold\nServer(s)\t\tPH/NA\nRole(s)\t\t\t\tTank/Support"
-            app:layout_constraintTop_toBottomOf="@id/tv_user_game_lol_label"
-
-            android:textColor="@color/profile_sub_section_text"
-            android:background="@color/profile_sub_section_bg"
-            android:layout_marginTop="5dp"
-            android:padding="10dp"
-            />
-
-        <!--  Apex Legends  -->
-        <TextView
-            android:id="@+id/tv_user_game_apex_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Apex Legends"
-            android:textSize="20dp"
-            app:layout_constraintTop_toBottomOf="@+id/tv_user_game_lol_content"
-
-            android:textColor="@color/profile_sub_header"
-            android:layout_marginTop="15dp"
-            />
-
-        <TextView
-            android:id="@+id/tv_user_game_apex_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Rank\t\t\t\t\tGold\nServer(s)\t\tAsia\nRole(s)\t\t\t\tSupport"
-            app:layout_constraintTop_toBottomOf="@id/tv_user_game_apex_label"
-
-            android:textColor="@color/profile_sub_section_text"
-            android:background="@color/profile_sub_section_bg"
-            android:layout_marginTop="5dp"
-            android:padding="10dp"
-            />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_game_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

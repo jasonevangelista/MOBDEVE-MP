@@ -3,6 +3,7 @@ package ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.adapter
 import android.content.Context
 import android.os.Build
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
@@ -12,12 +13,14 @@ import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.model.Game
 class GameAdapter: RecyclerView.Adapter<GameAdapter.GameViewHolder> {
     private var gameArrayList = ArrayList<Game>()
     private lateinit var context: Context
+    private var showEditBtn: Boolean = true
 
     var onEditButtonClick: ((Game) -> Unit)? = null
 
-    public constructor(context: Context, gameArrayList: ArrayList<Game>){
+    public constructor(context: Context, gameArrayList: ArrayList<Game>, showEditBtn: Boolean = true){
         this.context = context
         this.gameArrayList = gameArrayList
+        this.showEditBtn = showEditBtn
     }
 
     override fun getItemCount(): Int {
@@ -47,6 +50,10 @@ class GameAdapter: RecyclerView.Adapter<GameAdapter.GameViewHolder> {
                 itemBinding.textGameRank.text = rank
                 itemBinding.textGameServer.text = server
                 itemBinding.textGameRole.text = role
+
+                if(!showEditBtn){
+                    itemBinding.btnMyGameEdit.visibility = View.GONE
+                }
             }
 
             init {
