@@ -19,7 +19,7 @@
             android:textColor="@color/black"
             android:textSize="20dp" />
 
-<!--        insert review visualization here -->
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,18 +28,75 @@
         android:gravity="center|top"
         android:orientation="vertical" >
 
+        <!--        insert review visualization here -->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+<!--            <com.taufiqrahman.reviewratings.RatingReviews-->
+<!--                android:id="@+id/rating_reviews"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:animation="false"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:max_value="100"-->
+<!--                app:show_label="true"-->
+<!--                app:show_raters="false"-->
+<!--                app:spaces="5dp"-->
+<!--                app:style="style2"-->
+<!--                app:text_color="#000000"-->
+<!--                app:text_size="10sp"-->
+<!--                app:width="10dp" />-->
+            <com.taufiqrahman.reviewratings.RatingReviews
+                android:id="@+id/rating_reviews"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:animation="true"
+                app:layout_constraintBottom_toTopOf="@id/sv_player_reviews"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:max_value="100"
+                app:show_label="true"
+                app:spaces="0dp"
+                app:text_color="#333333"
+                app:text_size="10sp"
+                app:width="15dp" />
+
             <ScrollView
                 android:id="@+id/sv_player_reviews"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/silver">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rating_reviews">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_player_reviews"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content" />
 
             </ScrollView>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+<!--        <ScrollView-->
+<!--            android:id="@+id/sv_player_reviews2"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@color/silver">-->
+
+<!--            -->
+
+<!--        </ScrollView>-->
 
     </LinearLayout>
 
