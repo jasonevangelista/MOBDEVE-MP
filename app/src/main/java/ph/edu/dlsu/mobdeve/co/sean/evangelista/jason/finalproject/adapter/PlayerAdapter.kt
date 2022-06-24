@@ -13,6 +13,7 @@ import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.UserProfileAct
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.databinding.ItemPlayerListBinding
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.model.Player
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.model.Tournament
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -61,7 +62,8 @@ class PlayerAdapter: RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder> {
                 itemBinding.ivPlayerImage.setImageResource(R.drawable.ic_profile)
 
                 if(player.connect_date != null){
-                    // get connectDate for player
+                    val format = SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+
 
                     // show connect date in UI
                     itemBinding.textDateContact.visibility = View.VISIBLE
@@ -69,7 +71,8 @@ class PlayerAdapter: RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder> {
                     itemBinding.textRank.visibility = View.GONE
                     itemBinding.textMessage.visibility = View.GONE
 
-                    var dateFormatted = player.connect_date.toString()
+//                    var dateFormatted = player.connect_date.toString()
+                    var dateFormatted = format.format(player.connect_date)
                     itemBinding.textDateContact.text = dateFormatted
                 }
                 else{

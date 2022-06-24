@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
@@ -89,6 +91,7 @@ class MyProfileHistoryFragment : Fragment(R.layout.fragment_my_profile_history) 
                             var date_timestamp: Timestamp = docHistory.data.get("date") as Timestamp
                             var date: Date = date_timestamp.toDate()
 
+
                             if(player_document != null){
                                 // set profile details from in UI
                                 val player = player_document.toObject<Player>()
@@ -100,7 +103,8 @@ class MyProfileHistoryFragment : Fragment(R.layout.fragment_my_profile_history) 
                                 "\nID: ${player.id}\n" +
                                         "DATE CONNECTED: ${player.connect_date}\n" +
                                         "USERNAME: ${player.username}\n" +
-                                        "RATING: ${player.rating}\n"
+                                        "RATING: ${player.rating}\n" +
+                                        "DATE: ${date}"
                                 )
 
                                 // add player to playerlist
@@ -123,6 +127,8 @@ class MyProfileHistoryFragment : Fragment(R.layout.fragment_my_profile_history) 
                                     activity?.startActivity(goToUserProfile)
                                 }
 
+                            sortPlayers()
+                            addSortListener()
                             }
 
                         }.addOnFailureListener { exception ->
@@ -138,6 +144,51 @@ class MyProfileHistoryFragment : Fragment(R.layout.fragment_my_profile_history) 
 
 
 
+    }
+
+    private fun addSortListener(){
+        binding.spSortPlayer.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                Toast.makeText(activity, "Changed sort option to ${binding.spSortPlayer.selectedItem}", Toast.LENGTH_SHORT).show()
+                sortPlayers()
+            }
+        }
+    }
+
+    private fun sortPlayers(){
+        var currPlayers: ArrayList<Player> = playerAdapter.getItems()
+        var sortedPlayers = ArrayList<Player>()
+
+        if (currPlayers.size > 0){
+            if(binding.spSortPlayer.selectedItem == "Latest Connect Date"){
+                sortedPlayers = currPlayers.sortedWith(compareBy { it.connect_date }).reversed().toCollection(ArrayList())
+            }
+            else if(binding.spSortPlayer.selectedItem == "Highest Ratings"){
+                sortedPlayers = currPlayers.sortedWith(compareBy { it.rating }).reversed().toCollection(ArrayList())
+            }
+
+            viewManager = LinearLayoutManager(activity)
+            playerAdapter = PlayerAdapter(requireContext(), sortedPlayers)
+
+            binding.rvMyPlayerHistory.apply {
+                layoutManager = viewManager
+                adapter = playerAdapter
+            }
+
+            playerAdapter.onItemClick = { player ->
+                val goToUserProfile = Intent(activity, UserProfileActivity::class.java)
+
+                goToUserProfile.putExtra("player", player)
+
+                activity?.startActivity(goToUserProfile)
+            }
+
+
+        }
     }
 
 }
