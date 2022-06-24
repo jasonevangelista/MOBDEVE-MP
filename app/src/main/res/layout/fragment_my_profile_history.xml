@@ -26,46 +26,45 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tv_filter_player"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Filter By:"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:textColor="@color/fragment_header_text"/>
+<!--        <TextView-->
+<!--            android:id="@+id/tv_filter_player"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Filter By:"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            android:textColor="@color/fragment_header_text"/>-->
 
-        <Spinner
-            android:id="@+id/sp_filter_player"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:entries="@array/filter_player_options"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tv_filter_player"
-            app:layout_constraintTop_toTopOf="parent"
-            android:textColor="@color/fragment_header_text"/>
+<!--        <Spinner-->
+<!--            android:id="@+id/sp_filter_player"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:entries="@array/filter_player_options"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/tv_filter_player"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            android:textColor="@color/fragment_header_text"/>-->
 
         <TextView
             android:id="@+id/tv_sort_player"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Sort By:"
+            android:textColor="@color/fragment_header_text"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/sp_sort_player"
-            app:layout_constraintTop_toTopOf="parent"
-            android:textColor="@color/fragment_header_text"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Spinner
             android:id="@+id/sp_sort_player"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:entries="@array/sort_player_options"
+            android:entries="@array/sort_history_options"
             android:textColor="@color/fragment_header_text"
-            />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_sort_player"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

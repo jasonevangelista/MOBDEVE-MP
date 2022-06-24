@@ -86,4 +86,10 @@
         <item>Farthest Start Date</item>
     </string-array>
 
+<!--    History Sort Options-->
+    <string-array name="sort_history_options">
+        <item>Highest Ratings</item>
+        <item>Latest Connect Date</item>
+    </string-array>
+
 </resources>

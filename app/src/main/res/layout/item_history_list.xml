@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/cv_teammate"
+    android:id="@+id/cv_history"
     app:cardBackgroundColor="@color/background">
 
     <LinearLayout
@@ -37,8 +37,7 @@
                 android:layout_height="wrap_content"
                 android:text="01/01/2022"
                 android:textColor="@color/card_text"
-                android:textStyle="bold"
-                android:visibility="gone"/>
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/text_username"

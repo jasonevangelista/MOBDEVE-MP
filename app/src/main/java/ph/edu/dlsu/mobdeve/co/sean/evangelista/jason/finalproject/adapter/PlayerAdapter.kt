@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
@@ -12,13 +13,14 @@ import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.UserProfileAct
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.databinding.ItemPlayerListBinding
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.model.Player
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.model.Tournament
+import java.util.*
+import kotlin.collections.ArrayList
 
 class PlayerAdapter: RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder> {
     private var playerArrayList = ArrayList<Player>()
     private lateinit var context: Context
 
     var onItemClick: ((Player) -> Unit)? = null
-
 
     public constructor(context: Context, playerArrayList: ArrayList<Player>){
         this.context = context
@@ -53,13 +55,35 @@ class PlayerAdapter: RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder> {
 
             fun bindPlayer(player:Player){
                 val rating = "★ " + player.rating.toString()
-                val rank = "${player.featured_game} - ${player.rank}"
 
                 itemBinding.textUsername.text = player.username
                 itemBinding.textRating.text = rating
-                itemBinding.textRank.text = rank
-                itemBinding.textMessage.text = player.message
                 itemBinding.ivPlayerImage.setImageResource(R.drawable.ic_profile)
+
+                if(player.connect_date != null){
+                    // get connectDate for player
+
+                    // show connect date in UI
+                    itemBinding.textDateContact.visibility = View.VISIBLE
+                    // hide unneeded card text views
+                    itemBinding.textRank.visibility = View.GONE
+                    itemBinding.textMessage.visibility = View.GONE
+
+                    var dateFormatted = player.connect_date.toString()
+                    itemBinding.textDateContact.text = dateFormatted
+                }
+                else{
+                    // hide connect date
+                    itemBinding.textDateContact.visibility = View.GONE
+                    // show needed card text views
+                    itemBinding.textRank.visibility = View.VISIBLE
+                    itemBinding.textMessage.visibility = View.VISIBLE
+
+                    val rank = "${player.featured_game} - ${player.rank}"
+                    itemBinding.textRank.text = rank
+                    itemBinding.textMessage.text = player.message
+
+                }
             }
 
             init {
