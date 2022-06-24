@@ -51,6 +51,7 @@ class UserProfileActivity : AppCompatActivity() {
 
         binding.btnConnectPlayer.setOnClickListener {
             val goToConnectActivity = Intent(this, ConnectActivity::class.java)
+            goToConnectActivity.putExtra("player", player)
             startActivity(goToConnectActivity)
         }
 
