@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.databinding.ItemPlayerReviewBinding
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.model.Review
+import java.text.SimpleDateFormat
 
 class ReviewAdapter : RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder> {
 
@@ -35,12 +36,14 @@ class ReviewAdapter : RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder> {
         : RecyclerView.ViewHolder(itemBinding.root){
 
             fun bindReview(review:Review){
+                val format = SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
                 var rating: String = "★ " + review.rating.toString()
 
                 itemBinding.tvReviewerName.text =  review.sender
                 itemBinding.tvReviewContent.text = review.content
                 itemBinding.tvReviewRating.text = rating
-                itemBinding.tvReviewDate.text = review.date.toString()
+                itemBinding.tvReviewDate.text = format.format(review.date)
+
             }
 
         }

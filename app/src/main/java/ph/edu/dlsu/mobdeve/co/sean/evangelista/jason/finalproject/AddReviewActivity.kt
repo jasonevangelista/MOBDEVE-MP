@@ -124,6 +124,10 @@ class AddReviewActivity : AppCompatActivity() {
                 binding.etAddReview.requestFocus()
                 return 0
             }
+            review.rating == 0F -> {
+                Toast.makeText(this, "Rating must have at least 1 star!", Toast.LENGTH_SHORT).show()
+                return 0
+            }
         }
         return 1
     }

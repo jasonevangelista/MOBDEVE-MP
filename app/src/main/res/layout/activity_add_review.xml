@@ -41,8 +41,7 @@
         android:stepSize="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_add_review"
-        android:stepSize="1.0"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_add_review"/>
 
     <EditText
         android:id="@+id/et_add_review"
