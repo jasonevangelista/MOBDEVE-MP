@@ -1,11 +1,11 @@
 package ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -31,7 +31,23 @@ class EditProfileActivity : AppCompatActivity() {
 
         // set game information in UI
         val player = intent.getParcelableExtra<Player>("player")
-        setDetails(player)
+
+        var chosenImage = intent.getStringExtra("image")
+        if (chosenImage == null){
+            chosenImage = player!!.img_url
+        }
+
+        setDetails(player, chosenImage)
+
+        Log.d("IMAGE", "CHOSEN IMAGE: ${chosenImage}")
+
+//        binding.spChooseImage.adapter = ImageArrayAdapter(this,
+//            listOf(
+//                ImageItem(R.drawable.avatar1, "Avatar 1"),
+//                ImageItem(R.drawable.avatar1, "Avatar 2"),
+//                ImageItem(R.drawable.avatar1, "Avatar 3"),
+//                ImageItem(R.drawable.avatar1, "Avatar 4")
+//            ))
 
         db = Firebase.firestore
         auth = Firebase.auth
@@ -47,8 +63,58 @@ class EditProfileActivity : AppCompatActivity() {
             // allow user to select profile image
             // <CODE HERE>
 
-            // go to previous page
+            var email = player.email
+            var username = binding.etUsername.text.toString()
+            var discord =  binding.etDiscord.text.toString()
+            var twitter = binding.etTwitter.text.toString()
+            var other_socials = binding.etOtherSocials.text.toString()
+            var img_url = chosenImage
+            var bio = binding.etBio.text.toString()
+            var message = binding.etMessage.text.toString()
+            var gaming_hours = binding.etGamingHours.text.toString()
+
+            var updatedProfile = Player (
+                email = email,
+                username = username,
+                discord = discord,
+                twitter = twitter,
+                other_socials = other_socials,
+                img_url = img_url,
+                bio = bio,
+                message = message,
+                gaming_hours = gaming_hours
+            )
+
+            val goToChooseImageActivity = Intent(this, ChooseImageActivity::class.java)
+            goToChooseImageActivity.putExtra("player", updatedProfile)
+            startActivity(goToChooseImageActivity)
             finish()
+
+//            // setup the alert builder
+//            val builder: AlertDialog.Builder = AlertDialog.Builder(this@EditProfileActivity)
+//            builder.setTitle("Notice")
+//            builder.setMessage("Launching this missile will destroy the entire universe. Is this what you intended to do?")
+//            val showImage = ImageView(this@EditProfileActivity)
+//            showImage.setImageResource(R.drawable.avatar1)
+//            builder.setView(showImage)
+//            // add the buttons
+//            builder.setNeutralButton("avatar2", DialogInterface.OnClickListener { dialog, which ->
+//                showImage.setImageResource(R.drawable.avatar2)
+//            })
+//            builder.setNeutralButton("avatar3", DialogInterface.OnClickListener { dialog, which ->
+//                showImage.setImageResource(R.drawable.avatar3)
+//            })
+//            builder.setNegativeButton("Cancel", null)
+//
+//            // create and show the alert dialog
+//
+//            // create and show the alert dialog
+//            val dialog: AlertDialog = builder.create()
+//            dialog.show()
+
+
+            // go to previous page
+//            finish()
         }
 
         binding.btnCancelProfile.setOnClickListener {
@@ -65,7 +131,7 @@ class EditProfileActivity : AppCompatActivity() {
             var discord =  binding.etDiscord.text.toString()
             var twitter = binding.etTwitter.text.toString()
             var other_socials = binding.etOtherSocials.text.toString()
-//            var img_url = binding.userImage
+            var img_url = chosenImage
             var bio = binding.etBio.text.toString()
             var message = binding.etMessage.text.toString()
             var gaming_hours = binding.etGamingHours.text.toString()
@@ -76,7 +142,7 @@ class EditProfileActivity : AppCompatActivity() {
                 discord = discord,
                 twitter = twitter,
                 other_socials = other_socials,
-//                img_url = img_url,
+                img_url = img_url,
                 bio = bio,
                 message = message,
                 gaming_hours = gaming_hours
@@ -125,7 +191,7 @@ class EditProfileActivity : AppCompatActivity() {
         return 1
     }
 
-    private fun setDetails(player: Player?){
+    private fun setDetails(player: Player?, chosenImage: String?){
         binding.etUsername.setText(player!!.username)
         binding.etDiscord.setText(player.discord)
         binding.etTwitter.setText(player.twitter)
@@ -134,7 +200,7 @@ class EditProfileActivity : AppCompatActivity() {
         binding.etMessage.setText(player.message)
         binding.etGamingHours.setText(player.gaming_hours)
 //        binding.userImage.setImageResource(R.drawable.ic_profile) // temp placeholder
-        val displayPhoto = resources.getIdentifier(player.img_url, "drawable", packageName)
+        val displayPhoto = resources.getIdentifier(chosenImage, "drawable", packageName)
         binding.userImage.setImageResource(displayPhoto)
     }
 

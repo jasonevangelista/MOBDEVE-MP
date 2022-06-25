@@ -155,6 +155,7 @@
                     android:textAllCaps="false"
                     android:textColor="@color/btn_text"
                     android:textSize="24sp" />
+
             </LinearLayout>
 
             <TextView

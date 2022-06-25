@@ -59,9 +59,9 @@
     <string name="bio">Bio</string>
     <string name="message">Message</string>
     <string name="gaming_hours">Gaming Hours</string>
-    
 
-<!--    Player Filter and Sort Options-->
+
+    <!--    Player Filter and Sort Options-->
     <string-array name="filter_player_options">
         <item>Valorant</item>
         <item>League of Legends</item>
@@ -73,7 +73,7 @@
         <item>Lowest Ratings</item>
     </string-array>
 
-<!--    Tournament Filter and Sort Options-->
+    <!--    Tournament Filter and Sort Options-->
     <string-array name="filter_tournament_options">
         <item>All Games</item>
         <item>Valorant</item>
@@ -86,10 +86,18 @@
         <item>Farthest Start Date</item>
     </string-array>
 
-<!--    History Sort Options-->
+    <!--    History Sort Options-->
     <string-array name="sort_history_options">
         <item>Highest Ratings</item>
         <item>Latest Connect Date</item>
+    </string-array>
+
+    <!--    image options-->
+    <string-array name="choose_image_options">
+        <item>avatar1</item>
+        <item>avatar2</item>
+        <item>avatar3</item>
+        <item>avatar4</item>
     </string-array>
 
 </resources>
