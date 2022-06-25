@@ -10,14 +10,14 @@
     android:orientation="vertical"
     android:background="@color/background">
 
-        <TextView
-            android:id="@+id/tv_visualization"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="(Rating Visualization Here)"
-            android:textColor="@color/black"
-            android:textSize="20dp" />
+<!--        <TextView-->
+<!--            android:id="@+id/tv_visualization"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:gravity="center"-->
+<!--            android:text="(Rating Visualization Here)"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="20dp" />-->
 
 
 
@@ -26,13 +26,59 @@
         android:layout_height="0dip"
         android:layout_weight="1"
         android:gravity="center|top"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp"
+        android:paddingRight="15dp">
 
         <!--        insert review visualization here -->
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/ll_average_reviews"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@id/sv_player_reviews"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/rating_reviews"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginRight="10dp"
+                >
+                <TextView
+                    android:id="@+id/tv_average_reviews"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+
+                    android:text="4.5"
+                    android:textSize="30sp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:text="out of 5"
+                    android:textSize="15sp"
+                    android:textColor="@color/white"/>
+
+                <TextView
+                    android:id="@+id/tv_total_review_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="123456787 reviews"
+                    android:textSize="15sp"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"/>
+
+            </LinearLayout>
 
 <!--            <com.taufiqrahman.reviewratings.RatingReviews-->
 <!--                android:id="@+id/rating_reviews"-->
@@ -55,17 +101,18 @@
                 android:id="@+id/rating_reviews"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                app:text_color="@color/white"
                 app:animation="true"
                 app:layout_constraintBottom_toTopOf="@id/sv_player_reviews"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ll_average_reviews"
                 app:layout_constraintTop_toTopOf="parent"
-                app:max_value="100"
+                app:max_value="10"
                 app:show_label="true"
-                app:spaces="0dp"
-                app:text_color="#333333"
-                app:text_size="10sp"
-                app:width="15dp" />
+                app:spaces="5dp"
+                app:text_size="15sp"
+                app:width="20dp"
+                app:show_raters="false"/>
 
             <ScrollView
                 android:id="@+id/sv_player_reviews"
@@ -73,7 +120,9 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rating_reviews">
+                app:layout_constraintTop_toBottomOf="@id/rating_reviews"
+                android:layout_marginTop="10dp"
+                android:paddingBottom="15dp">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_player_reviews"

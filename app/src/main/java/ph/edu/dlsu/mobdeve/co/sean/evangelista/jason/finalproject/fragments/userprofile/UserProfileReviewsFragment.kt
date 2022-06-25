@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.taufiqrahman.reviewratings.BarLabels
@@ -63,6 +64,8 @@ class UserProfileReviewsFragment : Fragment(R.layout.fragment_user_profile_revie
 
 
 
+
+
     }
 
     // to avoid memory leaks
@@ -99,26 +102,27 @@ class UserProfileReviewsFragment : Fragment(R.layout.fragment_user_profile_revie
     }
 
     private fun setRatingVisualization(){
-        // testing review rating viz
 
-        val ratingReviews = binding.ratingReviews
-        val colors = intArrayOf(
-            Color.parseColor("#0e9d58"),
-            Color.parseColor("#bfd047"),
-            Color.parseColor("#ffc105"),
-            Color.parseColor("#ef7e14"),
-            Color.parseColor("#d36259")
-        )
-
+        val color = Color.parseColor("#8EA8C3")
+        // rating arrangement in array -> [5,4,3,2,1]
         val raters = intArrayOf(
-            Random().nextInt(100),
-            Random().nextInt(100),
-            Random().nextInt(100),
-            Random().nextInt(100),
-            Random().nextInt(100)
+            10,
+            15,
+            5,
+            30,
+            100
         )
+        val averageRating: Float = 4.7F
+        val totalReviews: Int = 20
 
-        ratingReviews.createRatingBars(100, BarLabels.STYPE1, colors, raters)
+        var maxRaterValue = raters.maxOrNull()
+        if (maxRaterValue == null){
+            maxRaterValue = 0
+        }
+
+        binding.tvAverageReviews.text = averageRating.toString()
+        binding.tvTotalReviewCount.text = "$totalReviews reviews"
+        binding.ratingReviews.createRatingBars(maxRaterValue, BarLabels.STYPE1, color, raters)
         reviewAdapter.notifyDataSetChanged()
     }
 
