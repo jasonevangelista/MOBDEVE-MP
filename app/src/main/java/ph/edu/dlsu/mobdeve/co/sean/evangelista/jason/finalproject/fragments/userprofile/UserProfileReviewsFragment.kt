@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -22,6 +23,7 @@ import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.R
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.adapter.ReviewAdapter
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.dao.ReviewsDAO
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.dao.ReviewsDAOArrayImpl
+import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.databinding.ActivityUserProfileBinding
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.databinding.FragmentUserProfileReviewsBinding
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.model.Player
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.model.Review
@@ -33,6 +35,8 @@ class UserProfileReviewsFragment : Fragment(R.layout.fragment_user_profile_revie
 
     private var _binding : FragmentUserProfileReviewsBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var db: FirebaseFirestore
 
     private lateinit var reviewArrayList: ArrayList<Review>
     private lateinit var reviewAdapter: ReviewAdapter
@@ -50,6 +54,7 @@ class UserProfileReviewsFragment : Fragment(R.layout.fragment_user_profile_revie
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentUserProfileReviewsBinding.inflate(inflater, container, false)
+
         db = Firebase.firestore
         return binding.root
     }
@@ -62,6 +67,8 @@ class UserProfileReviewsFragment : Fragment(R.layout.fragment_user_profile_revie
 //        init(player)
         reviewArrayList = ArrayList<Review>()
 
+        val player = requireArguments().getParcelable<Player>("player")
+
         viewManager = LinearLayoutManager(activity)
         reviewAdapter = ReviewAdapter(requireContext(), reviewArrayList)
 
@@ -72,6 +79,7 @@ class UserProfileReviewsFragment : Fragment(R.layout.fragment_user_profile_revie
 
         binding.btnAddReview.setOnClickListener {
             val goToAddReview = Intent(activity, AddReviewActivity::class.java)
+            goToAddReview.putExtra("player", player)
             activity?.startActivity(goToAddReview)
         }
 
@@ -100,7 +108,7 @@ class UserProfileReviewsFragment : Fragment(R.layout.fragment_user_profile_revie
         review1.receiver = "player1"
         review1.content = "Great teammate!!!"
         review1.rating = 5.0F
-        review1.date = LocalDate.now()
+        review1.date = Timestamp.now().toDate()
         dao.addReview(review1)
 
         dao.addReview(review1)
