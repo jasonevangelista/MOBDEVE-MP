@@ -135,7 +135,13 @@
                     android:id="@+id/user_image"
                     android:layout_width="150sp"
                     android:layout_height="150sp"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    tools:srcCompat="@tools:sample/avatars"
+
+                    android:layout_gravity="center"
+
+                    android:adjustViewBounds="true"
+                    android:cropToPadding="false"
+                    android:scaleType="fitXY"/>
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_change_image"

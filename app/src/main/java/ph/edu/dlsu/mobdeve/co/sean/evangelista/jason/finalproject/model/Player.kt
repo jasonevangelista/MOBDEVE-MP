@@ -25,7 +25,7 @@ data class Player(
     var discord: String = "None",
     var twitter: String = "None",
     var other_socials: String = "None",
-    var img_url: String? = null,
+    var img_url: String? = "avatar1",
     var featured_game: String? = null,
     var rank: String? = null,
     var rating: Float = 5.0F,

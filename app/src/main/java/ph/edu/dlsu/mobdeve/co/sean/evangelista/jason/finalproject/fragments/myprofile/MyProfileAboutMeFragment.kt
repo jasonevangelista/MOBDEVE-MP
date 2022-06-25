@@ -2,24 +2,25 @@ package ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.fragments.myp
 
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
-import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.AddReviewActivity
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.EditProfileActivity
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.MainActivity
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.R
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.databinding.FragmentMyProfileAboutMeBinding
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.model.Player
+
 
 class MyProfileAboutMeFragment : Fragment(R.layout.fragment_my_profile_about_me) {
 
@@ -101,6 +102,11 @@ class MyProfileAboutMeFragment : Fragment(R.layout.fragment_my_profile_about_me)
         binding.tvUserDiscord.text = "Discord: " + player.discord
         binding.tvUserTwitter.text = "Twitter: " + player.twitter
         binding.tvUserOtherSocials.text = "Other Socials: " + player.other_socials
+
+        val displayPhoto = requireContext().resources.getIdentifier(player.img_url, "drawable", requireContext().packageName)
+        binding.ivMyImage.setImageResource(displayPhoto)
     }
+
+
 
 }

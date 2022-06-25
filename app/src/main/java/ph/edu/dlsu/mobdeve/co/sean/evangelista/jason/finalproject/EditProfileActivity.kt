@@ -133,7 +133,9 @@ class EditProfileActivity : AppCompatActivity() {
         binding.etBio.setText(player.bio)
         binding.etMessage.setText(player.message)
         binding.etGamingHours.setText(player.gaming_hours)
-        binding.userImage.setImageResource(R.drawable.ic_profile) // temp placeholder
+//        binding.userImage.setImageResource(R.drawable.ic_profile) // temp placeholder
+        val displayPhoto = resources.getIdentifier(player.img_url, "drawable", packageName)
+        binding.userImage.setImageResource(displayPhoto)
     }
 
     private fun redirectToHome(){

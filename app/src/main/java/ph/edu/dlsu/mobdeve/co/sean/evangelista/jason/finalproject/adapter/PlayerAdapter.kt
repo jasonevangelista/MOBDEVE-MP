@@ -59,7 +59,10 @@ class PlayerAdapter: RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder> {
 
                 itemBinding.textUsername.text = player.username
                 itemBinding.textRating.text = rating
-                itemBinding.ivPlayerImage.setImageResource(R.drawable.ic_profile)
+//                itemBinding.ivPlayerImage.setImageResource(R.drawable.ic_profile)
+
+                val displayPhoto = context.resources.getIdentifier(player.img_url, "drawable", context.packageName)
+                itemBinding.ivPlayerImage.setImageResource(displayPhoto)
 
                 if(player.connect_date != null){
                     val format = SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
