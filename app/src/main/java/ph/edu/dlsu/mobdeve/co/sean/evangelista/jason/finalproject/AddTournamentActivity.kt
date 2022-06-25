@@ -39,10 +39,17 @@ class AddTournamentActivity : AppCompatActivity() {
         auth = Firebase.auth
         db = Firebase.firestore
 
-        binding.btnBack.setOnClickListener {
-            // go to previous page
-            finish()
-        }
+        //actionbar
+        val actionbar = supportActionBar
+        //set actionbar title
+        actionbar!!.title = "Back"
+        //set back button
+        actionbar.setDisplayHomeAsUpEnabled(true)
+
+//        binding.btnBack.setOnClickListener {
+//            // go to previous page
+//            finish()
+//        }
 
         binding.btnCancelTournament.setOnClickListener {
             // go to previous page
@@ -133,6 +140,11 @@ class AddTournamentActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     private fun formatDateToString(year: String, month: String,day: String) : String{

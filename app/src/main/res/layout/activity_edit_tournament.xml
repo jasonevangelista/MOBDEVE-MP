@@ -12,28 +12,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_back"
-            android:layout_width="328dp"
-            android:layout_height="75dp"
-            android:background="@color/background"
-            android:textAlignment="textStart"
-            android:text="@string/back"
-            android:textColor="@color/btn_text"
-            android:textSize="48sp" />
+<!--        <androidx.appcompat.widget.AppCompatButton-->
+<!--            android:id="@+id/btn_back"-->
+<!--            android:layout_width="328dp"-->
+<!--            android:layout_height="75dp"-->
+<!--            android:background="@color/background"-->
+<!--            android:textAlignment="textStart"-->
+<!--            android:text="@string/back"-->
+<!--            android:textColor="@color/btn_text"-->
+<!--            android:textSize="48sp" />-->
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_delete"
             android:layout_width="82dp"
             android:layout_height="75dp"
-            android:layout_gravity="center"
-            android:background="@color/background"
+            android:layout_gravity="end"
+            android:background="@color/white"
             android:text="@string/delete"
             android:textAllCaps="false"
-            android:textColor="@color/btn_text"
-            android:textAlignment="center"
+            android:textColor="@color/cancel"
             android:textSize="16sp" />
     </LinearLayout>
 
@@ -45,6 +44,7 @@
         app:layout_constraintTop_toBottomOf="@id/btn_panel"
         android:gravity="center"
         android:text="@string/edit_tournament"
+        android:textColor="@color/black"
         android:textStyle="bold"
         android:textSize="32sp" />
 
@@ -66,6 +66,7 @@
                 android:layout_marginStart="10sp"
                 android:gravity="start"
                 android:text="@string/tournament_name"
+                android:textColor="@color/black"
                 android:textSize="24sp" />
 
             <EditText
@@ -84,6 +85,7 @@
                 android:layout_marginStart="10sp"
                 android:gravity="start"
                 android:text="@string/curr_cap"
+                android:textColor="@color/black"
                 android:textSize="24sp"
                 app:layout_constraintTop_toBottomOf="@id/et_tourney_name" />
 
@@ -104,6 +106,7 @@
                 android:layout_marginStart="10sp"
                 android:gravity="start"
                 android:text="@string/max_cap"
+                android:textColor="@color/black"
                 android:textSize="24sp"
                 app:layout_constraintTop_toBottomOf="@id/et_curr_cap" />
 
@@ -124,6 +127,7 @@
                 android:layout_marginStart="10sp"
                 android:gravity="start"
                 android:text="@string/feat_game"
+                android:textColor="@color/black"
                 android:textSize="24sp"
                 app:layout_constraintTop_toBottomOf="@id/et_max_cap" />
 
@@ -135,6 +139,7 @@
                 android:layout_marginEnd="10sp"
                 android:entries="@array/feat_game_list"
                 android:prompt="@string/feat_game_prompt"
+                android:textColor="@color/black"
                 android:spinnerMode="dropdown"
                 app:layout_constraintTop_toBottomOf="@id/tv_feat_game" />
 
@@ -146,6 +151,7 @@
                 android:layout_marginStart="10sp"
                 android:gravity="start"
                 android:text="@string/description"
+                android:textColor="@color/black"
                 android:textSize="24sp"
                 app:layout_constraintTop_toBottomOf="@id/spinner_game" />
 
@@ -171,6 +177,7 @@
                 android:layout_marginStart="10sp"
                 android:gravity="start"
                 android:text="@string/cut_date"
+                android:textColor="@color/black"
                 android:textSize="24sp"
                 app:layout_constraintTop_toBottomOf="@id/et_description" />
 
@@ -202,6 +209,7 @@
                 android:layout_marginStart="10sp"
                 android:gravity="start"
                 android:text="@string/start_date"
+                android:textColor="@color/black"
                 android:textSize="24sp"
                 app:layout_constraintTop_toBottomOf="@id/dp_cut_date" />
 
@@ -232,6 +240,7 @@
                 android:layout_marginStart="10sp"
                 android:gravity="start"
                 android:text="@string/instructions"
+                android:textColor="@color/black"
                 android:textSize="24sp"
                 app:layout_constraintTop_toBottomOf="@id/dp_start_date" />
 

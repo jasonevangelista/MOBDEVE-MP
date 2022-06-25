@@ -42,10 +42,17 @@ class EditGameActivity : AppCompatActivity() {
         auth = Firebase.auth
         userID = auth.currentUser!!.uid
 
-        binding.btnBack.setOnClickListener {
-            // go to previous page
-            finish()
-        }
+        //actionbar
+        val actionbar = supportActionBar
+        //set actionbar title
+        actionbar!!.title = "Back"
+        //set back button
+        actionbar.setDisplayHomeAsUpEnabled(true)
+
+//        binding.btnBack.setOnClickListener {
+//            // go to previous page
+//            finish()
+//        }
 
         binding.btnDelete.setOnClickListener {
             // delete game details for my profile from database
@@ -137,6 +144,11 @@ class EditGameActivity : AppCompatActivity() {
 //            finish()
         }
 
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     private fun setDetails(game: Game?){

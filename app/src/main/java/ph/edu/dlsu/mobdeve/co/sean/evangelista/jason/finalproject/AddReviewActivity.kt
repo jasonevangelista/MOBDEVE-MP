@@ -42,10 +42,17 @@ class AddReviewActivity : AppCompatActivity() {
 
         val playerReceiver = intent.getParcelableExtra<Player>("player")
 
-        binding.btnBack.setOnClickListener {
-            // go back to previous page
-            finish()
-        }
+        //actionbar
+        val actionbar = supportActionBar
+        //set actionbar title
+        actionbar!!.title = "Back"
+        //set back button
+        actionbar.setDisplayHomeAsUpEnabled(true)
+
+//        binding.btnBack.setOnClickListener {
+//            // go back to previous page
+//            finish()
+//        }
 
         binding.btnCancelReview.setOnClickListener {
             // go back to previous page
@@ -115,6 +122,11 @@ class AddReviewActivity : AppCompatActivity() {
             // finish()
         }
 
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     private fun checkFormInputErrors(review: Review): Int{  // 1 == success, 0 == fail
