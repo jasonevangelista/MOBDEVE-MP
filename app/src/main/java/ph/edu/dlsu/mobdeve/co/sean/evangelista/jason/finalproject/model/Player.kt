@@ -28,7 +28,7 @@ data class Player(
     var img_url: String? = "avatar1",
     var featured_game: String? = null,
     var rank: String? = null,
-    var rating: Float = 5.0F,
+    var rating: Float = 0.0F,
 
     var connect_date: Date? = null
 ) : Parcelable {
