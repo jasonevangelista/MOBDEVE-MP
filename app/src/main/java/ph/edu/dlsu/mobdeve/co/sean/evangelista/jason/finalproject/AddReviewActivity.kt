@@ -23,6 +23,7 @@ import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.model.Player
 import ph.edu.dlsu.mobdeve.co.sean.evangelista.jason.finalproject.model.Review
 import java.time.LocalDate
 import java.util.*
+import kotlin.math.roundToInt
 
 
 class AddReviewActivity : AppCompatActivity() {
@@ -142,6 +143,8 @@ class AddReviewActivity : AppCompatActivity() {
                     aveRating += reviewDoc.toObject<Review>().rating
                 }
                 aveRating /= reviews.size()
+                // set average rating to 1 decimal place
+                aveRating = ((aveRating * 10.0).roundToInt() / 10.0).toFloat()
                 Log.d("AVE RATING", "AVE RATING: ${aveRating}")
 
                 db.collection("players")
