@@ -45,10 +45,17 @@ class EditTournamentActivity : AppCompatActivity() {
         auth = Firebase.auth
         userID = auth.currentUser!!.uid
 
-        binding.btnBack.setOnClickListener {
-            // go to previous page
-            finish()
-        }
+        //actionbar
+        val actionbar = supportActionBar
+        //set actionbar title
+        actionbar!!.title = "Back"
+        //set back button
+        actionbar.setDisplayHomeAsUpEnabled(true)
+
+//        binding.btnBack.setOnClickListener {
+//            // go to previous page
+//            finish()
+//        }
 
         binding.btnDelete.setOnClickListener {
             // delete tournament details from database
@@ -165,6 +172,11 @@ class EditTournamentActivity : AppCompatActivity() {
             // go to previous page
             finish()
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     private fun setDetails(tournament: Tournament?){

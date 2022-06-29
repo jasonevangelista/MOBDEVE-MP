@@ -54,10 +54,17 @@ class EditProfileActivity : AppCompatActivity() {
         userID = auth.currentUser!!.uid
         currUsername = player!!.username.toString()
 
-        binding.btnBack.setOnClickListener {
-            // go to previous page
-            finish()
-        }
+        //actionbar
+        val actionbar = supportActionBar
+        //set actionbar title
+        actionbar!!.title = "Back"
+        //set back button
+        actionbar.setDisplayHomeAsUpEnabled(true)
+
+//        binding.btnBack.setOnClickListener {
+//            // go to previous page
+//            finish()
+//        }
 
         binding.btnChangeImage.setOnClickListener {
             // allow user to select profile image
@@ -178,6 +185,11 @@ class EditProfileActivity : AppCompatActivity() {
             checkUniqueUsername(updatedProfile)
         }
 
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     private fun checkInputFormErrors(player: Player?): Int{ // 1 == success, 0 == fail

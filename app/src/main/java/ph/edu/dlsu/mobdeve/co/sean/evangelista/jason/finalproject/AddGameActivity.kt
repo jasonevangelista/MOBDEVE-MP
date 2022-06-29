@@ -36,10 +36,17 @@ class AddGameActivity : AppCompatActivity() {
         auth = Firebase.auth
         db = Firebase.firestore
 
-        binding.btnBack.setOnClickListener {
-            // go to previous page
-            finish()
-        }
+        //actionbar
+        val actionbar = supportActionBar
+        //set actionbar title
+        actionbar!!.title = "Back"
+        //set back button
+        actionbar.setDisplayHomeAsUpEnabled(true)
+
+//        binding.btnBack.setOnClickListener {
+//            // go to previous page
+//            finish()
+//        }
 
         binding.btnCancelGame.setOnClickListener {
             // go to previous page
@@ -107,6 +114,11 @@ class AddGameActivity : AppCompatActivity() {
             
             checkDuplicateGame(newGame)
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     private fun checkDuplicateGame(game: Game) {

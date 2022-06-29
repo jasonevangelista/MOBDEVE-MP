@@ -12,28 +12,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_back"
-            android:layout_width="328dp"
-            android:layout_height="75dp"
-            android:background="@color/background"
-            android:textAlignment="textStart"
-            android:text="@string/back"
-            android:textColor="@color/btn_text"
-            android:textSize="48sp" />
+<!--        <androidx.appcompat.widget.AppCompatButton-->
+<!--            android:id="@+id/btn_back"-->
+<!--            android:layout_width="328dp"-->
+<!--            android:layout_height="75dp"-->
+<!--            android:background="@color/background"-->
+<!--            android:textAlignment="textStart"-->
+<!--            android:text="@string/back"-->
+<!--            android:textColor="@color/btn_text"-->
+<!--            android:textSize="48sp" />-->
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_delete"
             android:layout_width="82dp"
             android:layout_height="75dp"
-            android:layout_gravity="center"
-            android:background="@color/background"
+            android:layout_gravity="end"
+            android:background="@color/white"
             android:text="@string/delete"
             android:textAllCaps="false"
-            android:textColor="@color/btn_text"
-            android:textAlignment="center"
+            android:textColor="@color/cancel"
             android:textSize="16sp" />
     </LinearLayout>
 
@@ -45,6 +44,7 @@
         app:layout_constraintTop_toBottomOf="@id/btn_panel"
         android:gravity="center"
         android:text="@string/edit_game"
+        android:textColor="@color/black"
         android:textStyle="bold"
         android:textSize="32sp" />
 
@@ -57,6 +57,7 @@
         app:layout_constraintTop_toBottomOf="@id/tv_edit_game"
         android:gravity="start"
         android:text="@string/game_title"
+        android:textColor="@color/black"
         android:textSize="24sp" />
 
     <Spinner
@@ -67,6 +68,7 @@
         android:layout_marginEnd="10sp"
         android:entries="@array/feat_game_list"
         android:prompt="@string/feat_game_prompt"
+        android:textColor="@color/black"
         android:spinnerMode="dropdown"
         app:layout_constraintTop_toBottomOf="@id/tv_game_title"/>
 
@@ -79,6 +81,7 @@
         app:layout_constraintTop_toBottomOf="@id/spinner_game"
         android:gravity="start"
         android:text="@string/rank"
+        android:textColor="@color/black"
         android:textSize="24sp" />
 
     <EditText
@@ -98,6 +101,7 @@
         app:layout_constraintTop_toBottomOf="@id/et_player_rank"
         android:gravity="start"
         android:text="@string/server"
+        android:textColor="@color/black"
         android:textSize="24sp" />
 
     <EditText
@@ -117,6 +121,7 @@
         app:layout_constraintTop_toBottomOf="@id/et_player_server"
         android:gravity="start"
         android:text="@string/role"
+        android:textColor="@color/black"
         android:textSize="24sp" />
 
     <EditText

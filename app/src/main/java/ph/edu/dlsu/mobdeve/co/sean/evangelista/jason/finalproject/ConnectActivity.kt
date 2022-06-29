@@ -31,13 +31,19 @@ class ConnectActivity : AppCompatActivity() {
         auth = Firebase.auth
         db = Firebase.firestore
 
-
         val player = intent.getParcelableExtra<Player>("player")
 
-        binding.btnBack.setOnClickListener { view: View? ->
-            // go back to previous page
-            finish()
-        }
+        //actionbar
+        val actionbar = supportActionBar
+        //set actionbar title
+        actionbar!!.title = "Back"
+        //set back button
+        actionbar.setDisplayHomeAsUpEnabled(true)
+
+//        binding.btnBack.setOnClickListener { view: View? ->
+//            // go back to previous page
+//            finish()
+//        }
 
         binding.btnCancel.setOnClickListener { view: View? ->
             // go back to previous page
@@ -63,6 +69,11 @@ class ConnectActivity : AppCompatActivity() {
 
             }
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     private fun updateHistoryLog(userID: String, connectHistory: ConnectHistory){
